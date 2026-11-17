@@ -56,23 +56,45 @@ const getConnectionString = () => {
     process.env.POSTGRES_URL ||
     process.env.POSTGRES_PRISMA_URL ||
     process.env.SUPABASE_DATABASE_URL ||
+    process.env.SUPABASE_POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
     (process.env.POSTGRES_HOST
       ? `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT || 5432}/${process.env.POSTGRES_DATABASE || "postgres"}`
       : undefined)
   );
 };
 
-const connStr = getConnectionString();
-const isRemoteDb = Boolean(connStr);
+// Strip sslmode / pgbouncer query params so pg-connection-string does not override explicit SSL settings
+const sanitizeConnectionString = (rawUrl: string): { url: string; isLocal: boolean } => {
+  try {
+    const parsed = new URL(rawUrl);
+    const host = parsed.hostname.toLowerCase();
+    const isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+    parsed.searchParams.delete("sslmode");
+    parsed.searchParams.delete("pgbouncer");
+    return { url: parsed.toString(), isLocal };
+  } catch {
+    const isLocal = rawUrl.includes("localhost") || rawUrl.includes("127.0.0.1");
+    return { url: rawUrl, isLocal };
+  }
+};
+
+const rawConnStr = getConnectionString();
+const isRemoteDb = Boolean(rawConnStr);
+const isServerless = process.env.VERCEL === "1" || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 
 // --- Remote PostgreSQL (Supabase / Cloud SQL) Support ---
 export const createRemotePool = (): Pool => {
   if (!global._postgresPool) {
+    const { url, isLocal } = sanitizeConnectionString(getConnectionString() || "");
     const config: PoolConfig = {
-      connectionString: getConnectionString(),
-      ssl: { rejectUnauthorized: false },
-      max: 10,
-      connectionTimeoutMillis: 15000,
+      connectionString: url,
+      ssl: isLocal ? false : { rejectUnauthorized: false },
+      // Keep pool small in Vercel serverless to stay well within Supabase Free Tier limits
+      max: isServerless ? 3 : 10,
+      idleTimeoutMillis: isServerless ? 10000 : 30000,
+      connectionTimeoutMillis: 10000,
+      allowExitOnIdle: isServerless,
     };
     global._postgresPool = new Pool(config);
     global._postgresPool.on("error", (err) => {
@@ -268,14 +290,19 @@ if (isRemoteDb) {
   // Only loaded in local development without remote DATABASE_URL
   const req = getRequireModule();
   if (req) {
-    const { PGlite } = req("@electric-sql/pglite");
-    const { drizzle } = req("drizzle-orm/pglite");
-    pgliteInstance = getPgLiteInstance(PGlite);
-    poolInstance = createPgLitePoolAdapter(pgliteInstance);
-    dbInstance = drizzle(pgliteInstance, { schema });
+    try {
+      const { PGlite } = req("@electric-sql/pglite");
+      const { drizzle } = req("drizzle-orm/pglite");
+      pgliteInstance = getPgLiteInstance(PGlite);
+      poolInstance = createPgLitePoolAdapter(pgliteInstance);
+      dbInstance = drizzle(pgliteInstance, { schema });
+    } catch (pgLiteErr) {
+      console.error("[Database] DATABASE_URL is not configured and local PGlite is unavailable in this environment.", pgLiteErr);
+    }
   }
 }
 
+export const isDatabaseConfigured = Boolean(poolInstance && dbInstance);
 export const pool: any = poolInstance;
 export const pglite: any = pgliteInstance;
 export const db: any = dbInstance;

@@ -1288,9 +1288,9 @@ var require_http_errors = __commonJS({
   }
 });
 
-// node_modules/body-parser/node_modules/ms/index.js
+// node_modules/ms/index.js
 var require_ms = __commonJS({
-  "node_modules/body-parser/node_modules/ms/index.js"(exports, module) {
+  "node_modules/ms/index.js"(exports, module) {
     var s2 = 1e3;
     var m2 = s2 * 60;
     var h2 = m2 * 60;
@@ -1390,9 +1390,9 @@ var require_ms = __commonJS({
   }
 });
 
-// node_modules/body-parser/node_modules/debug/src/debug.js
+// node_modules/debug/src/debug.js
 var require_debug = __commonJS({
-  "node_modules/body-parser/node_modules/debug/src/debug.js"(exports, module) {
+  "node_modules/debug/src/debug.js"(exports, module) {
     exports = module.exports = createDebug.debug = createDebug["default"] = createDebug;
     exports.coerce = coerce;
     exports.disable = disable;
@@ -1495,9 +1495,9 @@ var require_debug = __commonJS({
   }
 });
 
-// node_modules/body-parser/node_modules/debug/src/browser.js
+// node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/body-parser/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/debug/src/browser.js"(exports, module) {
     exports = module.exports = require_debug();
     exports.log = log;
     exports.formatArgs = formatArgs;
@@ -1581,9 +1581,9 @@ var require_browser = __commonJS({
   }
 });
 
-// node_modules/body-parser/node_modules/debug/src/node.js
+// node_modules/debug/src/node.js
 var require_node = __commonJS({
-  "node_modules/body-parser/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports = module.exports = require_debug();
@@ -1701,9 +1701,9 @@ var require_node = __commonJS({
   }
 });
 
-// node_modules/body-parser/node_modules/debug/src/index.js
+// node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/body-parser/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/debug/src/index.js"(exports, module) {
     if (typeof process !== "undefined" && process.type === "renderer") {
       module.exports = require_browser();
     } else {
@@ -17919,430 +17919,6 @@ var require_merge_descriptors = __commonJS({
   }
 });
 
-// node_modules/finalhandler/node_modules/ms/index.js
-var require_ms2 = __commonJS({
-  "node_modules/finalhandler/node_modules/ms/index.js"(exports, module) {
-    var s2 = 1e3;
-    var m2 = s2 * 60;
-    var h2 = m2 * 60;
-    var d = h2 * 24;
-    var y = d * 365.25;
-    module.exports = function(val, options) {
-      options = options || {};
-      var type = typeof val;
-      if (type === "string" && val.length > 0) {
-        return parse(val);
-      } else if (type === "number" && isNaN(val) === false) {
-        return options.long ? fmtLong(val) : fmtShort(val);
-      }
-      throw new Error(
-        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
-      );
-    };
-    function parse(str) {
-      str = String(str);
-      if (str.length > 100) {
-        return;
-      }
-      var match2 = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-        str
-      );
-      if (!match2) {
-        return;
-      }
-      var n = parseFloat(match2[1]);
-      var type = (match2[2] || "ms").toLowerCase();
-      switch (type) {
-        case "years":
-        case "year":
-        case "yrs":
-        case "yr":
-        case "y":
-          return n * y;
-        case "days":
-        case "day":
-        case "d":
-          return n * d;
-        case "hours":
-        case "hour":
-        case "hrs":
-        case "hr":
-        case "h":
-          return n * h2;
-        case "minutes":
-        case "minute":
-        case "mins":
-        case "min":
-        case "m":
-          return n * m2;
-        case "seconds":
-        case "second":
-        case "secs":
-        case "sec":
-        case "s":
-          return n * s2;
-        case "milliseconds":
-        case "millisecond":
-        case "msecs":
-        case "msec":
-        case "ms":
-          return n;
-        default:
-          return void 0;
-      }
-    }
-    function fmtShort(ms) {
-      if (ms >= d) {
-        return Math.round(ms / d) + "d";
-      }
-      if (ms >= h2) {
-        return Math.round(ms / h2) + "h";
-      }
-      if (ms >= m2) {
-        return Math.round(ms / m2) + "m";
-      }
-      if (ms >= s2) {
-        return Math.round(ms / s2) + "s";
-      }
-      return ms + "ms";
-    }
-    function fmtLong(ms) {
-      return plural(ms, d, "day") || plural(ms, h2, "hour") || plural(ms, m2, "minute") || plural(ms, s2, "second") || ms + " ms";
-    }
-    function plural(ms, n, name) {
-      if (ms < n) {
-        return;
-      }
-      if (ms < n * 1.5) {
-        return Math.floor(ms / n) + " " + name;
-      }
-      return Math.ceil(ms / n) + " " + name + "s";
-    }
-  }
-});
-
-// node_modules/finalhandler/node_modules/debug/src/debug.js
-var require_debug2 = __commonJS({
-  "node_modules/finalhandler/node_modules/debug/src/debug.js"(exports, module) {
-    exports = module.exports = createDebug.debug = createDebug["default"] = createDebug;
-    exports.coerce = coerce;
-    exports.disable = disable;
-    exports.enable = enable;
-    exports.enabled = enabled;
-    exports.humanize = require_ms2();
-    exports.names = [];
-    exports.skips = [];
-    exports.formatters = {};
-    var prevTime;
-    function selectColor(namespace) {
-      var hash = 0, i2;
-      for (i2 in namespace) {
-        hash = (hash << 5) - hash + namespace.charCodeAt(i2);
-        hash |= 0;
-      }
-      return exports.colors[Math.abs(hash) % exports.colors.length];
-    }
-    function createDebug(namespace) {
-      function debug() {
-        if (!debug.enabled) return;
-        var self2 = debug;
-        var curr = +/* @__PURE__ */ new Date();
-        var ms = curr - (prevTime || curr);
-        self2.diff = ms;
-        self2.prev = prevTime;
-        self2.curr = curr;
-        prevTime = curr;
-        var args = new Array(arguments.length);
-        for (var i2 = 0; i2 < args.length; i2++) {
-          args[i2] = arguments[i2];
-        }
-        args[0] = exports.coerce(args[0]);
-        if ("string" !== typeof args[0]) {
-          args.unshift("%O");
-        }
-        var index = 0;
-        args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match2, format) {
-          if (match2 === "%%") return match2;
-          index++;
-          var formatter = exports.formatters[format];
-          if ("function" === typeof formatter) {
-            var val = args[index];
-            match2 = formatter.call(self2, val);
-            args.splice(index, 1);
-            index--;
-          }
-          return match2;
-        });
-        exports.formatArgs.call(self2, args);
-        var logFn = debug.log || exports.log || console.log.bind(console);
-        logFn.apply(self2, args);
-      }
-      debug.namespace = namespace;
-      debug.enabled = exports.enabled(namespace);
-      debug.useColors = exports.useColors();
-      debug.color = selectColor(namespace);
-      if ("function" === typeof exports.init) {
-        exports.init(debug);
-      }
-      return debug;
-    }
-    function enable(namespaces) {
-      exports.save(namespaces);
-      exports.names = [];
-      exports.skips = [];
-      var split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
-      var len = split.length;
-      for (var i2 = 0; i2 < len; i2++) {
-        if (!split[i2]) continue;
-        namespaces = split[i2].replace(/\*/g, ".*?");
-        if (namespaces[0] === "-") {
-          exports.skips.push(new RegExp("^" + namespaces.substr(1) + "$"));
-        } else {
-          exports.names.push(new RegExp("^" + namespaces + "$"));
-        }
-      }
-    }
-    function disable() {
-      exports.enable("");
-    }
-    function enabled(name) {
-      var i2, len;
-      for (i2 = 0, len = exports.skips.length; i2 < len; i2++) {
-        if (exports.skips[i2].test(name)) {
-          return false;
-        }
-      }
-      for (i2 = 0, len = exports.names.length; i2 < len; i2++) {
-        if (exports.names[i2].test(name)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function coerce(val) {
-      if (val instanceof Error) return val.stack || val.message;
-      return val;
-    }
-  }
-});
-
-// node_modules/finalhandler/node_modules/debug/src/browser.js
-var require_browser2 = __commonJS({
-  "node_modules/finalhandler/node_modules/debug/src/browser.js"(exports, module) {
-    exports = module.exports = require_debug2();
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.storage = "undefined" != typeof chrome && "undefined" != typeof chrome.storage ? chrome.storage.local : localstorage();
-    exports.colors = [
-      "lightseagreen",
-      "forestgreen",
-      "goldenrod",
-      "dodgerblue",
-      "darkorchid",
-      "crimson"
-    ];
-    function useColors() {
-      if (typeof window !== "undefined" && window.process && window.process.type === "renderer") {
-        return true;
-      }
-      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // is firebug? http://stackoverflow.com/a/398120/376773
-      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // is firefox >= v31?
-      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // double check webkit in userAgent just in case we are in a worker
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
-    }
-    exports.formatters.j = function(v) {
-      try {
-        return JSON.stringify(v);
-      } catch (err) {
-        return "[UnexpectedJSONParseError]: " + err.message;
-      }
-    };
-    function formatArgs(args) {
-      var useColors2 = this.useColors;
-      args[0] = (useColors2 ? "%c" : "") + this.namespace + (useColors2 ? " %c" : " ") + args[0] + (useColors2 ? "%c " : " ") + "+" + exports.humanize(this.diff);
-      if (!useColors2) return;
-      var c = "color: " + this.color;
-      args.splice(1, 0, c, "color: inherit");
-      var index = 0;
-      var lastC = 0;
-      args[0].replace(/%[a-zA-Z%]/g, function(match2) {
-        if ("%%" === match2) return;
-        index++;
-        if ("%c" === match2) {
-          lastC = index;
-        }
-      });
-      args.splice(lastC, 0, c);
-    }
-    function log() {
-      return "object" === typeof console && console.log && Function.prototype.apply.call(console.log, console, arguments);
-    }
-    function save(namespaces) {
-      try {
-        if (null == namespaces) {
-          exports.storage.removeItem("debug");
-        } else {
-          exports.storage.debug = namespaces;
-        }
-      } catch (e2) {
-      }
-    }
-    function load() {
-      var r2;
-      try {
-        r2 = exports.storage.debug;
-      } catch (e2) {
-      }
-      if (!r2 && typeof process !== "undefined" && "env" in process) {
-        r2 = process.env.DEBUG;
-      }
-      return r2;
-    }
-    exports.enable(load());
-    function localstorage() {
-      try {
-        return window.localStorage;
-      } catch (e2) {
-      }
-    }
-  }
-});
-
-// node_modules/finalhandler/node_modules/debug/src/node.js
-var require_node2 = __commonJS({
-  "node_modules/finalhandler/node_modules/debug/src/node.js"(exports, module) {
-    var tty = __require("tty");
-    var util = __require("util");
-    exports = module.exports = require_debug2();
-    exports.init = init;
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.colors = [6, 2, 3, 4, 5, 1];
-    exports.inspectOpts = Object.keys(process.env).filter(function(key) {
-      return /^debug_/i.test(key);
-    }).reduce(function(obj, key) {
-      var prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, function(_, k) {
-        return k.toUpperCase();
-      });
-      var val = process.env[key];
-      if (/^(yes|on|true|enabled)$/i.test(val)) val = true;
-      else if (/^(no|off|false|disabled)$/i.test(val)) val = false;
-      else if (val === "null") val = null;
-      else val = Number(val);
-      obj[prop] = val;
-      return obj;
-    }, {});
-    var fd = parseInt(process.env.DEBUG_FD, 10) || 2;
-    if (1 !== fd && 2 !== fd) {
-      util.deprecate(function() {
-      }, "except for stderr(2) and stdout(1), any other usage of DEBUG_FD is deprecated. Override debug.log if you want to use a different log function (https://git.io/debug_fd)")();
-    }
-    var stream = 1 === fd ? process.stdout : 2 === fd ? process.stderr : createWritableStdioStream(fd);
-    function useColors() {
-      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(fd);
-    }
-    exports.formatters.o = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts).split("\n").map(function(str) {
-        return str.trim();
-      }).join(" ");
-    };
-    exports.formatters.O = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts);
-    };
-    function formatArgs(args) {
-      var name = this.namespace;
-      var useColors2 = this.useColors;
-      if (useColors2) {
-        var c = this.color;
-        var prefix = "  \x1B[3" + c + ";1m" + name + " \x1B[0m";
-        args[0] = prefix + args[0].split("\n").join("\n" + prefix);
-        args.push("\x1B[3" + c + "m+" + exports.humanize(this.diff) + "\x1B[0m");
-      } else {
-        args[0] = (/* @__PURE__ */ new Date()).toUTCString() + " " + name + " " + args[0];
-      }
-    }
-    function log() {
-      return stream.write(util.format.apply(util, arguments) + "\n");
-    }
-    function save(namespaces) {
-      if (null == namespaces) {
-        delete process.env.DEBUG;
-      } else {
-        process.env.DEBUG = namespaces;
-      }
-    }
-    function load() {
-      return process.env.DEBUG;
-    }
-    function createWritableStdioStream(fd2) {
-      var stream2;
-      var tty_wrap = process.binding("tty_wrap");
-      switch (tty_wrap.guessHandleType(fd2)) {
-        case "TTY":
-          stream2 = new tty.WriteStream(fd2);
-          stream2._type = "tty";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        case "FILE":
-          var fs5 = __require("fs");
-          stream2 = new fs5.SyncWriteStream(fd2, { autoClose: false });
-          stream2._type = "fs";
-          break;
-        case "PIPE":
-        case "TCP":
-          var net = __require("net");
-          stream2 = new net.Socket({
-            fd: fd2,
-            readable: false,
-            writable: true
-          });
-          stream2.readable = false;
-          stream2.read = null;
-          stream2._type = "pipe";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        default:
-          throw new Error("Implement me. Unknown stream file type!");
-      }
-      stream2.fd = fd2;
-      stream2._isStdio = true;
-      return stream2;
-    }
-    function init(debug) {
-      debug.inspectOpts = {};
-      var keys = Object.keys(exports.inspectOpts);
-      for (var i2 = 0; i2 < keys.length; i2++) {
-        debug.inspectOpts[keys[i2]] = exports.inspectOpts[keys[i2]];
-      }
-    }
-    exports.enable(load());
-  }
-});
-
-// node_modules/finalhandler/node_modules/debug/src/index.js
-var require_src2 = __commonJS({
-  "node_modules/finalhandler/node_modules/debug/src/index.js"(exports, module) {
-    if (typeof process !== "undefined" && process.type === "renderer") {
-      module.exports = require_browser2();
-    } else {
-      module.exports = require_node2();
-    }
-  }
-});
-
 // node_modules/encodeurl/index.js
 var require_encodeurl = __commonJS({
   "node_modules/encodeurl/index.js"(exports, module) {
@@ -18493,7 +18069,7 @@ var require_parseurl = __commonJS({
 var require_finalhandler = __commonJS({
   "node_modules/finalhandler/index.js"(exports, module) {
     "use strict";
-    var debug = require_src2()("finalhandler");
+    var debug = require_src()("finalhandler");
     var encodeUrl = require_encodeurl();
     var escapeHtml = require_escape_html();
     var onFinished = require_on_finished();
@@ -18635,430 +18211,6 @@ var require_finalhandler = __commonJS({
         var key = keys[i2];
         res.setHeader(key, headers[key]);
       }
-    }
-  }
-});
-
-// node_modules/express/node_modules/ms/index.js
-var require_ms3 = __commonJS({
-  "node_modules/express/node_modules/ms/index.js"(exports, module) {
-    var s2 = 1e3;
-    var m2 = s2 * 60;
-    var h2 = m2 * 60;
-    var d = h2 * 24;
-    var y = d * 365.25;
-    module.exports = function(val, options) {
-      options = options || {};
-      var type = typeof val;
-      if (type === "string" && val.length > 0) {
-        return parse(val);
-      } else if (type === "number" && isNaN(val) === false) {
-        return options.long ? fmtLong(val) : fmtShort(val);
-      }
-      throw new Error(
-        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
-      );
-    };
-    function parse(str) {
-      str = String(str);
-      if (str.length > 100) {
-        return;
-      }
-      var match2 = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-        str
-      );
-      if (!match2) {
-        return;
-      }
-      var n = parseFloat(match2[1]);
-      var type = (match2[2] || "ms").toLowerCase();
-      switch (type) {
-        case "years":
-        case "year":
-        case "yrs":
-        case "yr":
-        case "y":
-          return n * y;
-        case "days":
-        case "day":
-        case "d":
-          return n * d;
-        case "hours":
-        case "hour":
-        case "hrs":
-        case "hr":
-        case "h":
-          return n * h2;
-        case "minutes":
-        case "minute":
-        case "mins":
-        case "min":
-        case "m":
-          return n * m2;
-        case "seconds":
-        case "second":
-        case "secs":
-        case "sec":
-        case "s":
-          return n * s2;
-        case "milliseconds":
-        case "millisecond":
-        case "msecs":
-        case "msec":
-        case "ms":
-          return n;
-        default:
-          return void 0;
-      }
-    }
-    function fmtShort(ms) {
-      if (ms >= d) {
-        return Math.round(ms / d) + "d";
-      }
-      if (ms >= h2) {
-        return Math.round(ms / h2) + "h";
-      }
-      if (ms >= m2) {
-        return Math.round(ms / m2) + "m";
-      }
-      if (ms >= s2) {
-        return Math.round(ms / s2) + "s";
-      }
-      return ms + "ms";
-    }
-    function fmtLong(ms) {
-      return plural(ms, d, "day") || plural(ms, h2, "hour") || plural(ms, m2, "minute") || plural(ms, s2, "second") || ms + " ms";
-    }
-    function plural(ms, n, name) {
-      if (ms < n) {
-        return;
-      }
-      if (ms < n * 1.5) {
-        return Math.floor(ms / n) + " " + name;
-      }
-      return Math.ceil(ms / n) + " " + name + "s";
-    }
-  }
-});
-
-// node_modules/express/node_modules/debug/src/debug.js
-var require_debug3 = __commonJS({
-  "node_modules/express/node_modules/debug/src/debug.js"(exports, module) {
-    exports = module.exports = createDebug.debug = createDebug["default"] = createDebug;
-    exports.coerce = coerce;
-    exports.disable = disable;
-    exports.enable = enable;
-    exports.enabled = enabled;
-    exports.humanize = require_ms3();
-    exports.names = [];
-    exports.skips = [];
-    exports.formatters = {};
-    var prevTime;
-    function selectColor(namespace) {
-      var hash = 0, i2;
-      for (i2 in namespace) {
-        hash = (hash << 5) - hash + namespace.charCodeAt(i2);
-        hash |= 0;
-      }
-      return exports.colors[Math.abs(hash) % exports.colors.length];
-    }
-    function createDebug(namespace) {
-      function debug() {
-        if (!debug.enabled) return;
-        var self2 = debug;
-        var curr = +/* @__PURE__ */ new Date();
-        var ms = curr - (prevTime || curr);
-        self2.diff = ms;
-        self2.prev = prevTime;
-        self2.curr = curr;
-        prevTime = curr;
-        var args = new Array(arguments.length);
-        for (var i2 = 0; i2 < args.length; i2++) {
-          args[i2] = arguments[i2];
-        }
-        args[0] = exports.coerce(args[0]);
-        if ("string" !== typeof args[0]) {
-          args.unshift("%O");
-        }
-        var index = 0;
-        args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match2, format) {
-          if (match2 === "%%") return match2;
-          index++;
-          var formatter = exports.formatters[format];
-          if ("function" === typeof formatter) {
-            var val = args[index];
-            match2 = formatter.call(self2, val);
-            args.splice(index, 1);
-            index--;
-          }
-          return match2;
-        });
-        exports.formatArgs.call(self2, args);
-        var logFn = debug.log || exports.log || console.log.bind(console);
-        logFn.apply(self2, args);
-      }
-      debug.namespace = namespace;
-      debug.enabled = exports.enabled(namespace);
-      debug.useColors = exports.useColors();
-      debug.color = selectColor(namespace);
-      if ("function" === typeof exports.init) {
-        exports.init(debug);
-      }
-      return debug;
-    }
-    function enable(namespaces) {
-      exports.save(namespaces);
-      exports.names = [];
-      exports.skips = [];
-      var split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
-      var len = split.length;
-      for (var i2 = 0; i2 < len; i2++) {
-        if (!split[i2]) continue;
-        namespaces = split[i2].replace(/\*/g, ".*?");
-        if (namespaces[0] === "-") {
-          exports.skips.push(new RegExp("^" + namespaces.substr(1) + "$"));
-        } else {
-          exports.names.push(new RegExp("^" + namespaces + "$"));
-        }
-      }
-    }
-    function disable() {
-      exports.enable("");
-    }
-    function enabled(name) {
-      var i2, len;
-      for (i2 = 0, len = exports.skips.length; i2 < len; i2++) {
-        if (exports.skips[i2].test(name)) {
-          return false;
-        }
-      }
-      for (i2 = 0, len = exports.names.length; i2 < len; i2++) {
-        if (exports.names[i2].test(name)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function coerce(val) {
-      if (val instanceof Error) return val.stack || val.message;
-      return val;
-    }
-  }
-});
-
-// node_modules/express/node_modules/debug/src/browser.js
-var require_browser3 = __commonJS({
-  "node_modules/express/node_modules/debug/src/browser.js"(exports, module) {
-    exports = module.exports = require_debug3();
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.storage = "undefined" != typeof chrome && "undefined" != typeof chrome.storage ? chrome.storage.local : localstorage();
-    exports.colors = [
-      "lightseagreen",
-      "forestgreen",
-      "goldenrod",
-      "dodgerblue",
-      "darkorchid",
-      "crimson"
-    ];
-    function useColors() {
-      if (typeof window !== "undefined" && window.process && window.process.type === "renderer") {
-        return true;
-      }
-      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // is firebug? http://stackoverflow.com/a/398120/376773
-      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // is firefox >= v31?
-      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // double check webkit in userAgent just in case we are in a worker
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
-    }
-    exports.formatters.j = function(v) {
-      try {
-        return JSON.stringify(v);
-      } catch (err) {
-        return "[UnexpectedJSONParseError]: " + err.message;
-      }
-    };
-    function formatArgs(args) {
-      var useColors2 = this.useColors;
-      args[0] = (useColors2 ? "%c" : "") + this.namespace + (useColors2 ? " %c" : " ") + args[0] + (useColors2 ? "%c " : " ") + "+" + exports.humanize(this.diff);
-      if (!useColors2) return;
-      var c = "color: " + this.color;
-      args.splice(1, 0, c, "color: inherit");
-      var index = 0;
-      var lastC = 0;
-      args[0].replace(/%[a-zA-Z%]/g, function(match2) {
-        if ("%%" === match2) return;
-        index++;
-        if ("%c" === match2) {
-          lastC = index;
-        }
-      });
-      args.splice(lastC, 0, c);
-    }
-    function log() {
-      return "object" === typeof console && console.log && Function.prototype.apply.call(console.log, console, arguments);
-    }
-    function save(namespaces) {
-      try {
-        if (null == namespaces) {
-          exports.storage.removeItem("debug");
-        } else {
-          exports.storage.debug = namespaces;
-        }
-      } catch (e2) {
-      }
-    }
-    function load() {
-      var r2;
-      try {
-        r2 = exports.storage.debug;
-      } catch (e2) {
-      }
-      if (!r2 && typeof process !== "undefined" && "env" in process) {
-        r2 = process.env.DEBUG;
-      }
-      return r2;
-    }
-    exports.enable(load());
-    function localstorage() {
-      try {
-        return window.localStorage;
-      } catch (e2) {
-      }
-    }
-  }
-});
-
-// node_modules/express/node_modules/debug/src/node.js
-var require_node3 = __commonJS({
-  "node_modules/express/node_modules/debug/src/node.js"(exports, module) {
-    var tty = __require("tty");
-    var util = __require("util");
-    exports = module.exports = require_debug3();
-    exports.init = init;
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.colors = [6, 2, 3, 4, 5, 1];
-    exports.inspectOpts = Object.keys(process.env).filter(function(key) {
-      return /^debug_/i.test(key);
-    }).reduce(function(obj, key) {
-      var prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, function(_, k) {
-        return k.toUpperCase();
-      });
-      var val = process.env[key];
-      if (/^(yes|on|true|enabled)$/i.test(val)) val = true;
-      else if (/^(no|off|false|disabled)$/i.test(val)) val = false;
-      else if (val === "null") val = null;
-      else val = Number(val);
-      obj[prop] = val;
-      return obj;
-    }, {});
-    var fd = parseInt(process.env.DEBUG_FD, 10) || 2;
-    if (1 !== fd && 2 !== fd) {
-      util.deprecate(function() {
-      }, "except for stderr(2) and stdout(1), any other usage of DEBUG_FD is deprecated. Override debug.log if you want to use a different log function (https://git.io/debug_fd)")();
-    }
-    var stream = 1 === fd ? process.stdout : 2 === fd ? process.stderr : createWritableStdioStream(fd);
-    function useColors() {
-      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(fd);
-    }
-    exports.formatters.o = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts).split("\n").map(function(str) {
-        return str.trim();
-      }).join(" ");
-    };
-    exports.formatters.O = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts);
-    };
-    function formatArgs(args) {
-      var name = this.namespace;
-      var useColors2 = this.useColors;
-      if (useColors2) {
-        var c = this.color;
-        var prefix = "  \x1B[3" + c + ";1m" + name + " \x1B[0m";
-        args[0] = prefix + args[0].split("\n").join("\n" + prefix);
-        args.push("\x1B[3" + c + "m+" + exports.humanize(this.diff) + "\x1B[0m");
-      } else {
-        args[0] = (/* @__PURE__ */ new Date()).toUTCString() + " " + name + " " + args[0];
-      }
-    }
-    function log() {
-      return stream.write(util.format.apply(util, arguments) + "\n");
-    }
-    function save(namespaces) {
-      if (null == namespaces) {
-        delete process.env.DEBUG;
-      } else {
-        process.env.DEBUG = namespaces;
-      }
-    }
-    function load() {
-      return process.env.DEBUG;
-    }
-    function createWritableStdioStream(fd2) {
-      var stream2;
-      var tty_wrap = process.binding("tty_wrap");
-      switch (tty_wrap.guessHandleType(fd2)) {
-        case "TTY":
-          stream2 = new tty.WriteStream(fd2);
-          stream2._type = "tty";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        case "FILE":
-          var fs5 = __require("fs");
-          stream2 = new fs5.SyncWriteStream(fd2, { autoClose: false });
-          stream2._type = "fs";
-          break;
-        case "PIPE":
-        case "TCP":
-          var net = __require("net");
-          stream2 = new net.Socket({
-            fd: fd2,
-            readable: false,
-            writable: true
-          });
-          stream2.readable = false;
-          stream2.read = null;
-          stream2._type = "pipe";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        default:
-          throw new Error("Implement me. Unknown stream file type!");
-      }
-      stream2.fd = fd2;
-      stream2._isStdio = true;
-      return stream2;
-    }
-    function init(debug) {
-      debug.inspectOpts = {};
-      var keys = Object.keys(exports.inspectOpts);
-      for (var i2 = 0; i2 < keys.length; i2++) {
-        debug.inspectOpts[keys[i2]] = exports.inspectOpts[keys[i2]];
-      }
-    }
-    exports.enable(load());
-  }
-});
-
-// node_modules/express/node_modules/debug/src/index.js
-var require_src3 = __commonJS({
-  "node_modules/express/node_modules/debug/src/index.js"(exports, module) {
-    if (typeof process !== "undefined" && process.type === "renderer") {
-      module.exports = require_browser3();
-    } else {
-      module.exports = require_node3();
     }
   }
 });
@@ -19213,7 +18365,7 @@ var require_layer = __commonJS({
   "node_modules/express/lib/router/layer.js"(exports, module) {
     "use strict";
     var pathRegexp = require_path_to_regexp();
-    var debug = require_src3()("express:router:layer");
+    var debug = require_src()("express:router:layer");
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     module.exports = Layer;
     function Layer(path5, options, fn) {
@@ -19351,7 +18503,7 @@ var require_methods = __commonJS({
 var require_route = __commonJS({
   "node_modules/express/lib/router/route.js"(exports, module) {
     "use strict";
-    var debug = require_src3()("express:router:route");
+    var debug = require_src()("express:router:route");
     var flatten = require_array_flatten();
     var Layer = require_layer();
     var methods = require_methods();
@@ -19481,7 +18633,7 @@ var require_router = __commonJS({
     var Layer = require_layer();
     var methods = require_methods();
     var mixin = require_utils_merge();
-    var debug = require_src3()("express:router");
+    var debug = require_src()("express:router");
     var deprecate3 = require_depd()("express");
     var flatten = require_array_flatten();
     var parseUrl = require_parseurl();
@@ -19908,7 +19060,7 @@ var require_query = __commonJS({
 var require_view = __commonJS({
   "node_modules/express/lib/view.js"(exports, module) {
     "use strict";
-    var debug = require_src3()("express:view");
+    var debug = require_src()("express:view");
     var path5 = __require("path");
     var fs5 = __require("fs");
     var dirname2 = path5.dirname;
@@ -20205,430 +19357,6 @@ var require_content_disposition = __commonJS({
   }
 });
 
-// node_modules/send/node_modules/debug/node_modules/ms/index.js
-var require_ms4 = __commonJS({
-  "node_modules/send/node_modules/debug/node_modules/ms/index.js"(exports, module) {
-    var s2 = 1e3;
-    var m2 = s2 * 60;
-    var h2 = m2 * 60;
-    var d = h2 * 24;
-    var y = d * 365.25;
-    module.exports = function(val, options) {
-      options = options || {};
-      var type = typeof val;
-      if (type === "string" && val.length > 0) {
-        return parse(val);
-      } else if (type === "number" && isNaN(val) === false) {
-        return options.long ? fmtLong(val) : fmtShort(val);
-      }
-      throw new Error(
-        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
-      );
-    };
-    function parse(str) {
-      str = String(str);
-      if (str.length > 100) {
-        return;
-      }
-      var match2 = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-        str
-      );
-      if (!match2) {
-        return;
-      }
-      var n = parseFloat(match2[1]);
-      var type = (match2[2] || "ms").toLowerCase();
-      switch (type) {
-        case "years":
-        case "year":
-        case "yrs":
-        case "yr":
-        case "y":
-          return n * y;
-        case "days":
-        case "day":
-        case "d":
-          return n * d;
-        case "hours":
-        case "hour":
-        case "hrs":
-        case "hr":
-        case "h":
-          return n * h2;
-        case "minutes":
-        case "minute":
-        case "mins":
-        case "min":
-        case "m":
-          return n * m2;
-        case "seconds":
-        case "second":
-        case "secs":
-        case "sec":
-        case "s":
-          return n * s2;
-        case "milliseconds":
-        case "millisecond":
-        case "msecs":
-        case "msec":
-        case "ms":
-          return n;
-        default:
-          return void 0;
-      }
-    }
-    function fmtShort(ms) {
-      if (ms >= d) {
-        return Math.round(ms / d) + "d";
-      }
-      if (ms >= h2) {
-        return Math.round(ms / h2) + "h";
-      }
-      if (ms >= m2) {
-        return Math.round(ms / m2) + "m";
-      }
-      if (ms >= s2) {
-        return Math.round(ms / s2) + "s";
-      }
-      return ms + "ms";
-    }
-    function fmtLong(ms) {
-      return plural(ms, d, "day") || plural(ms, h2, "hour") || plural(ms, m2, "minute") || plural(ms, s2, "second") || ms + " ms";
-    }
-    function plural(ms, n, name) {
-      if (ms < n) {
-        return;
-      }
-      if (ms < n * 1.5) {
-        return Math.floor(ms / n) + " " + name;
-      }
-      return Math.ceil(ms / n) + " " + name + "s";
-    }
-  }
-});
-
-// node_modules/send/node_modules/debug/src/debug.js
-var require_debug4 = __commonJS({
-  "node_modules/send/node_modules/debug/src/debug.js"(exports, module) {
-    exports = module.exports = createDebug.debug = createDebug["default"] = createDebug;
-    exports.coerce = coerce;
-    exports.disable = disable;
-    exports.enable = enable;
-    exports.enabled = enabled;
-    exports.humanize = require_ms4();
-    exports.names = [];
-    exports.skips = [];
-    exports.formatters = {};
-    var prevTime;
-    function selectColor(namespace) {
-      var hash = 0, i2;
-      for (i2 in namespace) {
-        hash = (hash << 5) - hash + namespace.charCodeAt(i2);
-        hash |= 0;
-      }
-      return exports.colors[Math.abs(hash) % exports.colors.length];
-    }
-    function createDebug(namespace) {
-      function debug() {
-        if (!debug.enabled) return;
-        var self2 = debug;
-        var curr = +/* @__PURE__ */ new Date();
-        var ms = curr - (prevTime || curr);
-        self2.diff = ms;
-        self2.prev = prevTime;
-        self2.curr = curr;
-        prevTime = curr;
-        var args = new Array(arguments.length);
-        for (var i2 = 0; i2 < args.length; i2++) {
-          args[i2] = arguments[i2];
-        }
-        args[0] = exports.coerce(args[0]);
-        if ("string" !== typeof args[0]) {
-          args.unshift("%O");
-        }
-        var index = 0;
-        args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match2, format) {
-          if (match2 === "%%") return match2;
-          index++;
-          var formatter = exports.formatters[format];
-          if ("function" === typeof formatter) {
-            var val = args[index];
-            match2 = formatter.call(self2, val);
-            args.splice(index, 1);
-            index--;
-          }
-          return match2;
-        });
-        exports.formatArgs.call(self2, args);
-        var logFn = debug.log || exports.log || console.log.bind(console);
-        logFn.apply(self2, args);
-      }
-      debug.namespace = namespace;
-      debug.enabled = exports.enabled(namespace);
-      debug.useColors = exports.useColors();
-      debug.color = selectColor(namespace);
-      if ("function" === typeof exports.init) {
-        exports.init(debug);
-      }
-      return debug;
-    }
-    function enable(namespaces) {
-      exports.save(namespaces);
-      exports.names = [];
-      exports.skips = [];
-      var split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
-      var len = split.length;
-      for (var i2 = 0; i2 < len; i2++) {
-        if (!split[i2]) continue;
-        namespaces = split[i2].replace(/\*/g, ".*?");
-        if (namespaces[0] === "-") {
-          exports.skips.push(new RegExp("^" + namespaces.substr(1) + "$"));
-        } else {
-          exports.names.push(new RegExp("^" + namespaces + "$"));
-        }
-      }
-    }
-    function disable() {
-      exports.enable("");
-    }
-    function enabled(name) {
-      var i2, len;
-      for (i2 = 0, len = exports.skips.length; i2 < len; i2++) {
-        if (exports.skips[i2].test(name)) {
-          return false;
-        }
-      }
-      for (i2 = 0, len = exports.names.length; i2 < len; i2++) {
-        if (exports.names[i2].test(name)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function coerce(val) {
-      if (val instanceof Error) return val.stack || val.message;
-      return val;
-    }
-  }
-});
-
-// node_modules/send/node_modules/debug/src/browser.js
-var require_browser4 = __commonJS({
-  "node_modules/send/node_modules/debug/src/browser.js"(exports, module) {
-    exports = module.exports = require_debug4();
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.storage = "undefined" != typeof chrome && "undefined" != typeof chrome.storage ? chrome.storage.local : localstorage();
-    exports.colors = [
-      "lightseagreen",
-      "forestgreen",
-      "goldenrod",
-      "dodgerblue",
-      "darkorchid",
-      "crimson"
-    ];
-    function useColors() {
-      if (typeof window !== "undefined" && window.process && window.process.type === "renderer") {
-        return true;
-      }
-      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // is firebug? http://stackoverflow.com/a/398120/376773
-      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // is firefox >= v31?
-      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // double check webkit in userAgent just in case we are in a worker
-      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
-    }
-    exports.formatters.j = function(v) {
-      try {
-        return JSON.stringify(v);
-      } catch (err) {
-        return "[UnexpectedJSONParseError]: " + err.message;
-      }
-    };
-    function formatArgs(args) {
-      var useColors2 = this.useColors;
-      args[0] = (useColors2 ? "%c" : "") + this.namespace + (useColors2 ? " %c" : " ") + args[0] + (useColors2 ? "%c " : " ") + "+" + exports.humanize(this.diff);
-      if (!useColors2) return;
-      var c = "color: " + this.color;
-      args.splice(1, 0, c, "color: inherit");
-      var index = 0;
-      var lastC = 0;
-      args[0].replace(/%[a-zA-Z%]/g, function(match2) {
-        if ("%%" === match2) return;
-        index++;
-        if ("%c" === match2) {
-          lastC = index;
-        }
-      });
-      args.splice(lastC, 0, c);
-    }
-    function log() {
-      return "object" === typeof console && console.log && Function.prototype.apply.call(console.log, console, arguments);
-    }
-    function save(namespaces) {
-      try {
-        if (null == namespaces) {
-          exports.storage.removeItem("debug");
-        } else {
-          exports.storage.debug = namespaces;
-        }
-      } catch (e2) {
-      }
-    }
-    function load() {
-      var r2;
-      try {
-        r2 = exports.storage.debug;
-      } catch (e2) {
-      }
-      if (!r2 && typeof process !== "undefined" && "env" in process) {
-        r2 = process.env.DEBUG;
-      }
-      return r2;
-    }
-    exports.enable(load());
-    function localstorage() {
-      try {
-        return window.localStorage;
-      } catch (e2) {
-      }
-    }
-  }
-});
-
-// node_modules/send/node_modules/debug/src/node.js
-var require_node4 = __commonJS({
-  "node_modules/send/node_modules/debug/src/node.js"(exports, module) {
-    var tty = __require("tty");
-    var util = __require("util");
-    exports = module.exports = require_debug4();
-    exports.init = init;
-    exports.log = log;
-    exports.formatArgs = formatArgs;
-    exports.save = save;
-    exports.load = load;
-    exports.useColors = useColors;
-    exports.colors = [6, 2, 3, 4, 5, 1];
-    exports.inspectOpts = Object.keys(process.env).filter(function(key) {
-      return /^debug_/i.test(key);
-    }).reduce(function(obj, key) {
-      var prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, function(_, k) {
-        return k.toUpperCase();
-      });
-      var val = process.env[key];
-      if (/^(yes|on|true|enabled)$/i.test(val)) val = true;
-      else if (/^(no|off|false|disabled)$/i.test(val)) val = false;
-      else if (val === "null") val = null;
-      else val = Number(val);
-      obj[prop] = val;
-      return obj;
-    }, {});
-    var fd = parseInt(process.env.DEBUG_FD, 10) || 2;
-    if (1 !== fd && 2 !== fd) {
-      util.deprecate(function() {
-      }, "except for stderr(2) and stdout(1), any other usage of DEBUG_FD is deprecated. Override debug.log if you want to use a different log function (https://git.io/debug_fd)")();
-    }
-    var stream = 1 === fd ? process.stdout : 2 === fd ? process.stderr : createWritableStdioStream(fd);
-    function useColors() {
-      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(fd);
-    }
-    exports.formatters.o = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts).split("\n").map(function(str) {
-        return str.trim();
-      }).join(" ");
-    };
-    exports.formatters.O = function(v) {
-      this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts);
-    };
-    function formatArgs(args) {
-      var name = this.namespace;
-      var useColors2 = this.useColors;
-      if (useColors2) {
-        var c = this.color;
-        var prefix = "  \x1B[3" + c + ";1m" + name + " \x1B[0m";
-        args[0] = prefix + args[0].split("\n").join("\n" + prefix);
-        args.push("\x1B[3" + c + "m+" + exports.humanize(this.diff) + "\x1B[0m");
-      } else {
-        args[0] = (/* @__PURE__ */ new Date()).toUTCString() + " " + name + " " + args[0];
-      }
-    }
-    function log() {
-      return stream.write(util.format.apply(util, arguments) + "\n");
-    }
-    function save(namespaces) {
-      if (null == namespaces) {
-        delete process.env.DEBUG;
-      } else {
-        process.env.DEBUG = namespaces;
-      }
-    }
-    function load() {
-      return process.env.DEBUG;
-    }
-    function createWritableStdioStream(fd2) {
-      var stream2;
-      var tty_wrap = process.binding("tty_wrap");
-      switch (tty_wrap.guessHandleType(fd2)) {
-        case "TTY":
-          stream2 = new tty.WriteStream(fd2);
-          stream2._type = "tty";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        case "FILE":
-          var fs5 = __require("fs");
-          stream2 = new fs5.SyncWriteStream(fd2, { autoClose: false });
-          stream2._type = "fs";
-          break;
-        case "PIPE":
-        case "TCP":
-          var net = __require("net");
-          stream2 = new net.Socket({
-            fd: fd2,
-            readable: false,
-            writable: true
-          });
-          stream2.readable = false;
-          stream2.read = null;
-          stream2._type = "pipe";
-          if (stream2._handle && stream2._handle.unref) {
-            stream2._handle.unref();
-          }
-          break;
-        default:
-          throw new Error("Implement me. Unknown stream file type!");
-      }
-      stream2.fd = fd2;
-      stream2._isStdio = true;
-      return stream2;
-    }
-    function init(debug) {
-      debug.inspectOpts = {};
-      var keys = Object.keys(exports.inspectOpts);
-      for (var i2 = 0; i2 < keys.length; i2++) {
-        debug.inspectOpts[keys[i2]] = exports.inspectOpts[keys[i2]];
-      }
-    }
-    exports.enable(load());
-  }
-});
-
-// node_modules/send/node_modules/debug/src/index.js
-var require_src4 = __commonJS({
-  "node_modules/send/node_modules/debug/src/index.js"(exports, module) {
-    if (typeof process !== "undefined" && process.type === "renderer") {
-      module.exports = require_browser4();
-    } else {
-      module.exports = require_node4();
-    }
-  }
-});
-
 // node_modules/etag/index.js
 var require_etag = __commonJS({
   "node_modules/etag/index.js"(exports, module) {
@@ -20744,16 +19472,16 @@ var require_fresh = __commonJS({
   }
 });
 
-// node_modules/send/node_modules/mime/types.json
+// node_modules/mime/types.json
 var require_types = __commonJS({
-  "node_modules/send/node_modules/mime/types.json"(exports, module) {
+  "node_modules/mime/types.json"(exports, module) {
     module.exports = { "application/andrew-inset": ["ez"], "application/applixware": ["aw"], "application/atom+xml": ["atom"], "application/atomcat+xml": ["atomcat"], "application/atomsvc+xml": ["atomsvc"], "application/bdoc": ["bdoc"], "application/ccxml+xml": ["ccxml"], "application/cdmi-capability": ["cdmia"], "application/cdmi-container": ["cdmic"], "application/cdmi-domain": ["cdmid"], "application/cdmi-object": ["cdmio"], "application/cdmi-queue": ["cdmiq"], "application/cu-seeme": ["cu"], "application/dash+xml": ["mpd"], "application/davmount+xml": ["davmount"], "application/docbook+xml": ["dbk"], "application/dssc+der": ["dssc"], "application/dssc+xml": ["xdssc"], "application/ecmascript": ["ecma"], "application/emma+xml": ["emma"], "application/epub+zip": ["epub"], "application/exi": ["exi"], "application/font-tdpfr": ["pfr"], "application/font-woff": [], "application/font-woff2": [], "application/geo+json": ["geojson"], "application/gml+xml": ["gml"], "application/gpx+xml": ["gpx"], "application/gxf": ["gxf"], "application/gzip": ["gz"], "application/hyperstudio": ["stk"], "application/inkml+xml": ["ink", "inkml"], "application/ipfix": ["ipfix"], "application/java-archive": ["jar", "war", "ear"], "application/java-serialized-object": ["ser"], "application/java-vm": ["class"], "application/javascript": ["js", "mjs"], "application/json": ["json", "map"], "application/json5": ["json5"], "application/jsonml+json": ["jsonml"], "application/ld+json": ["jsonld"], "application/lost+xml": ["lostxml"], "application/mac-binhex40": ["hqx"], "application/mac-compactpro": ["cpt"], "application/mads+xml": ["mads"], "application/manifest+json": ["webmanifest"], "application/marc": ["mrc"], "application/marcxml+xml": ["mrcx"], "application/mathematica": ["ma", "nb", "mb"], "application/mathml+xml": ["mathml"], "application/mbox": ["mbox"], "application/mediaservercontrol+xml": ["mscml"], "application/metalink+xml": ["metalink"], "application/metalink4+xml": ["meta4"], "application/mets+xml": ["mets"], "application/mods+xml": ["mods"], "application/mp21": ["m21", "mp21"], "application/mp4": ["mp4s", "m4p"], "application/msword": ["doc", "dot"], "application/mxf": ["mxf"], "application/octet-stream": ["bin", "dms", "lrf", "mar", "so", "dist", "distz", "pkg", "bpk", "dump", "elc", "deploy", "exe", "dll", "deb", "dmg", "iso", "img", "msi", "msp", "msm", "buffer"], "application/oda": ["oda"], "application/oebps-package+xml": ["opf"], "application/ogg": ["ogx"], "application/omdoc+xml": ["omdoc"], "application/onenote": ["onetoc", "onetoc2", "onetmp", "onepkg"], "application/oxps": ["oxps"], "application/patch-ops-error+xml": ["xer"], "application/pdf": ["pdf"], "application/pgp-encrypted": ["pgp"], "application/pgp-signature": ["asc", "sig"], "application/pics-rules": ["prf"], "application/pkcs10": ["p10"], "application/pkcs7-mime": ["p7m", "p7c"], "application/pkcs7-signature": ["p7s"], "application/pkcs8": ["p8"], "application/pkix-attr-cert": ["ac"], "application/pkix-cert": ["cer"], "application/pkix-crl": ["crl"], "application/pkix-pkipath": ["pkipath"], "application/pkixcmp": ["pki"], "application/pls+xml": ["pls"], "application/postscript": ["ai", "eps", "ps"], "application/prs.cww": ["cww"], "application/pskc+xml": ["pskcxml"], "application/raml+yaml": ["raml"], "application/rdf+xml": ["rdf"], "application/reginfo+xml": ["rif"], "application/relax-ng-compact-syntax": ["rnc"], "application/resource-lists+xml": ["rl"], "application/resource-lists-diff+xml": ["rld"], "application/rls-services+xml": ["rs"], "application/rpki-ghostbusters": ["gbr"], "application/rpki-manifest": ["mft"], "application/rpki-roa": ["roa"], "application/rsd+xml": ["rsd"], "application/rss+xml": ["rss"], "application/rtf": ["rtf"], "application/sbml+xml": ["sbml"], "application/scvp-cv-request": ["scq"], "application/scvp-cv-response": ["scs"], "application/scvp-vp-request": ["spq"], "application/scvp-vp-response": ["spp"], "application/sdp": ["sdp"], "application/set-payment-initiation": ["setpay"], "application/set-registration-initiation": ["setreg"], "application/shf+xml": ["shf"], "application/smil+xml": ["smi", "smil"], "application/sparql-query": ["rq"], "application/sparql-results+xml": ["srx"], "application/srgs": ["gram"], "application/srgs+xml": ["grxml"], "application/sru+xml": ["sru"], "application/ssdl+xml": ["ssdl"], "application/ssml+xml": ["ssml"], "application/tei+xml": ["tei", "teicorpus"], "application/thraud+xml": ["tfi"], "application/timestamped-data": ["tsd"], "application/vnd.3gpp.pic-bw-large": ["plb"], "application/vnd.3gpp.pic-bw-small": ["psb"], "application/vnd.3gpp.pic-bw-var": ["pvb"], "application/vnd.3gpp2.tcap": ["tcap"], "application/vnd.3m.post-it-notes": ["pwn"], "application/vnd.accpac.simply.aso": ["aso"], "application/vnd.accpac.simply.imp": ["imp"], "application/vnd.acucobol": ["acu"], "application/vnd.acucorp": ["atc", "acutc"], "application/vnd.adobe.air-application-installer-package+zip": ["air"], "application/vnd.adobe.formscentral.fcdt": ["fcdt"], "application/vnd.adobe.fxp": ["fxp", "fxpl"], "application/vnd.adobe.xdp+xml": ["xdp"], "application/vnd.adobe.xfdf": ["xfdf"], "application/vnd.ahead.space": ["ahead"], "application/vnd.airzip.filesecure.azf": ["azf"], "application/vnd.airzip.filesecure.azs": ["azs"], "application/vnd.amazon.ebook": ["azw"], "application/vnd.americandynamics.acc": ["acc"], "application/vnd.amiga.ami": ["ami"], "application/vnd.android.package-archive": ["apk"], "application/vnd.anser-web-certificate-issue-initiation": ["cii"], "application/vnd.anser-web-funds-transfer-initiation": ["fti"], "application/vnd.antix.game-component": ["atx"], "application/vnd.apple.installer+xml": ["mpkg"], "application/vnd.apple.mpegurl": ["m3u8"], "application/vnd.apple.pkpass": ["pkpass"], "application/vnd.aristanetworks.swi": ["swi"], "application/vnd.astraea-software.iota": ["iota"], "application/vnd.audiograph": ["aep"], "application/vnd.blueice.multipass": ["mpm"], "application/vnd.bmi": ["bmi"], "application/vnd.businessobjects": ["rep"], "application/vnd.chemdraw+xml": ["cdxml"], "application/vnd.chipnuts.karaoke-mmd": ["mmd"], "application/vnd.cinderella": ["cdy"], "application/vnd.claymore": ["cla"], "application/vnd.cloanto.rp9": ["rp9"], "application/vnd.clonk.c4group": ["c4g", "c4d", "c4f", "c4p", "c4u"], "application/vnd.cluetrust.cartomobile-config": ["c11amc"], "application/vnd.cluetrust.cartomobile-config-pkg": ["c11amz"], "application/vnd.commonspace": ["csp"], "application/vnd.contact.cmsg": ["cdbcmsg"], "application/vnd.cosmocaller": ["cmc"], "application/vnd.crick.clicker": ["clkx"], "application/vnd.crick.clicker.keyboard": ["clkk"], "application/vnd.crick.clicker.palette": ["clkp"], "application/vnd.crick.clicker.template": ["clkt"], "application/vnd.crick.clicker.wordbank": ["clkw"], "application/vnd.criticaltools.wbs+xml": ["wbs"], "application/vnd.ctc-posml": ["pml"], "application/vnd.cups-ppd": ["ppd"], "application/vnd.curl.car": ["car"], "application/vnd.curl.pcurl": ["pcurl"], "application/vnd.dart": ["dart"], "application/vnd.data-vision.rdz": ["rdz"], "application/vnd.dece.data": ["uvf", "uvvf", "uvd", "uvvd"], "application/vnd.dece.ttml+xml": ["uvt", "uvvt"], "application/vnd.dece.unspecified": ["uvx", "uvvx"], "application/vnd.dece.zip": ["uvz", "uvvz"], "application/vnd.denovo.fcselayout-link": ["fe_launch"], "application/vnd.dna": ["dna"], "application/vnd.dolby.mlp": ["mlp"], "application/vnd.dpgraph": ["dpg"], "application/vnd.dreamfactory": ["dfac"], "application/vnd.ds-keypoint": ["kpxx"], "application/vnd.dvb.ait": ["ait"], "application/vnd.dvb.service": ["svc"], "application/vnd.dynageo": ["geo"], "application/vnd.ecowin.chart": ["mag"], "application/vnd.enliven": ["nml"], "application/vnd.epson.esf": ["esf"], "application/vnd.epson.msf": ["msf"], "application/vnd.epson.quickanime": ["qam"], "application/vnd.epson.salt": ["slt"], "application/vnd.epson.ssf": ["ssf"], "application/vnd.eszigno3+xml": ["es3", "et3"], "application/vnd.ezpix-album": ["ez2"], "application/vnd.ezpix-package": ["ez3"], "application/vnd.fdf": ["fdf"], "application/vnd.fdsn.mseed": ["mseed"], "application/vnd.fdsn.seed": ["seed", "dataless"], "application/vnd.flographit": ["gph"], "application/vnd.fluxtime.clip": ["ftc"], "application/vnd.framemaker": ["fm", "frame", "maker", "book"], "application/vnd.frogans.fnc": ["fnc"], "application/vnd.frogans.ltf": ["ltf"], "application/vnd.fsc.weblaunch": ["fsc"], "application/vnd.fujitsu.oasys": ["oas"], "application/vnd.fujitsu.oasys2": ["oa2"], "application/vnd.fujitsu.oasys3": ["oa3"], "application/vnd.fujitsu.oasysgp": ["fg5"], "application/vnd.fujitsu.oasysprs": ["bh2"], "application/vnd.fujixerox.ddd": ["ddd"], "application/vnd.fujixerox.docuworks": ["xdw"], "application/vnd.fujixerox.docuworks.binder": ["xbd"], "application/vnd.fuzzysheet": ["fzs"], "application/vnd.genomatix.tuxedo": ["txd"], "application/vnd.geogebra.file": ["ggb"], "application/vnd.geogebra.tool": ["ggt"], "application/vnd.geometry-explorer": ["gex", "gre"], "application/vnd.geonext": ["gxt"], "application/vnd.geoplan": ["g2w"], "application/vnd.geospace": ["g3w"], "application/vnd.gmx": ["gmx"], "application/vnd.google-apps.document": ["gdoc"], "application/vnd.google-apps.presentation": ["gslides"], "application/vnd.google-apps.spreadsheet": ["gsheet"], "application/vnd.google-earth.kml+xml": ["kml"], "application/vnd.google-earth.kmz": ["kmz"], "application/vnd.grafeq": ["gqf", "gqs"], "application/vnd.groove-account": ["gac"], "application/vnd.groove-help": ["ghf"], "application/vnd.groove-identity-message": ["gim"], "application/vnd.groove-injector": ["grv"], "application/vnd.groove-tool-message": ["gtm"], "application/vnd.groove-tool-template": ["tpl"], "application/vnd.groove-vcard": ["vcg"], "application/vnd.hal+xml": ["hal"], "application/vnd.handheld-entertainment+xml": ["zmm"], "application/vnd.hbci": ["hbci"], "application/vnd.hhe.lesson-player": ["les"], "application/vnd.hp-hpgl": ["hpgl"], "application/vnd.hp-hpid": ["hpid"], "application/vnd.hp-hps": ["hps"], "application/vnd.hp-jlyt": ["jlt"], "application/vnd.hp-pcl": ["pcl"], "application/vnd.hp-pclxl": ["pclxl"], "application/vnd.hydrostatix.sof-data": ["sfd-hdstx"], "application/vnd.ibm.minipay": ["mpy"], "application/vnd.ibm.modcap": ["afp", "listafp", "list3820"], "application/vnd.ibm.rights-management": ["irm"], "application/vnd.ibm.secure-container": ["sc"], "application/vnd.iccprofile": ["icc", "icm"], "application/vnd.igloader": ["igl"], "application/vnd.immervision-ivp": ["ivp"], "application/vnd.immervision-ivu": ["ivu"], "application/vnd.insors.igm": ["igm"], "application/vnd.intercon.formnet": ["xpw", "xpx"], "application/vnd.intergeo": ["i2g"], "application/vnd.intu.qbo": ["qbo"], "application/vnd.intu.qfx": ["qfx"], "application/vnd.ipunplugged.rcprofile": ["rcprofile"], "application/vnd.irepository.package+xml": ["irp"], "application/vnd.is-xpr": ["xpr"], "application/vnd.isac.fcs": ["fcs"], "application/vnd.jam": ["jam"], "application/vnd.jcp.javame.midlet-rms": ["rms"], "application/vnd.jisp": ["jisp"], "application/vnd.joost.joda-archive": ["joda"], "application/vnd.kahootz": ["ktz", "ktr"], "application/vnd.kde.karbon": ["karbon"], "application/vnd.kde.kchart": ["chrt"], "application/vnd.kde.kformula": ["kfo"], "application/vnd.kde.kivio": ["flw"], "application/vnd.kde.kontour": ["kon"], "application/vnd.kde.kpresenter": ["kpr", "kpt"], "application/vnd.kde.kspread": ["ksp"], "application/vnd.kde.kword": ["kwd", "kwt"], "application/vnd.kenameaapp": ["htke"], "application/vnd.kidspiration": ["kia"], "application/vnd.kinar": ["kne", "knp"], "application/vnd.koan": ["skp", "skd", "skt", "skm"], "application/vnd.kodak-descriptor": ["sse"], "application/vnd.las.las+xml": ["lasxml"], "application/vnd.llamagraphics.life-balance.desktop": ["lbd"], "application/vnd.llamagraphics.life-balance.exchange+xml": ["lbe"], "application/vnd.lotus-1-2-3": ["123"], "application/vnd.lotus-approach": ["apr"], "application/vnd.lotus-freelance": ["pre"], "application/vnd.lotus-notes": ["nsf"], "application/vnd.lotus-organizer": ["org"], "application/vnd.lotus-screencam": ["scm"], "application/vnd.lotus-wordpro": ["lwp"], "application/vnd.macports.portpkg": ["portpkg"], "application/vnd.mcd": ["mcd"], "application/vnd.medcalcdata": ["mc1"], "application/vnd.mediastation.cdkey": ["cdkey"], "application/vnd.mfer": ["mwf"], "application/vnd.mfmp": ["mfm"], "application/vnd.micrografx.flo": ["flo"], "application/vnd.micrografx.igx": ["igx"], "application/vnd.mif": ["mif"], "application/vnd.mobius.daf": ["daf"], "application/vnd.mobius.dis": ["dis"], "application/vnd.mobius.mbk": ["mbk"], "application/vnd.mobius.mqy": ["mqy"], "application/vnd.mobius.msl": ["msl"], "application/vnd.mobius.plc": ["plc"], "application/vnd.mobius.txf": ["txf"], "application/vnd.mophun.application": ["mpn"], "application/vnd.mophun.certificate": ["mpc"], "application/vnd.mozilla.xul+xml": ["xul"], "application/vnd.ms-artgalry": ["cil"], "application/vnd.ms-cab-compressed": ["cab"], "application/vnd.ms-excel": ["xls", "xlm", "xla", "xlc", "xlt", "xlw"], "application/vnd.ms-excel.addin.macroenabled.12": ["xlam"], "application/vnd.ms-excel.sheet.binary.macroenabled.12": ["xlsb"], "application/vnd.ms-excel.sheet.macroenabled.12": ["xlsm"], "application/vnd.ms-excel.template.macroenabled.12": ["xltm"], "application/vnd.ms-fontobject": ["eot"], "application/vnd.ms-htmlhelp": ["chm"], "application/vnd.ms-ims": ["ims"], "application/vnd.ms-lrm": ["lrm"], "application/vnd.ms-officetheme": ["thmx"], "application/vnd.ms-outlook": ["msg"], "application/vnd.ms-pki.seccat": ["cat"], "application/vnd.ms-pki.stl": ["stl"], "application/vnd.ms-powerpoint": ["ppt", "pps", "pot"], "application/vnd.ms-powerpoint.addin.macroenabled.12": ["ppam"], "application/vnd.ms-powerpoint.presentation.macroenabled.12": ["pptm"], "application/vnd.ms-powerpoint.slide.macroenabled.12": ["sldm"], "application/vnd.ms-powerpoint.slideshow.macroenabled.12": ["ppsm"], "application/vnd.ms-powerpoint.template.macroenabled.12": ["potm"], "application/vnd.ms-project": ["mpp", "mpt"], "application/vnd.ms-word.document.macroenabled.12": ["docm"], "application/vnd.ms-word.template.macroenabled.12": ["dotm"], "application/vnd.ms-works": ["wps", "wks", "wcm", "wdb"], "application/vnd.ms-wpl": ["wpl"], "application/vnd.ms-xpsdocument": ["xps"], "application/vnd.mseq": ["mseq"], "application/vnd.musician": ["mus"], "application/vnd.muvee.style": ["msty"], "application/vnd.mynfc": ["taglet"], "application/vnd.neurolanguage.nlu": ["nlu"], "application/vnd.nitf": ["ntf", "nitf"], "application/vnd.noblenet-directory": ["nnd"], "application/vnd.noblenet-sealer": ["nns"], "application/vnd.noblenet-web": ["nnw"], "application/vnd.nokia.n-gage.data": ["ngdat"], "application/vnd.nokia.n-gage.symbian.install": ["n-gage"], "application/vnd.nokia.radio-preset": ["rpst"], "application/vnd.nokia.radio-presets": ["rpss"], "application/vnd.novadigm.edm": ["edm"], "application/vnd.novadigm.edx": ["edx"], "application/vnd.novadigm.ext": ["ext"], "application/vnd.oasis.opendocument.chart": ["odc"], "application/vnd.oasis.opendocument.chart-template": ["otc"], "application/vnd.oasis.opendocument.database": ["odb"], "application/vnd.oasis.opendocument.formula": ["odf"], "application/vnd.oasis.opendocument.formula-template": ["odft"], "application/vnd.oasis.opendocument.graphics": ["odg"], "application/vnd.oasis.opendocument.graphics-template": ["otg"], "application/vnd.oasis.opendocument.image": ["odi"], "application/vnd.oasis.opendocument.image-template": ["oti"], "application/vnd.oasis.opendocument.presentation": ["odp"], "application/vnd.oasis.opendocument.presentation-template": ["otp"], "application/vnd.oasis.opendocument.spreadsheet": ["ods"], "application/vnd.oasis.opendocument.spreadsheet-template": ["ots"], "application/vnd.oasis.opendocument.text": ["odt"], "application/vnd.oasis.opendocument.text-master": ["odm"], "application/vnd.oasis.opendocument.text-template": ["ott"], "application/vnd.oasis.opendocument.text-web": ["oth"], "application/vnd.olpc-sugar": ["xo"], "application/vnd.oma.dd2+xml": ["dd2"], "application/vnd.openofficeorg.extension": ["oxt"], "application/vnd.openxmlformats-officedocument.presentationml.presentation": ["pptx"], "application/vnd.openxmlformats-officedocument.presentationml.slide": ["sldx"], "application/vnd.openxmlformats-officedocument.presentationml.slideshow": ["ppsx"], "application/vnd.openxmlformats-officedocument.presentationml.template": ["potx"], "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": ["xlsx"], "application/vnd.openxmlformats-officedocument.spreadsheetml.template": ["xltx"], "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ["docx"], "application/vnd.openxmlformats-officedocument.wordprocessingml.template": ["dotx"], "application/vnd.osgeo.mapguide.package": ["mgp"], "application/vnd.osgi.dp": ["dp"], "application/vnd.osgi.subsystem": ["esa"], "application/vnd.palm": ["pdb", "pqa", "oprc"], "application/vnd.pawaafile": ["paw"], "application/vnd.pg.format": ["str"], "application/vnd.pg.osasli": ["ei6"], "application/vnd.picsel": ["efif"], "application/vnd.pmi.widget": ["wg"], "application/vnd.pocketlearn": ["plf"], "application/vnd.powerbuilder6": ["pbd"], "application/vnd.previewsystems.box": ["box"], "application/vnd.proteus.magazine": ["mgz"], "application/vnd.publishare-delta-tree": ["qps"], "application/vnd.pvi.ptid1": ["ptid"], "application/vnd.quark.quarkxpress": ["qxd", "qxt", "qwd", "qwt", "qxl", "qxb"], "application/vnd.realvnc.bed": ["bed"], "application/vnd.recordare.musicxml": ["mxl"], "application/vnd.recordare.musicxml+xml": ["musicxml"], "application/vnd.rig.cryptonote": ["cryptonote"], "application/vnd.rim.cod": ["cod"], "application/vnd.rn-realmedia": ["rm"], "application/vnd.rn-realmedia-vbr": ["rmvb"], "application/vnd.route66.link66+xml": ["link66"], "application/vnd.sailingtracker.track": ["st"], "application/vnd.seemail": ["see"], "application/vnd.sema": ["sema"], "application/vnd.semd": ["semd"], "application/vnd.semf": ["semf"], "application/vnd.shana.informed.formdata": ["ifm"], "application/vnd.shana.informed.formtemplate": ["itp"], "application/vnd.shana.informed.interchange": ["iif"], "application/vnd.shana.informed.package": ["ipk"], "application/vnd.simtech-mindmapper": ["twd", "twds"], "application/vnd.smaf": ["mmf"], "application/vnd.smart.teacher": ["teacher"], "application/vnd.solent.sdkm+xml": ["sdkm", "sdkd"], "application/vnd.spotfire.dxp": ["dxp"], "application/vnd.spotfire.sfs": ["sfs"], "application/vnd.stardivision.calc": ["sdc"], "application/vnd.stardivision.draw": ["sda"], "application/vnd.stardivision.impress": ["sdd"], "application/vnd.stardivision.math": ["smf"], "application/vnd.stardivision.writer": ["sdw", "vor"], "application/vnd.stardivision.writer-global": ["sgl"], "application/vnd.stepmania.package": ["smzip"], "application/vnd.stepmania.stepchart": ["sm"], "application/vnd.sun.wadl+xml": ["wadl"], "application/vnd.sun.xml.calc": ["sxc"], "application/vnd.sun.xml.calc.template": ["stc"], "application/vnd.sun.xml.draw": ["sxd"], "application/vnd.sun.xml.draw.template": ["std"], "application/vnd.sun.xml.impress": ["sxi"], "application/vnd.sun.xml.impress.template": ["sti"], "application/vnd.sun.xml.math": ["sxm"], "application/vnd.sun.xml.writer": ["sxw"], "application/vnd.sun.xml.writer.global": ["sxg"], "application/vnd.sun.xml.writer.template": ["stw"], "application/vnd.sus-calendar": ["sus", "susp"], "application/vnd.svd": ["svd"], "application/vnd.symbian.install": ["sis", "sisx"], "application/vnd.syncml+xml": ["xsm"], "application/vnd.syncml.dm+wbxml": ["bdm"], "application/vnd.syncml.dm+xml": ["xdm"], "application/vnd.tao.intent-module-archive": ["tao"], "application/vnd.tcpdump.pcap": ["pcap", "cap", "dmp"], "application/vnd.tmobile-livetv": ["tmo"], "application/vnd.trid.tpt": ["tpt"], "application/vnd.triscape.mxs": ["mxs"], "application/vnd.trueapp": ["tra"], "application/vnd.ufdl": ["ufd", "ufdl"], "application/vnd.uiq.theme": ["utz"], "application/vnd.umajin": ["umj"], "application/vnd.unity": ["unityweb"], "application/vnd.uoml+xml": ["uoml"], "application/vnd.vcx": ["vcx"], "application/vnd.visio": ["vsd", "vst", "vss", "vsw"], "application/vnd.visionary": ["vis"], "application/vnd.vsf": ["vsf"], "application/vnd.wap.wbxml": ["wbxml"], "application/vnd.wap.wmlc": ["wmlc"], "application/vnd.wap.wmlscriptc": ["wmlsc"], "application/vnd.webturbo": ["wtb"], "application/vnd.wolfram.player": ["nbp"], "application/vnd.wordperfect": ["wpd"], "application/vnd.wqd": ["wqd"], "application/vnd.wt.stf": ["stf"], "application/vnd.xara": ["xar"], "application/vnd.xfdl": ["xfdl"], "application/vnd.yamaha.hv-dic": ["hvd"], "application/vnd.yamaha.hv-script": ["hvs"], "application/vnd.yamaha.hv-voice": ["hvp"], "application/vnd.yamaha.openscoreformat": ["osf"], "application/vnd.yamaha.openscoreformat.osfpvg+xml": ["osfpvg"], "application/vnd.yamaha.smaf-audio": ["saf"], "application/vnd.yamaha.smaf-phrase": ["spf"], "application/vnd.yellowriver-custom-menu": ["cmp"], "application/vnd.zul": ["zir", "zirz"], "application/vnd.zzazz.deck+xml": ["zaz"], "application/voicexml+xml": ["vxml"], "application/wasm": ["wasm"], "application/widget": ["wgt"], "application/winhlp": ["hlp"], "application/wsdl+xml": ["wsdl"], "application/wspolicy+xml": ["wspolicy"], "application/x-7z-compressed": ["7z"], "application/x-abiword": ["abw"], "application/x-ace-compressed": ["ace"], "application/x-apple-diskimage": [], "application/x-arj": ["arj"], "application/x-authorware-bin": ["aab", "x32", "u32", "vox"], "application/x-authorware-map": ["aam"], "application/x-authorware-seg": ["aas"], "application/x-bcpio": ["bcpio"], "application/x-bdoc": [], "application/x-bittorrent": ["torrent"], "application/x-blorb": ["blb", "blorb"], "application/x-bzip": ["bz"], "application/x-bzip2": ["bz2", "boz"], "application/x-cbr": ["cbr", "cba", "cbt", "cbz", "cb7"], "application/x-cdlink": ["vcd"], "application/x-cfs-compressed": ["cfs"], "application/x-chat": ["chat"], "application/x-chess-pgn": ["pgn"], "application/x-chrome-extension": ["crx"], "application/x-cocoa": ["cco"], "application/x-conference": ["nsc"], "application/x-cpio": ["cpio"], "application/x-csh": ["csh"], "application/x-debian-package": ["udeb"], "application/x-dgc-compressed": ["dgc"], "application/x-director": ["dir", "dcr", "dxr", "cst", "cct", "cxt", "w3d", "fgd", "swa"], "application/x-doom": ["wad"], "application/x-dtbncx+xml": ["ncx"], "application/x-dtbook+xml": ["dtb"], "application/x-dtbresource+xml": ["res"], "application/x-dvi": ["dvi"], "application/x-envoy": ["evy"], "application/x-eva": ["eva"], "application/x-font-bdf": ["bdf"], "application/x-font-ghostscript": ["gsf"], "application/x-font-linux-psf": ["psf"], "application/x-font-pcf": ["pcf"], "application/x-font-snf": ["snf"], "application/x-font-type1": ["pfa", "pfb", "pfm", "afm"], "application/x-freearc": ["arc"], "application/x-futuresplash": ["spl"], "application/x-gca-compressed": ["gca"], "application/x-glulx": ["ulx"], "application/x-gnumeric": ["gnumeric"], "application/x-gramps-xml": ["gramps"], "application/x-gtar": ["gtar"], "application/x-hdf": ["hdf"], "application/x-httpd-php": ["php"], "application/x-install-instructions": ["install"], "application/x-iso9660-image": [], "application/x-java-archive-diff": ["jardiff"], "application/x-java-jnlp-file": ["jnlp"], "application/x-latex": ["latex"], "application/x-lua-bytecode": ["luac"], "application/x-lzh-compressed": ["lzh", "lha"], "application/x-makeself": ["run"], "application/x-mie": ["mie"], "application/x-mobipocket-ebook": ["prc", "mobi"], "application/x-ms-application": ["application"], "application/x-ms-shortcut": ["lnk"], "application/x-ms-wmd": ["wmd"], "application/x-ms-wmz": ["wmz"], "application/x-ms-xbap": ["xbap"], "application/x-msaccess": ["mdb"], "application/x-msbinder": ["obd"], "application/x-mscardfile": ["crd"], "application/x-msclip": ["clp"], "application/x-msdos-program": [], "application/x-msdownload": ["com", "bat"], "application/x-msmediaview": ["mvb", "m13", "m14"], "application/x-msmetafile": ["wmf", "emf", "emz"], "application/x-msmoney": ["mny"], "application/x-mspublisher": ["pub"], "application/x-msschedule": ["scd"], "application/x-msterminal": ["trm"], "application/x-mswrite": ["wri"], "application/x-netcdf": ["nc", "cdf"], "application/x-ns-proxy-autoconfig": ["pac"], "application/x-nzb": ["nzb"], "application/x-perl": ["pl", "pm"], "application/x-pilot": [], "application/x-pkcs12": ["p12", "pfx"], "application/x-pkcs7-certificates": ["p7b", "spc"], "application/x-pkcs7-certreqresp": ["p7r"], "application/x-rar-compressed": ["rar"], "application/x-redhat-package-manager": ["rpm"], "application/x-research-info-systems": ["ris"], "application/x-sea": ["sea"], "application/x-sh": ["sh"], "application/x-shar": ["shar"], "application/x-shockwave-flash": ["swf"], "application/x-silverlight-app": ["xap"], "application/x-sql": ["sql"], "application/x-stuffit": ["sit"], "application/x-stuffitx": ["sitx"], "application/x-subrip": ["srt"], "application/x-sv4cpio": ["sv4cpio"], "application/x-sv4crc": ["sv4crc"], "application/x-t3vm-image": ["t3"], "application/x-tads": ["gam"], "application/x-tar": ["tar"], "application/x-tcl": ["tcl", "tk"], "application/x-tex": ["tex"], "application/x-tex-tfm": ["tfm"], "application/x-texinfo": ["texinfo", "texi"], "application/x-tgif": ["obj"], "application/x-ustar": ["ustar"], "application/x-virtualbox-hdd": ["hdd"], "application/x-virtualbox-ova": ["ova"], "application/x-virtualbox-ovf": ["ovf"], "application/x-virtualbox-vbox": ["vbox"], "application/x-virtualbox-vbox-extpack": ["vbox-extpack"], "application/x-virtualbox-vdi": ["vdi"], "application/x-virtualbox-vhd": ["vhd"], "application/x-virtualbox-vmdk": ["vmdk"], "application/x-wais-source": ["src"], "application/x-web-app-manifest+json": ["webapp"], "application/x-x509-ca-cert": ["der", "crt", "pem"], "application/x-xfig": ["fig"], "application/x-xliff+xml": ["xlf"], "application/x-xpinstall": ["xpi"], "application/x-xz": ["xz"], "application/x-zmachine": ["z1", "z2", "z3", "z4", "z5", "z6", "z7", "z8"], "application/xaml+xml": ["xaml"], "application/xcap-diff+xml": ["xdf"], "application/xenc+xml": ["xenc"], "application/xhtml+xml": ["xhtml", "xht"], "application/xml": ["xml", "xsl", "xsd", "rng"], "application/xml-dtd": ["dtd"], "application/xop+xml": ["xop"], "application/xproc+xml": ["xpl"], "application/xslt+xml": ["xslt"], "application/xspf+xml": ["xspf"], "application/xv+xml": ["mxml", "xhvml", "xvml", "xvm"], "application/yang": ["yang"], "application/yin+xml": ["yin"], "application/zip": ["zip"], "audio/3gpp": [], "audio/adpcm": ["adp"], "audio/basic": ["au", "snd"], "audio/midi": ["mid", "midi", "kar", "rmi"], "audio/mp3": [], "audio/mp4": ["m4a", "mp4a"], "audio/mpeg": ["mpga", "mp2", "mp2a", "mp3", "m2a", "m3a"], "audio/ogg": ["oga", "ogg", "spx"], "audio/s3m": ["s3m"], "audio/silk": ["sil"], "audio/vnd.dece.audio": ["uva", "uvva"], "audio/vnd.digital-winds": ["eol"], "audio/vnd.dra": ["dra"], "audio/vnd.dts": ["dts"], "audio/vnd.dts.hd": ["dtshd"], "audio/vnd.lucent.voice": ["lvp"], "audio/vnd.ms-playready.media.pya": ["pya"], "audio/vnd.nuera.ecelp4800": ["ecelp4800"], "audio/vnd.nuera.ecelp7470": ["ecelp7470"], "audio/vnd.nuera.ecelp9600": ["ecelp9600"], "audio/vnd.rip": ["rip"], "audio/wav": ["wav"], "audio/wave": [], "audio/webm": ["weba"], "audio/x-aac": ["aac"], "audio/x-aiff": ["aif", "aiff", "aifc"], "audio/x-caf": ["caf"], "audio/x-flac": ["flac"], "audio/x-m4a": [], "audio/x-matroska": ["mka"], "audio/x-mpegurl": ["m3u"], "audio/x-ms-wax": ["wax"], "audio/x-ms-wma": ["wma"], "audio/x-pn-realaudio": ["ram", "ra"], "audio/x-pn-realaudio-plugin": ["rmp"], "audio/x-realaudio": [], "audio/x-wav": [], "audio/xm": ["xm"], "chemical/x-cdx": ["cdx"], "chemical/x-cif": ["cif"], "chemical/x-cmdf": ["cmdf"], "chemical/x-cml": ["cml"], "chemical/x-csml": ["csml"], "chemical/x-xyz": ["xyz"], "font/collection": ["ttc"], "font/otf": ["otf"], "font/ttf": ["ttf"], "font/woff": ["woff"], "font/woff2": ["woff2"], "image/apng": ["apng"], "image/bmp": ["bmp"], "image/cgm": ["cgm"], "image/g3fax": ["g3"], "image/gif": ["gif"], "image/ief": ["ief"], "image/jp2": ["jp2", "jpg2"], "image/jpeg": ["jpeg", "jpg", "jpe"], "image/jpm": ["jpm"], "image/jpx": ["jpx", "jpf"], "image/ktx": ["ktx"], "image/png": ["png"], "image/prs.btif": ["btif"], "image/sgi": ["sgi"], "image/svg+xml": ["svg", "svgz"], "image/tiff": ["tiff", "tif"], "image/vnd.adobe.photoshop": ["psd"], "image/vnd.dece.graphic": ["uvi", "uvvi", "uvg", "uvvg"], "image/vnd.djvu": ["djvu", "djv"], "image/vnd.dvb.subtitle": [], "image/vnd.dwg": ["dwg"], "image/vnd.dxf": ["dxf"], "image/vnd.fastbidsheet": ["fbs"], "image/vnd.fpx": ["fpx"], "image/vnd.fst": ["fst"], "image/vnd.fujixerox.edmics-mmr": ["mmr"], "image/vnd.fujixerox.edmics-rlc": ["rlc"], "image/vnd.ms-modi": ["mdi"], "image/vnd.ms-photo": ["wdp"], "image/vnd.net-fpx": ["npx"], "image/vnd.wap.wbmp": ["wbmp"], "image/vnd.xiff": ["xif"], "image/webp": ["webp"], "image/x-3ds": ["3ds"], "image/x-cmu-raster": ["ras"], "image/x-cmx": ["cmx"], "image/x-freehand": ["fh", "fhc", "fh4", "fh5", "fh7"], "image/x-icon": ["ico"], "image/x-jng": ["jng"], "image/x-mrsid-image": ["sid"], "image/x-ms-bmp": [], "image/x-pcx": ["pcx"], "image/x-pict": ["pic", "pct"], "image/x-portable-anymap": ["pnm"], "image/x-portable-bitmap": ["pbm"], "image/x-portable-graymap": ["pgm"], "image/x-portable-pixmap": ["ppm"], "image/x-rgb": ["rgb"], "image/x-tga": ["tga"], "image/x-xbitmap": ["xbm"], "image/x-xpixmap": ["xpm"], "image/x-xwindowdump": ["xwd"], "message/rfc822": ["eml", "mime"], "model/gltf+json": ["gltf"], "model/gltf-binary": ["glb"], "model/iges": ["igs", "iges"], "model/mesh": ["msh", "mesh", "silo"], "model/vnd.collada+xml": ["dae"], "model/vnd.dwf": ["dwf"], "model/vnd.gdl": ["gdl"], "model/vnd.gtw": ["gtw"], "model/vnd.mts": ["mts"], "model/vnd.vtu": ["vtu"], "model/vrml": ["wrl", "vrml"], "model/x3d+binary": ["x3db", "x3dbz"], "model/x3d+vrml": ["x3dv", "x3dvz"], "model/x3d+xml": ["x3d", "x3dz"], "text/cache-manifest": ["appcache", "manifest"], "text/calendar": ["ics", "ifb"], "text/coffeescript": ["coffee", "litcoffee"], "text/css": ["css"], "text/csv": ["csv"], "text/hjson": ["hjson"], "text/html": ["html", "htm", "shtml"], "text/jade": ["jade"], "text/jsx": ["jsx"], "text/less": ["less"], "text/markdown": ["markdown", "md"], "text/mathml": ["mml"], "text/n3": ["n3"], "text/plain": ["txt", "text", "conf", "def", "list", "log", "in", "ini"], "text/prs.lines.tag": ["dsc"], "text/richtext": ["rtx"], "text/rtf": [], "text/sgml": ["sgml", "sgm"], "text/slim": ["slim", "slm"], "text/stylus": ["stylus", "styl"], "text/tab-separated-values": ["tsv"], "text/troff": ["t", "tr", "roff", "man", "me", "ms"], "text/turtle": ["ttl"], "text/uri-list": ["uri", "uris", "urls"], "text/vcard": ["vcard"], "text/vnd.curl": ["curl"], "text/vnd.curl.dcurl": ["dcurl"], "text/vnd.curl.mcurl": ["mcurl"], "text/vnd.curl.scurl": ["scurl"], "text/vnd.dvb.subtitle": ["sub"], "text/vnd.fly": ["fly"], "text/vnd.fmi.flexstor": ["flx"], "text/vnd.graphviz": ["gv"], "text/vnd.in3d.3dml": ["3dml"], "text/vnd.in3d.spot": ["spot"], "text/vnd.sun.j2me.app-descriptor": ["jad"], "text/vnd.wap.wml": ["wml"], "text/vnd.wap.wmlscript": ["wmls"], "text/vtt": ["vtt"], "text/x-asm": ["s", "asm"], "text/x-c": ["c", "cc", "cxx", "cpp", "h", "hh", "dic"], "text/x-component": ["htc"], "text/x-fortran": ["f", "for", "f77", "f90"], "text/x-handlebars-template": ["hbs"], "text/x-java-source": ["java"], "text/x-lua": ["lua"], "text/x-markdown": ["mkd"], "text/x-nfo": ["nfo"], "text/x-opml": ["opml"], "text/x-org": [], "text/x-pascal": ["p", "pas"], "text/x-processing": ["pde"], "text/x-sass": ["sass"], "text/x-scss": ["scss"], "text/x-setext": ["etx"], "text/x-sfv": ["sfv"], "text/x-suse-ymp": ["ymp"], "text/x-uuencode": ["uu"], "text/x-vcalendar": ["vcs"], "text/x-vcard": ["vcf"], "text/xml": [], "text/yaml": ["yaml", "yml"], "video/3gpp": ["3gp", "3gpp"], "video/3gpp2": ["3g2"], "video/h261": ["h261"], "video/h263": ["h263"], "video/h264": ["h264"], "video/jpeg": ["jpgv"], "video/jpm": ["jpgm"], "video/mj2": ["mj2", "mjp2"], "video/mp2t": ["ts"], "video/mp4": ["mp4", "mp4v", "mpg4"], "video/mpeg": ["mpeg", "mpg", "mpe", "m1v", "m2v"], "video/ogg": ["ogv"], "video/quicktime": ["qt", "mov"], "video/vnd.dece.hd": ["uvh", "uvvh"], "video/vnd.dece.mobile": ["uvm", "uvvm"], "video/vnd.dece.pd": ["uvp", "uvvp"], "video/vnd.dece.sd": ["uvs", "uvvs"], "video/vnd.dece.video": ["uvv", "uvvv"], "video/vnd.dvb.file": ["dvb"], "video/vnd.fvt": ["fvt"], "video/vnd.mpegurl": ["mxu", "m4u"], "video/vnd.ms-playready.media.pyv": ["pyv"], "video/vnd.uvvu.mp4": ["uvu", "uvvu"], "video/vnd.vivo": ["viv"], "video/webm": ["webm"], "video/x-f4v": ["f4v"], "video/x-fli": ["fli"], "video/x-flv": ["flv"], "video/x-m4v": ["m4v"], "video/x-matroska": ["mkv", "mk3d", "mks"], "video/x-mng": ["mng"], "video/x-ms-asf": ["asf", "asx"], "video/x-ms-vob": ["vob"], "video/x-ms-wm": ["wm"], "video/x-ms-wmv": ["wmv"], "video/x-ms-wmx": ["wmx"], "video/x-ms-wvx": ["wvx"], "video/x-msvideo": ["avi"], "video/x-sgi-movie": ["movie"], "video/x-smv": ["smv"], "x-conference/x-cooltalk": ["ice"] };
   }
 });
 
-// node_modules/send/node_modules/mime/mime.js
+// node_modules/mime/mime.js
 var require_mime = __commonJS({
-  "node_modules/send/node_modules/mime/mime.js"(exports, module) {
+  "node_modules/mime/mime.js"(exports, module) {
     var path5 = __require("path");
     var fs5 = __require("fs");
     function Mime() {
@@ -20805,9 +19533,9 @@ var require_mime = __commonJS({
   }
 });
 
-// node_modules/ms/index.js
-var require_ms5 = __commonJS({
-  "node_modules/ms/index.js"(exports, module) {
+// node_modules/send/node_modules/ms/index.js
+var require_ms2 = __commonJS({
+  "node_modules/send/node_modules/ms/index.js"(exports, module) {
     var s2 = 1e3;
     var m2 = s2 * 60;
     var h2 = m2 * 60;
@@ -21007,7 +19735,7 @@ var require_send = __commonJS({
   "node_modules/send/index.js"(exports, module) {
     "use strict";
     var createError = require_http_errors();
-    var debug = require_src4()("send");
+    var debug = require_src()("send");
     var deprecate3 = require_depd()("send");
     var destroy = require_destroy();
     var encodeUrl = require_encodeurl();
@@ -21016,7 +19744,7 @@ var require_send = __commonJS({
     var fresh = require_fresh();
     var fs5 = __require("fs");
     var mime = require_mime();
-    var ms = require_ms5();
+    var ms = require_ms2();
     var onFinished = require_on_finished();
     var parseRange = require_range_parser();
     var path5 = __require("path");
@@ -22538,7 +21266,7 @@ var require_application = __commonJS({
     var methods = require_methods();
     var middleware = require_init();
     var query = require_query();
-    var debug = require_src3()("express:application");
+    var debug = require_src()("express:application");
     var View2 = require_view();
     var http4 = __require("http");
     var compileETag = require_utils2().compileETag;
@@ -24622,12 +23350,12 @@ var require_extend = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/package.json
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/package.json
 var require_package = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/package.json"(exports, module) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/package.json"(exports, module) {
     module.exports = {
       name: "gaxios",
-      version: "8.3.2",
+      version: "8.3.3",
       description: "A simple common HTTP client specifically for Google APIs and services.",
       main: "build/cjs/src/index.js",
       types: "build/cjs/src/index.d.ts",
@@ -24687,8 +23415,8 @@ var require_package = __commonJS({
         gts: "^6.0.2",
         "is-docker": "^3.0.0",
         jsdoc: "^4.0.4",
-        "jsdoc-fresh": "^6.0.0",
-        "jsdoc-region-tag": "^5.0.0",
+        "jsdoc-fresh": "^6.1.0",
+        "jsdoc-region-tag": "^5.1.0",
         karma: "^6.0.0",
         "karma-chrome-launcher": "^3.0.0",
         "karma-coverage": "^2.0.0",
@@ -24703,7 +23431,7 @@ var require_package = __commonJS({
         ncp: "^2.0.0",
         nock: "14.0.5",
         "null-loader": "^4.0.1",
-        "pack-n-play": "^4.0.0",
+        "pack-n-play": "^5.3.0",
         puppeteer: "^24.0.0",
         sinon: "21.0.3",
         "stream-browserify": "^3.0.0",
@@ -24740,18 +23468,18 @@ var require_package = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/util.cjs
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/util.cjs
 var require_util = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/util.cjs"(exports, module) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/util.cjs"(exports, module) {
     "use strict";
     var pkg = require_package();
     module.exports = { pkg };
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/common.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/common.js
 var require_common = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/common.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/common.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod3) {
       return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
@@ -24991,9 +23719,9 @@ var require_common = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/retry.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/retry.js
 var require_retry = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/retry.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/retry.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRetryConfig = getRetryConfig;
@@ -25097,9 +23825,9 @@ var require_retry = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/interceptor.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/interceptor.js
 var require_interceptor = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/interceptor.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/interceptor.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GaxiosInterceptorManager = void 0;
@@ -25109,9 +23837,125 @@ var require_interceptor = __commonJS({
   }
 });
 
-// node_modules/debug/src/common.js
+// node_modules/https-proxy-agent/node_modules/debug/node_modules/ms/index.js
+var require_ms3 = __commonJS({
+  "node_modules/https-proxy-agent/node_modules/debug/node_modules/ms/index.js"(exports, module) {
+    var s2 = 1e3;
+    var m2 = s2 * 60;
+    var h2 = m2 * 60;
+    var d = h2 * 24;
+    var w = d * 7;
+    var y = d * 365.25;
+    module.exports = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === "string" && val.length > 0) {
+        return parse(val);
+      } else if (type === "number" && isFinite(val)) {
+        return options.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error(
+        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
+      );
+    };
+    function parse(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match2 = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match2) {
+        return;
+      }
+      var n = parseFloat(match2[1]);
+      var type = (match2[2] || "ms").toLowerCase();
+      switch (type) {
+        case "years":
+        case "year":
+        case "yrs":
+        case "yr":
+        case "y":
+          return n * y;
+        case "weeks":
+        case "week":
+        case "w":
+          return n * w;
+        case "days":
+        case "day":
+        case "d":
+          return n * d;
+        case "hours":
+        case "hour":
+        case "hrs":
+        case "hr":
+        case "h":
+          return n * h2;
+        case "minutes":
+        case "minute":
+        case "mins":
+        case "min":
+        case "m":
+          return n * m2;
+        case "seconds":
+        case "second":
+        case "secs":
+        case "sec":
+        case "s":
+          return n * s2;
+        case "milliseconds":
+        case "millisecond":
+        case "msecs":
+        case "msec":
+        case "ms":
+          return n;
+        default:
+          return void 0;
+      }
+    }
+    function fmtShort(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return Math.round(ms / d) + "d";
+      }
+      if (msAbs >= h2) {
+        return Math.round(ms / h2) + "h";
+      }
+      if (msAbs >= m2) {
+        return Math.round(ms / m2) + "m";
+      }
+      if (msAbs >= s2) {
+        return Math.round(ms / s2) + "s";
+      }
+      return ms + "ms";
+    }
+    function fmtLong(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return plural(ms, msAbs, d, "day");
+      }
+      if (msAbs >= h2) {
+        return plural(ms, msAbs, h2, "hour");
+      }
+      if (msAbs >= m2) {
+        return plural(ms, msAbs, m2, "minute");
+      }
+      if (msAbs >= s2) {
+        return plural(ms, msAbs, s2, "second");
+      }
+      return ms + " ms";
+    }
+    function plural(ms, msAbs, n, name) {
+      var isPlural = msAbs >= n * 1.5;
+      return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
+    }
+  }
+});
+
+// node_modules/https-proxy-agent/node_modules/debug/src/common.js
 var require_common2 = __commonJS({
-  "node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/https-proxy-agent/node_modules/debug/src/common.js"(exports, module) {
     function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -25119,7 +23963,7 @@ var require_common2 = __commonJS({
       createDebug.disable = disable;
       createDebug.enable = enable;
       createDebug.enabled = enabled;
-      createDebug.humanize = require_ms5();
+      createDebug.humanize = require_ms3();
       createDebug.destroy = destroy;
       Object.keys(env2).forEach((key) => {
         createDebug[key] = env2[key];
@@ -25286,9 +24130,9 @@ var require_common2 = __commonJS({
   }
 });
 
-// node_modules/debug/src/browser.js
-var require_browser5 = __commonJS({
-  "node_modules/debug/src/browser.js"(exports, module) {
+// node_modules/https-proxy-agent/node_modules/debug/src/browser.js
+var require_browser2 = __commonJS({
+  "node_modules/https-proxy-agent/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load;
@@ -25456,9 +24300,9 @@ var require_browser5 = __commonJS({
   }
 });
 
-// node_modules/debug/src/node.js
-var require_node5 = __commonJS({
-  "node_modules/debug/src/node.js"(exports, module) {
+// node_modules/https-proxy-agent/node_modules/debug/src/node.js
+var require_node2 = __commonJS({
+  "node_modules/https-proxy-agent/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -25630,13 +24474,13 @@ var require_node5 = __commonJS({
   }
 });
 
-// node_modules/debug/src/index.js
-var require_src5 = __commonJS({
-  "node_modules/debug/src/index.js"(exports, module) {
+// node_modules/https-proxy-agent/node_modules/debug/src/index.js
+var require_src2 = __commonJS({
+  "node_modules/https-proxy-agent/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
-      module.exports = require_browser5();
+      module.exports = require_browser2();
     } else {
-      module.exports = require_node5();
+      module.exports = require_node2();
     }
   }
 });
@@ -25876,7 +24720,7 @@ var require_parse_proxy_response = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.parseProxyResponse = void 0;
-    var debug_1 = __importDefault(require_src5());
+    var debug_1 = __importDefault(require_src2());
     var debug = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
       return new Promise((resolve, reject) => {
@@ -26002,7 +24846,7 @@ var require_dist2 = __commonJS({
     var net = __importStar(__require("net"));
     var tls = __importStar(__require("tls"));
     var assert_1 = __importDefault(__require("assert"));
-    var debug_1 = __importDefault(require_src5());
+    var debug_1 = __importDefault(require_src2());
     var agent_base_1 = require_dist();
     var url_1 = __require("url");
     var parse_proxy_response_1 = require_parse_proxy_response();
@@ -32600,9 +31444,9 @@ var init_src = __esm({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/gaxios.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/gaxios.js
 var require_gaxios = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/gaxios.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/gaxios.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod3) {
       return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
@@ -33109,6 +31953,7 @@ Content-Type: ${partContentType}\r
             }
             throw err;
           }
+          const maxSize = rawInit?.size ?? rawInit?.maxContentLength ?? 0;
           if (res?.body && typeof stream_1.Readable.fromWeb === "function" && !(res.body instanceof stream_1.Readable)) {
             let nodeStream;
             const rawBody = res.body;
@@ -33117,11 +31962,18 @@ Content-Type: ${partContentType}\r
             const origArrayBuffer = res.arrayBuffer.bind(res);
             const origBlob = res.blob.bind(res);
             const readBuffer = async () => {
+              nodeStream ||= stream_1.Readable.fromWeb(rawBody);
               const chunks = [];
+              let totalBytes = 0;
               for await (const chunk of nodeStream) {
-                chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+                const bytes = chunk;
+                totalBytes += bytes.byteLength;
+                if (maxSize > 0 && totalBytes > maxSize) {
+                  throw Object.assign(new Error(`content size at ${String(input?.url ?? input)} over limit: ${maxSize}`), { type: "max-size" });
+                }
+                chunks.push(bytes);
               }
-              return Buffer.concat(chunks);
+              return Buffer.concat(chunks, totalBytes);
             };
             Object.defineProperty(res, "body", {
               get() {
@@ -33132,23 +31984,23 @@ Content-Type: ${partContentType}\r
               enumerable: true
             });
             res.text = async () => {
-              if (!nodeStream)
+              if (!nodeStream && maxSize <= 0)
                 return origText();
               return (await readBuffer()).toString("utf8");
             };
             res.json = async () => {
-              if (!nodeStream)
+              if (!nodeStream && maxSize <= 0)
                 return origJson();
               return JSON.parse(await res.text());
             };
             res.arrayBuffer = async () => {
-              if (!nodeStream)
+              if (!nodeStream && maxSize <= 0)
                 return origArrayBuffer();
               const buf = await readBuffer();
               return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
             };
             res.blob = async () => {
-              if (!nodeStream)
+              if (!nodeStream && maxSize <= 0)
                 return origBlob();
               const buf = await readBuffer();
               const contentType = res.headers?.get?.("content-type") ?? "";
@@ -33203,9 +32055,9 @@ Content-Type: ${partContentType}\r
   }
 });
 
-// node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/index.js
-var require_src6 = __commonJS({
-  "node_modules/firebase-admin/node_modules/gaxios/build/cjs/src/index.js"(exports) {
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/index.js
+var require_src3 = __commonJS({
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gaxios/build/cjs/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -35002,9 +33854,9 @@ var require_json_bigint = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gcp-metadata/build/src/gcp-residency.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gcp-metadata/build/src/gcp-residency.js
 var require_gcp_residency = __commonJS({
-  "node_modules/firebase-admin/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCE_LINUX_BIOS_PATHS = void 0;
@@ -35062,9 +33914,9 @@ var require_gcp_residency = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/google-logging-utils/build/src/colours.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/colours.js
 var require_colours = __commonJS({
-  "node_modules/firebase-admin/node_modules/google-logging-utils/build/src/colours.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/colours.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Colours = void 0;
@@ -35123,9 +33975,9 @@ var require_colours = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/google-logging-utils/build/src/types.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/types.js
 var require_types2 = __commonJS({
-  "node_modules/firebase-admin/node_modules/google-logging-utils/build/src/types.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/types.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LogSeverity = void 0;
@@ -35140,9 +33992,9 @@ var require_types2 = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/google-logging-utils/build/src/logging-utils.js
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/logging-utils.js
 var require_logging_utils = __commonJS({
-  "node_modules/firebase-admin/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -35423,9 +34275,9 @@ var require_logging_utils = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/google-logging-utils/build/src/index.js
-var require_src7 = __commonJS({
-  "node_modules/firebase-admin/node_modules/google-logging-utils/build/src/index.js"(exports) {
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/index.js
+var require_src4 = __commonJS({
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/google-logging-utils/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -35453,9 +34305,9 @@ var require_src7 = __commonJS({
   }
 });
 
-// node_modules/firebase-admin/node_modules/gcp-metadata/build/src/index.js
-var require_src8 = __commonJS({
-  "node_modules/firebase-admin/node_modules/gcp-metadata/build/src/index.js"(exports) {
+// node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gcp-metadata/build/src/index.js
+var require_src5 = __commonJS({
+  "node_modules/firebase-admin/node_modules/google-auth-library/node_modules/gcp-metadata/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -35508,10 +34360,10 @@ var require_src8 = __commonJS({
     exports.getGCPResidency = getGCPResidency;
     exports.setGCPResidency = setGCPResidency;
     exports.requestTimeout = requestTimeout;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
-    var logger = __importStar(require_src7());
+    var logger = __importStar(require_src4());
     exports.BASE_PATH = "/computeMetadata/v1";
     exports.HOST_ADDRESS = "http://169.254.169.254";
     exports.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
@@ -36499,9 +35351,9 @@ var require_authclient = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
     var events_1 = __require("events");
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var util_1 = require_util2();
-    var google_logging_utils_1 = require_src7();
+    var google_logging_utils_1 = require_src4();
     var shared_cjs_1 = require_shared2();
     exports.DEFAULT_UNIVERSE = "googleapis.com";
     exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
@@ -36785,7 +35637,7 @@ var require_oauth2client = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var querystring = __require("querystring");
     var stream = __require("stream");
     var formatEcdsa = require_ecdsa_sig_formatter();
@@ -37466,8 +36318,8 @@ var require_computeclient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Compute = void 0;
-    var gaxios_1 = require_src6();
-    var gcpMetadata = require_src8();
+    var gaxios_1 = require_src3();
+    var gcpMetadata = require_src5();
     var oauth2client_1 = require_oauth2client();
     var Compute = class extends oauth2client_1.OAuth2Client {
       serviceAccountEmail;
@@ -37606,7 +36458,7 @@ var require_envDetect = __commonJS({
     exports.GCPEnv = void 0;
     exports.clear = clear;
     exports.getEnv = getEnv2;
-    var gcpMetadata = require_src8();
+    var gcpMetadata = require_src5();
     var GCPEnv;
     (function(GCPEnv2) {
       GCPEnv2["APP_ENGINE"] = "APP_ENGINE";
@@ -38529,7 +37381,7 @@ var require_googleToken = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleToken = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var tokenHandler_1 = require_tokenHandler();
     var revokeToken_1 = require_revokeToken();
     var GoogleToken = class {
@@ -39206,7 +38058,7 @@ var require_impersonated = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client();
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var util_1 = require_util2();
     exports.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
     var Impersonated = class _Impersonated extends oauth2client_1.OAuth2Client {
@@ -39388,7 +38240,7 @@ var require_oauth2common = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuthClientAuthHandler = void 0;
     exports.getErrorFromOAuthErrorResponse = getErrorFromOAuthErrorResponse;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var crypto_1 = require_crypto3();
     var METHODS_SUPPORTING_REQUEST_BODY = ["PUT", "POST", "PATCH"];
     var OAuthClientAuthHandler = class {
@@ -39535,7 +38387,7 @@ var require_stscredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StsCredentials = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
     var util_1 = require_util2();
@@ -39623,7 +38475,7 @@ var require_baseexternalclient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BaseExternalAccountClient = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var stream = __require("stream");
     var authclient_1 = require_authclient();
     var sts = require_stscredentials();
@@ -40315,7 +39167,7 @@ var require_identitypoolclient = __commonJS({
     var urlsubjecttokensupplier_1 = require_urlsubjecttokensupplier();
     var certificatesubjecttokensupplier_1 = require_certificatesubjecttokensupplier();
     var stscredentials_1 = require_stscredentials();
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var IdentityPoolClient = class _IdentityPoolClient extends baseexternalclient_1.BaseExternalAccountClient {
       subjectTokenSupplier;
       /**
@@ -40421,7 +39273,7 @@ var require_awsrequestsigner = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsRequestSigner = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var crypto_1 = require_crypto3();
     var AWS_ALGORITHM = "AWS4-HMAC-SHA256";
     var AWS_REQUEST_TYPE = "aws4_request";
@@ -40730,7 +39582,7 @@ var require_awsclient = __commonJS({
     var baseexternalclient_1 = require_baseexternalclient();
     var defaultawssecuritycredentialssupplier_1 = require_defaultawssecuritycredentialssupplier();
     var util_1 = require_util2();
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var AwsClient = class _AwsClient extends baseexternalclient_1.BaseExternalAccountClient {
       environmentId;
       awsSecurityCredentialsSupplier;
@@ -41294,7 +40146,7 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
     exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var stream = __require("stream");
     var baseexternalclient_1 = require_baseexternalclient();
     exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = "external_account_authorized_user";
@@ -41764,8 +40616,8 @@ var require_googleauth = __commonJS({
     exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
     var fs5 = __require("fs");
-    var gaxios_1 = require_src6();
-    var gcpMetadata = require_src8();
+    var gaxios_1 = require_src3();
+    var gcpMetadata = require_src5();
     var os3 = __require("os");
     var path5 = __require("path");
     var crypto_1 = require_crypto3();
@@ -42625,7 +41477,7 @@ var require_downscopedclient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
-    var gaxios_1 = require_src6();
+    var gaxios_1 = require_src3();
     var stream = __require("stream");
     var authclient_1 = require_authclient();
     var sts = require_stscredentials();
@@ -42850,7 +41702,7 @@ var require_passthrough = __commonJS({
 });
 
 // node_modules/firebase-admin/node_modules/google-auth-library/build/src/index.js
-var require_src9 = __commonJS({
+var require_src6 = __commonJS({
   "node_modules/firebase-admin/node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
@@ -42875,8 +41727,8 @@ var require_src9 = __commonJS({
     Object.defineProperty(exports, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
     } });
-    exports.gcpMetadata = require_src8();
-    exports.gaxios = require_src6();
+    exports.gcpMetadata = require_src5();
+    exports.gaxios = require_src3();
     var authclient_1 = require_authclient();
     Object.defineProperty(exports, "AuthClient", { enumerable: true, get: function() {
       return authclient_1.AuthClient;
@@ -43118,6 +41970,8 @@ var require_validator = __commonJS({
     exports.isURL = isURL;
     exports.isTopic = isTopic;
     exports.isTaskId = isTaskId;
+    exports.isSafeUrlSegment = isSafeUrlSegment;
+    exports.isTenantId = isTenantId;
     function isBuffer(value) {
       return value instanceof Buffer;
     }
@@ -43230,6 +42084,12 @@ var require_validator = __commonJS({
       const VALID_TASK_ID_REGEX = /^[A-Za-z0-9_-]+$/;
       return VALID_TASK_ID_REGEX.test(taskId);
     }
+    function isSafeUrlSegment(segment) {
+      return isNonEmptyString(segment) && !segment.endsWith(".") && /^[a-zA-Z0-9_.~-]+$/.test(segment);
+    }
+    function isTenantId(tenantId) {
+      return isSafeUrlSegment(tenantId);
+    }
   }
 });
 
@@ -43243,7 +42103,7 @@ var require_credential_internal = __commonJS({
     exports.getApplicationDefault = getApplicationDefault;
     var fs5 = __require("fs");
     var node_crypto_1 = __require("node:crypto");
-    var google_auth_library_1 = require_src9();
+    var google_auth_library_1 = require_src6();
     var error_1 = require_error2();
     var util = require_validator();
     var SCOPES = [
@@ -43612,7 +42472,7 @@ var require_package3 = __commonJS({
   "node_modules/firebase-admin/package.json"(exports, module) {
     module.exports = {
       name: "firebase-admin",
-      version: "14.5.0",
+      version: "14.5.1",
       description: "Firebase admin SDK for Node.js",
       author: "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
       license: "Apache-2.0",
@@ -43832,14 +42692,13 @@ var require_package3 = __commonJS({
       },
       devDependencies: {
         "@eslint/js": "^10.0.1",
-        "@firebase/api-documenter": "^0.5.0",
+        "@firebase/api-documenter": "^0.6.0",
         "@firebase/app-compat": "^0.5.12",
         "@firebase/auth-compat": "^0.6.6",
         "@firebase/auth-types": "^0.13.1",
         "@microsoft/api-extractor": "^7.11.2",
         "@types/bcrypt": "^6.0.0",
-        "@types/chai": "^4.0.0",
-        "@types/chai-as-promised": "^7.1.0",
+        "@types/chai-as-promised": "^8.0.2",
         "@types/firebase-token-generator": "^2.0.28",
         "@types/jsonwebtoken": "8.5.9",
         "@types/lodash": "^4.14.104",
@@ -43848,16 +42707,15 @@ var require_package3 = __commonJS({
         "@types/nock": "^11.1.0",
         "@types/node": "^26.0.0",
         "@types/sinon": "^22.0.0",
-        "@types/sinon-chai": "^3.0.0",
+        "@types/sinon-chai": "^4.0.0",
         "@typescript-eslint/eslint-plugin": "^8.67.0",
         "@typescript-eslint/parser": "^8.67.0",
         bcrypt: "^6.0.0",
-        chai: "^4.2.0",
-        "chai-as-promised": "^7.0.0",
-        "chai-exclude": "^2.1.0",
+        chai: "^6.2.2",
+        "chai-as-promised": "^8.0.2",
+        "chai-exclude": "^3.0.1",
         chalk: "^4.1.1",
         "child-process-promise": "^2.2.1",
-        del: "^6.0.0",
         eslint: "^10.3.0",
         "firebase-token-generator": "^2.0.0",
         globals: "^17.6.0",
@@ -43868,18 +42726,17 @@ var require_package3 = __commonJS({
         "http-message-parser": "^0.0.34",
         lodash: "^4.17.15",
         minimist: "^1.2.6",
-        mocha: "^11.0.0",
+        mocha: "^12.0.3",
         mz: "^2.7.0",
         nock: "^14.0.15",
         "npm-run-all": "^4.1.5",
         nyc: "^18.0.0",
         "run-sequence": "^2.2.1",
         sinon: "^22.0.0",
-        "sinon-chai": "^3.0.0",
+        "sinon-chai": "^4.0.1",
         "ts-node": "^10.2.0",
         typescript: "^5.7.3",
-        "typescript-eslint": "^8.67.0",
-        yargs: "^17.0.1"
+        "typescript-eslint": "^8.67.0"
       }
     };
   }
@@ -44082,7 +42939,11 @@ var require_deep_copy = __commonJS({
         if (!Object.prototype.hasOwnProperty.call(source, prop)) {
           continue;
         }
-        target[prop] = deepExtend(target[prop], source[prop]);
+        if (prop === "__proto__" || prop === "constructor" || prop === "prototype") {
+          continue;
+        }
+        const hasProp = Boolean(target) && (typeof target === "object" || typeof target === "function") && Object.prototype.hasOwnProperty.call(target, prop);
+        target[prop] = deepExtend(hasProp ? target[prop] : void 0, source[prop]);
       }
       return target;
     }
@@ -44651,6 +43512,7 @@ var require_error3 = __commonJS({
       MAXIMUM_USER_COUNT_EXCEEDED: "maximum-user-count-exceeded",
       MISSING_UID: "missing-uid",
       OPERATION_NOT_ALLOWED: "operation-not-allowed",
+      PASSWORD_DOES_NOT_MEET_REQUIREMENTS: "password-does-not-meet-requirements",
       PHONE_NUMBER_ALREADY_EXISTS: "phone-number-already-exists",
       PROJECT_NOT_FOUND: "project-not-found",
       INSUFFICIENT_PERMISSION: "insufficient-permission",
@@ -44967,6 +43829,10 @@ var require_error3 = __commonJS({
         code: exports.AuthErrorCode.OPERATION_NOT_ALLOWED,
         message: "The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section."
       },
+      PASSWORD_DOES_NOT_MEET_REQUIREMENTS: {
+        code: exports.AuthErrorCode.PASSWORD_DOES_NOT_MEET_REQUIREMENTS,
+        message: "The password does not meet the requirements."
+      },
       PHONE_NUMBER_ALREADY_EXISTS: {
         code: exports.AuthErrorCode.PHONE_NUMBER_ALREADY_EXISTS,
         message: "The user with the provided phone number already exists."
@@ -45146,6 +44012,8 @@ var require_error3 = __commonJS({
       MISSING_USER_ACCOUNT: "MISSING_UID",
       // Password auth disabled in console.
       OPERATION_NOT_ALLOWED: "OPERATION_NOT_ALLOWED",
+      // Password does not meet the configured policy requirements.
+      PASSWORD_DOES_NOT_MEET_REQUIREMENTS: "PASSWORD_DOES_NOT_MEET_REQUIREMENTS",
       // Provided credential has insufficient permissions.
       PERMISSION_DENIED: "INSUFFICIENT_PERMISSION",
       // Phone number already exists.
@@ -45408,6 +44276,7 @@ var require_HeaderParser = __commonJS({
       cfg = cfg || {};
       this.nread = 0;
       this.maxed = false;
+      this.dropped = 0;
       this.npairs = 0;
       this.maxHeaderPairs = getLimit(cfg, "maxHeaderPairs", 2e3);
       this.maxHeaderSize = getLimit(cfg, "maxHeaderSize", 80 * 1024);
@@ -45460,14 +44329,18 @@ var require_HeaderParser = __commonJS({
           this.buffer += data.toString("binary", 0, remaining);
           this.nread = this.maxHeaderSize;
           this.maxed = true;
+          this.dropped = appendEnd - remaining;
         } else {
           this.buffer += data.toString("binary", 0, appendEnd);
           this.nread += appendEnd;
         }
+      } else {
+        this.dropped += appendEnd;
       }
       if (found) {
-        if (!this.maxed) {
-          this.buffer = this.buffer.slice(0, this.buffer.length - splitTail);
+        const buffered = splitTail - this.dropped;
+        if (buffered > 0) {
+          this.buffer = this.buffer.slice(0, this.buffer.length - buffered);
         }
         this._finish();
         return end;
@@ -45475,9 +44348,12 @@ var require_HeaderParser = __commonJS({
     };
     HeaderParser.prototype.reset = function() {
       this.finished = false;
+      this.nread = this.npairs = 0;
+      this.maxed = false;
       this.buffer = "";
       this.header = /* @__PURE__ */ Object.create(null);
       this.tail = "";
+      this.dropped = 0;
     };
     HeaderParser.prototype._finish = function() {
       if (this.buffer) {
@@ -45490,6 +44366,7 @@ var require_HeaderParser = __commonJS({
       this.finished = true;
       this.nread = this.npairs = 0;
       this.maxed = false;
+      this.dropped = 0;
       this.emit("header", header);
     };
     HeaderParser.prototype._parseHeader = function() {
@@ -45741,7 +44618,7 @@ var require_Dicer = __commonJS({
         if (this._isPreamble) {
           this._isPreamble = false;
         } else {
-          if (start !== end) {
+          if (start !== end && !this._inHeader) {
             ++this._parts;
             this._part.on("end", function() {
               if (--self2._parts === 0) {
@@ -46849,6 +45726,8 @@ var require_multipart = __commonJS({
       }
     };
     function skipPart(part) {
+      part.on("error", () => {
+      });
       part.resume();
     }
     function hasBareLineBreak(value) {
@@ -47168,7 +46047,8 @@ var require_urlencoded2 = __commonJS({
               this._key += this.decoder.write(data.toString("binary", p, i2));
             }
             p = i2;
-            if ((this._bytesKey = this._key.length) === this.fieldNameSizeLimit) {
+            if ((this._bytesKey = this._key.length) >= this.fieldNameSizeLimit) {
+              this._key = this._key.substring(0, this.fieldNameSizeLimit);
               this._checkingBytes = false;
               this._keyTrunc = true;
             }
@@ -47224,7 +46104,8 @@ var require_urlencoded2 = __commonJS({
               this._val += this.decoder.write(data.toString("binary", p, i2));
             }
             p = i2;
-            if (this._val === "" && this.fieldSizeLimit === 0 || (this._bytesVal = this._val.length) === this.fieldSizeLimit) {
+            if ((this._bytesVal = this._val.length) >= this.fieldSizeLimit) {
+              this._val = this._val.substring(0, this.fieldSizeLimit);
               this._checkingBytes = false;
               this._valTrunc = true;
             }
@@ -49061,7 +47942,7 @@ var require_auth_config = __commonJS({
        * @returns Whether the provider ID corresponds to a SAML provider.
        */
       static isProviderId(providerId) {
-        return validator.isNonEmptyString(providerId) && providerId.indexOf("saml.") === 0;
+        return validator.isNonEmptyString(providerId) && providerId.startsWith("saml.") && validator.isSafeUrlSegment(providerId);
       }
       /**
        * Validates the SAMLConfig options object. Throws an error on failure.
@@ -49089,11 +47970,7 @@ var require_auth_config = __commonJS({
             throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid SAML config parameter.`);
           }
         }
-        if (validator.isNonEmptyString(options.providerId)) {
-          if (options.providerId.indexOf("saml.") !== 0) {
-            throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_PROVIDER_ID, '"SAMLAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "saml.".');
-          }
-        } else if (!ignoreMissingFields) {
+        if (!(ignoreMissingFields && typeof options.providerId === "undefined") && !_SAMLConfig.isProviderId(options.providerId)) {
           throw new error_1.FirebaseAuthError(!options.providerId ? error_1.authClientErrorCode.MISSING_PROVIDER_ID : error_1.authClientErrorCode.INVALID_PROVIDER_ID, '"SAMLAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "saml.".');
         }
         if (!(ignoreMissingFields && typeof options.idpEntityId === "undefined") && !validator.isNonEmptyString(options.idpEntityId)) {
@@ -49220,7 +48097,7 @@ var require_auth_config = __commonJS({
        * @returns Whether the provider ID corresponds to an OIDC provider.
        */
       static isProviderId(providerId) {
-        return validator.isNonEmptyString(providerId) && providerId.indexOf("oidc.") === 0;
+        return validator.isNonEmptyString(providerId) && providerId.startsWith("oidc.") && validator.isSafeUrlSegment(providerId);
       }
       /**
        * Validates the OIDCConfig options object. Throws an error on failure.
@@ -49250,11 +48127,7 @@ var require_auth_config = __commonJS({
             throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid OIDC config parameter.`);
           }
         }
-        if (validator.isNonEmptyString(options.providerId)) {
-          if (options.providerId.indexOf("oidc.") !== 0) {
-            throw new error_1.FirebaseAuthError(!options.providerId ? error_1.authClientErrorCode.MISSING_PROVIDER_ID : error_1.authClientErrorCode.INVALID_PROVIDER_ID, '"OIDCAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "oidc.".');
-          }
-        } else if (!ignoreMissingFields) {
+        if (!(ignoreMissingFields && typeof options.providerId === "undefined") && !_OIDCConfig.isProviderId(options.providerId)) {
           throw new error_1.FirebaseAuthError(!options.providerId ? error_1.authClientErrorCode.MISSING_PROVIDER_ID : error_1.authClientErrorCode.INVALID_PROVIDER_ID, '"OIDCAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "oidc.".');
         }
         if (!(ignoreMissingFields && typeof options.clientId === "undefined") && !validator.isNonEmptyString(options.clientId)) {
@@ -50299,6 +49172,9 @@ var require_auth_api_request = __commonJS({
         this.app = app2;
         this.version = version2;
         this.tenantId = tenantId;
+        if (!validator.isTenantId(tenantId)) {
+          throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID);
+        }
         if (emHost) {
           this.urlFormat = utils.formatString(FIREBASE_AUTH_EMULATOR_TENANT_URL_FORMAT, {
             host: emHost
@@ -50428,7 +49304,7 @@ var require_auth_api_request = __commonJS({
           delete request[key];
         }
       }
-      if (typeof request.tenantId !== "undefined" && !validator.isNonEmptyString(request.tenantId)) {
+      if (typeof request.tenantId !== "undefined" && !validator.isTenantId(request.tenantId)) {
         throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID);
       }
       if (typeof request.displayName !== "undefined" && !validator.isString(request.displayName)) {
@@ -51603,7 +50479,7 @@ var require_auth_api_request = __commonJS({
        * @returns A promise that resolves with the tenant information.
        */
       getTenant(tenantId) {
-        if (!validator.isNonEmptyString(tenantId)) {
+        if (!validator.isTenantId(tenantId)) {
           return Promise.reject(new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID));
         }
         return this.invokeRequestHandler(this.authResourceUrlBuilder, GET_TENANT, {}, { tenantId }).then((response) => {
@@ -51646,7 +50522,7 @@ var require_auth_api_request = __commonJS({
        * @returns A promise that resolves when the tenant is deleted.
        */
       deleteTenant(tenantId) {
-        if (!validator.isNonEmptyString(tenantId)) {
+        if (!validator.isTenantId(tenantId)) {
           return Promise.reject(new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID));
         }
         return this.invokeRequestHandler(this.authResourceUrlBuilder, DELETE_TENANT, void 0, { tenantId }).then(() => {
@@ -51676,7 +50552,7 @@ var require_auth_api_request = __commonJS({
        * @returns A promise that resolves with the modified tenant object.
        */
       updateTenant(tenantId, tenantOptions) {
-        if (!validator.isNonEmptyString(tenantId)) {
+        if (!validator.isTenantId(tenantId)) {
           return Promise.reject(new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID));
         }
         try {
@@ -51704,6 +50580,9 @@ var require_auth_api_request = __commonJS({
       constructor(app2, tenantId, emHost) {
         super(app2, emHost);
         this.tenantId = tenantId;
+        if (!validator.isTenantId(tenantId)) {
+          throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID);
+        }
       }
       /**
        * @returns A new Auth user management resource URL builder instance.
@@ -52170,10 +51049,126 @@ var require_TokenExpiredError = __commonJS({
   }
 });
 
+// node_modules/jsonwebtoken/node_modules/ms/index.js
+var require_ms4 = __commonJS({
+  "node_modules/jsonwebtoken/node_modules/ms/index.js"(exports, module) {
+    var s2 = 1e3;
+    var m2 = s2 * 60;
+    var h2 = m2 * 60;
+    var d = h2 * 24;
+    var w = d * 7;
+    var y = d * 365.25;
+    module.exports = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === "string" && val.length > 0) {
+        return parse(val);
+      } else if (type === "number" && isFinite(val)) {
+        return options.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error(
+        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
+      );
+    };
+    function parse(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match2 = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match2) {
+        return;
+      }
+      var n = parseFloat(match2[1]);
+      var type = (match2[2] || "ms").toLowerCase();
+      switch (type) {
+        case "years":
+        case "year":
+        case "yrs":
+        case "yr":
+        case "y":
+          return n * y;
+        case "weeks":
+        case "week":
+        case "w":
+          return n * w;
+        case "days":
+        case "day":
+        case "d":
+          return n * d;
+        case "hours":
+        case "hour":
+        case "hrs":
+        case "hr":
+        case "h":
+          return n * h2;
+        case "minutes":
+        case "minute":
+        case "mins":
+        case "min":
+        case "m":
+          return n * m2;
+        case "seconds":
+        case "second":
+        case "secs":
+        case "sec":
+        case "s":
+          return n * s2;
+        case "milliseconds":
+        case "millisecond":
+        case "msecs":
+        case "msec":
+        case "ms":
+          return n;
+        default:
+          return void 0;
+      }
+    }
+    function fmtShort(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return Math.round(ms / d) + "d";
+      }
+      if (msAbs >= h2) {
+        return Math.round(ms / h2) + "h";
+      }
+      if (msAbs >= m2) {
+        return Math.round(ms / m2) + "m";
+      }
+      if (msAbs >= s2) {
+        return Math.round(ms / s2) + "s";
+      }
+      return ms + "ms";
+    }
+    function fmtLong(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return plural(ms, msAbs, d, "day");
+      }
+      if (msAbs >= h2) {
+        return plural(ms, msAbs, h2, "hour");
+      }
+      if (msAbs >= m2) {
+        return plural(ms, msAbs, m2, "minute");
+      }
+      if (msAbs >= s2) {
+        return plural(ms, msAbs, s2, "second");
+      }
+      return ms + " ms";
+    }
+    function plural(ms, msAbs, n, name) {
+      var isPlural = msAbs >= n * 1.5;
+      return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
+    }
+  }
+});
+
 // node_modules/jsonwebtoken/lib/timespan.js
 var require_timespan = __commonJS({
   "node_modules/jsonwebtoken/lib/timespan.js"(exports, module) {
-    var ms = require_ms5();
+    var ms = require_ms4();
     module.exports = function(time2, iat) {
       var timestamp2 = iat || Math.floor(Date.now() / 1e3);
       if (typeof time2 === "string") {
@@ -52252,7 +51247,7 @@ var require_constants = __commonJS({
 });
 
 // node_modules/jsonwebtoken/node_modules/semver/internal/debug.js
-var require_debug5 = __commonJS({
+var require_debug2 = __commonJS({
   "node_modules/jsonwebtoken/node_modules/semver/internal/debug.js"(exports, module) {
     "use strict";
     var debug = typeof process === "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...args) => console.error("SEMVER", ...args) : () => {
@@ -52270,7 +51265,7 @@ var require_re = __commonJS({
       MAX_SAFE_BUILD_LENGTH,
       MAX_LENGTH
     } = require_constants();
-    var debug = require_debug5();
+    var debug = require_debug2();
     exports = module.exports = {};
     var re = exports.re = [];
     var safeRe = exports.safeRe = [];
@@ -52397,7 +51392,7 @@ var require_identifiers = __commonJS({
 var require_semver = __commonJS({
   "node_modules/jsonwebtoken/node_modules/semver/classes/semver.js"(exports, module) {
     "use strict";
-    var debug = require_debug5();
+    var debug = require_debug2();
     var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants();
     var { safeRe: re, t: t2 } = require_re();
     var parseOptions = require_parse_options();
@@ -53483,7 +52478,7 @@ var require_range2 = __commonJS({
     var cache2 = new LRU();
     var parseOptions = require_parse_options();
     var Comparator = require_comparator();
-    var debug = require_debug5();
+    var debug = require_debug2();
     var SemVer = require_semver();
     var trimComparatorWhitespace = require_trim_comparator_whitespace();
     var {
@@ -53826,7 +52821,7 @@ var require_comparator = __commonJS({
     var parseOptions = require_parse_options();
     var { safeRe: re, t: t2 } = require_re();
     var cmp = require_cmp();
-    var debug = require_debug5();
+    var debug = require_debug2();
     var SemVer = require_semver();
     var Range = require_range2();
   }
@@ -55354,6 +54349,654 @@ var require_jsonwebtoken = __commonJS({
       NotBeforeError: require_NotBeforeError(),
       TokenExpiredError: require_TokenExpiredError()
     };
+  }
+});
+
+// node_modules/jwks-rsa/node_modules/debug/node_modules/ms/index.js
+var require_ms5 = __commonJS({
+  "node_modules/jwks-rsa/node_modules/debug/node_modules/ms/index.js"(exports, module) {
+    var s2 = 1e3;
+    var m2 = s2 * 60;
+    var h2 = m2 * 60;
+    var d = h2 * 24;
+    var w = d * 7;
+    var y = d * 365.25;
+    module.exports = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === "string" && val.length > 0) {
+        return parse(val);
+      } else if (type === "number" && isFinite(val)) {
+        return options.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error(
+        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
+      );
+    };
+    function parse(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match2 = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match2) {
+        return;
+      }
+      var n = parseFloat(match2[1]);
+      var type = (match2[2] || "ms").toLowerCase();
+      switch (type) {
+        case "years":
+        case "year":
+        case "yrs":
+        case "yr":
+        case "y":
+          return n * y;
+        case "weeks":
+        case "week":
+        case "w":
+          return n * w;
+        case "days":
+        case "day":
+        case "d":
+          return n * d;
+        case "hours":
+        case "hour":
+        case "hrs":
+        case "hr":
+        case "h":
+          return n * h2;
+        case "minutes":
+        case "minute":
+        case "mins":
+        case "min":
+        case "m":
+          return n * m2;
+        case "seconds":
+        case "second":
+        case "secs":
+        case "sec":
+        case "s":
+          return n * s2;
+        case "milliseconds":
+        case "millisecond":
+        case "msecs":
+        case "msec":
+        case "ms":
+          return n;
+        default:
+          return void 0;
+      }
+    }
+    function fmtShort(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return Math.round(ms / d) + "d";
+      }
+      if (msAbs >= h2) {
+        return Math.round(ms / h2) + "h";
+      }
+      if (msAbs >= m2) {
+        return Math.round(ms / m2) + "m";
+      }
+      if (msAbs >= s2) {
+        return Math.round(ms / s2) + "s";
+      }
+      return ms + "ms";
+    }
+    function fmtLong(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return plural(ms, msAbs, d, "day");
+      }
+      if (msAbs >= h2) {
+        return plural(ms, msAbs, h2, "hour");
+      }
+      if (msAbs >= m2) {
+        return plural(ms, msAbs, m2, "minute");
+      }
+      if (msAbs >= s2) {
+        return plural(ms, msAbs, s2, "second");
+      }
+      return ms + " ms";
+    }
+    function plural(ms, msAbs, n, name) {
+      var isPlural = msAbs >= n * 1.5;
+      return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
+    }
+  }
+});
+
+// node_modules/jwks-rsa/node_modules/debug/src/common.js
+var require_common3 = __commonJS({
+  "node_modules/jwks-rsa/node_modules/debug/src/common.js"(exports, module) {
+    function setup(env2) {
+      createDebug.debug = createDebug;
+      createDebug.default = createDebug;
+      createDebug.coerce = coerce;
+      createDebug.disable = disable;
+      createDebug.enable = enable;
+      createDebug.enabled = enabled;
+      createDebug.humanize = require_ms5();
+      createDebug.destroy = destroy;
+      Object.keys(env2).forEach((key) => {
+        createDebug[key] = env2[key];
+      });
+      createDebug.names = [];
+      createDebug.skips = [];
+      createDebug.formatters = {};
+      function selectColor(namespace) {
+        let hash = 0;
+        for (let i2 = 0; i2 < namespace.length; i2++) {
+          hash = (hash << 5) - hash + namespace.charCodeAt(i2);
+          hash |= 0;
+        }
+        return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+      }
+      createDebug.selectColor = selectColor;
+      function createDebug(namespace) {
+        let prevTime;
+        let enableOverride = null;
+        let namespacesCache;
+        let enabledCache;
+        function debug(...args) {
+          if (!debug.enabled) {
+            return;
+          }
+          const self2 = debug;
+          const curr = Number(/* @__PURE__ */ new Date());
+          const ms = curr - (prevTime || curr);
+          self2.diff = ms;
+          self2.prev = prevTime;
+          self2.curr = curr;
+          prevTime = curr;
+          args[0] = createDebug.coerce(args[0]);
+          if (typeof args[0] !== "string") {
+            args.unshift("%O");
+          }
+          let index = 0;
+          args[0] = args[0].replace(/%([a-zA-Z%])/g, (match2, format) => {
+            if (match2 === "%%") {
+              return "%";
+            }
+            index++;
+            const formatter = createDebug.formatters[format];
+            if (typeof formatter === "function") {
+              const val = args[index];
+              match2 = formatter.call(self2, val);
+              args.splice(index, 1);
+              index--;
+            }
+            return match2;
+          });
+          createDebug.formatArgs.call(self2, args);
+          const logFn = self2.log || createDebug.log;
+          logFn.apply(self2, args);
+        }
+        debug.namespace = namespace;
+        debug.useColors = createDebug.useColors();
+        debug.color = createDebug.selectColor(namespace);
+        debug.extend = extend;
+        debug.destroy = createDebug.destroy;
+        Object.defineProperty(debug, "enabled", {
+          enumerable: true,
+          configurable: false,
+          get: () => {
+            if (enableOverride !== null) {
+              return enableOverride;
+            }
+            if (namespacesCache !== createDebug.namespaces) {
+              namespacesCache = createDebug.namespaces;
+              enabledCache = createDebug.enabled(namespace);
+            }
+            return enabledCache;
+          },
+          set: (v) => {
+            enableOverride = v;
+          }
+        });
+        if (typeof createDebug.init === "function") {
+          createDebug.init(debug);
+        }
+        return debug;
+      }
+      function extend(namespace, delimiter) {
+        const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
+        newDebug.log = this.log;
+        return newDebug;
+      }
+      function enable(namespaces) {
+        createDebug.save(namespaces);
+        createDebug.namespaces = namespaces;
+        createDebug.names = [];
+        createDebug.skips = [];
+        const split = (typeof namespaces === "string" ? namespaces : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
+        for (const ns of split) {
+          if (ns[0] === "-") {
+            createDebug.skips.push(ns.slice(1));
+          } else {
+            createDebug.names.push(ns);
+          }
+        }
+      }
+      function matchesTemplate(search, template) {
+        let searchIndex = 0;
+        let templateIndex = 0;
+        let starIndex = -1;
+        let matchIndex = 0;
+        while (searchIndex < search.length) {
+          if (templateIndex < template.length && (template[templateIndex] === search[searchIndex] || template[templateIndex] === "*")) {
+            if (template[templateIndex] === "*") {
+              starIndex = templateIndex;
+              matchIndex = searchIndex;
+              templateIndex++;
+            } else {
+              searchIndex++;
+              templateIndex++;
+            }
+          } else if (starIndex !== -1) {
+            templateIndex = starIndex + 1;
+            matchIndex++;
+            searchIndex = matchIndex;
+          } else {
+            return false;
+          }
+        }
+        while (templateIndex < template.length && template[templateIndex] === "*") {
+          templateIndex++;
+        }
+        return templateIndex === template.length;
+      }
+      function disable() {
+        const namespaces = [
+          ...createDebug.names,
+          ...createDebug.skips.map((namespace) => "-" + namespace)
+        ].join(",");
+        createDebug.enable("");
+        return namespaces;
+      }
+      function enabled(name) {
+        for (const skip of createDebug.skips) {
+          if (matchesTemplate(name, skip)) {
+            return false;
+          }
+        }
+        for (const ns of createDebug.names) {
+          if (matchesTemplate(name, ns)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function coerce(val) {
+        if (val instanceof Error) {
+          return val.stack || val.message;
+        }
+        return val;
+      }
+      function destroy() {
+        console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+      }
+      createDebug.enable(createDebug.load());
+      return createDebug;
+    }
+    module.exports = setup;
+  }
+});
+
+// node_modules/jwks-rsa/node_modules/debug/src/browser.js
+var require_browser3 = __commonJS({
+  "node_modules/jwks-rsa/node_modules/debug/src/browser.js"(exports, module) {
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.storage = localstorage();
+    exports.destroy = /* @__PURE__ */ (() => {
+      let warned = false;
+      return () => {
+        if (!warned) {
+          warned = true;
+          console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+        }
+      };
+    })();
+    exports.colors = [
+      "#0000CC",
+      "#0000FF",
+      "#0033CC",
+      "#0033FF",
+      "#0066CC",
+      "#0066FF",
+      "#0099CC",
+      "#0099FF",
+      "#00CC00",
+      "#00CC33",
+      "#00CC66",
+      "#00CC99",
+      "#00CCCC",
+      "#00CCFF",
+      "#3300CC",
+      "#3300FF",
+      "#3333CC",
+      "#3333FF",
+      "#3366CC",
+      "#3366FF",
+      "#3399CC",
+      "#3399FF",
+      "#33CC00",
+      "#33CC33",
+      "#33CC66",
+      "#33CC99",
+      "#33CCCC",
+      "#33CCFF",
+      "#6600CC",
+      "#6600FF",
+      "#6633CC",
+      "#6633FF",
+      "#66CC00",
+      "#66CC33",
+      "#9900CC",
+      "#9900FF",
+      "#9933CC",
+      "#9933FF",
+      "#99CC00",
+      "#99CC33",
+      "#CC0000",
+      "#CC0033",
+      "#CC0066",
+      "#CC0099",
+      "#CC00CC",
+      "#CC00FF",
+      "#CC3300",
+      "#CC3333",
+      "#CC3366",
+      "#CC3399",
+      "#CC33CC",
+      "#CC33FF",
+      "#CC6600",
+      "#CC6633",
+      "#CC9900",
+      "#CC9933",
+      "#CCCC00",
+      "#CCCC33",
+      "#FF0000",
+      "#FF0033",
+      "#FF0066",
+      "#FF0099",
+      "#FF00CC",
+      "#FF00FF",
+      "#FF3300",
+      "#FF3333",
+      "#FF3366",
+      "#FF3399",
+      "#FF33CC",
+      "#FF33FF",
+      "#FF6600",
+      "#FF6633",
+      "#FF9900",
+      "#FF9933",
+      "#FFCC00",
+      "#FFCC33"
+    ];
+    function useColors() {
+      if (typeof window !== "undefined" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) {
+        return true;
+      }
+      if (typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+        return false;
+      }
+      let m2;
+      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
+      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
+      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+      typeof navigator !== "undefined" && navigator.userAgent && (m2 = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m2[1], 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
+      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+    }
+    function formatArgs(args) {
+      args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module.exports.humanize(this.diff);
+      if (!this.useColors) {
+        return;
+      }
+      const c = "color: " + this.color;
+      args.splice(1, 0, c, "color: inherit");
+      let index = 0;
+      let lastC = 0;
+      args[0].replace(/%[a-zA-Z%]/g, (match2) => {
+        if (match2 === "%%") {
+          return;
+        }
+        index++;
+        if (match2 === "%c") {
+          lastC = index;
+        }
+      });
+      args.splice(lastC, 0, c);
+    }
+    exports.log = console.debug || console.log || (() => {
+    });
+    function save(namespaces) {
+      try {
+        if (namespaces) {
+          exports.storage.setItem("debug", namespaces);
+        } else {
+          exports.storage.removeItem("debug");
+        }
+      } catch (error) {
+      }
+    }
+    function load() {
+      let r2;
+      try {
+        r2 = exports.storage.getItem("debug") || exports.storage.getItem("DEBUG");
+      } catch (error) {
+      }
+      if (!r2 && typeof process !== "undefined" && "env" in process) {
+        r2 = process.env.DEBUG;
+      }
+      return r2;
+    }
+    function localstorage() {
+      try {
+        return localStorage;
+      } catch (error) {
+      }
+    }
+    module.exports = require_common3()(exports);
+    var { formatters } = module.exports;
+    formatters.j = function(v) {
+      try {
+        return JSON.stringify(v);
+      } catch (error) {
+        return "[UnexpectedJSONParseError]: " + error.message;
+      }
+    };
+  }
+});
+
+// node_modules/jwks-rsa/node_modules/debug/src/node.js
+var require_node3 = __commonJS({
+  "node_modules/jwks-rsa/node_modules/debug/src/node.js"(exports, module) {
+    var tty = __require("tty");
+    var util = __require("util");
+    exports.init = init;
+    exports.log = log;
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.destroy = util.deprecate(
+      () => {
+      },
+      "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."
+    );
+    exports.colors = [6, 2, 3, 4, 5, 1];
+    try {
+      const supportsColor = __require("supports-color");
+      if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
+        exports.colors = [
+          20,
+          21,
+          26,
+          27,
+          32,
+          33,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          56,
+          57,
+          62,
+          63,
+          68,
+          69,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          92,
+          93,
+          98,
+          99,
+          112,
+          113,
+          128,
+          129,
+          134,
+          135,
+          148,
+          149,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          178,
+          179,
+          184,
+          185,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          214,
+          215,
+          220,
+          221
+        ];
+      }
+    } catch (error) {
+    }
+    exports.inspectOpts = Object.keys(process.env).filter((key) => {
+      return /^debug_/i.test(key);
+    }).reduce((obj, key) => {
+      const prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, (_, k) => {
+        return k.toUpperCase();
+      });
+      let val = process.env[key];
+      if (/^(yes|on|true|enabled)$/i.test(val)) {
+        val = true;
+      } else if (/^(no|off|false|disabled)$/i.test(val)) {
+        val = false;
+      } else if (val === "null") {
+        val = null;
+      } else {
+        val = Number(val);
+      }
+      obj[prop] = val;
+      return obj;
+    }, {});
+    function useColors() {
+      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+    }
+    function formatArgs(args) {
+      const { namespace: name, useColors: useColors2 } = this;
+      if (useColors2) {
+        const c = this.color;
+        const colorCode = "\x1B[3" + (c < 8 ? c : "8;5;" + c);
+        const prefix = `  ${colorCode};1m${name} \x1B[0m`;
+        args[0] = prefix + args[0].split("\n").join("\n" + prefix);
+        args.push(colorCode + "m+" + module.exports.humanize(this.diff) + "\x1B[0m");
+      } else {
+        args[0] = getDate() + name + " " + args[0];
+      }
+    }
+    function getDate() {
+      if (exports.inspectOpts.hideDate) {
+        return "";
+      }
+      return (/* @__PURE__ */ new Date()).toISOString() + " ";
+    }
+    function log(...args) {
+      return process.stderr.write(util.formatWithOptions(exports.inspectOpts, ...args) + "\n");
+    }
+    function save(namespaces) {
+      if (namespaces) {
+        process.env.DEBUG = namespaces;
+      } else {
+        delete process.env.DEBUG;
+      }
+    }
+    function load() {
+      return process.env.DEBUG;
+    }
+    function init(debug) {
+      debug.inspectOpts = {};
+      const keys = Object.keys(exports.inspectOpts);
+      for (let i2 = 0; i2 < keys.length; i2++) {
+        debug.inspectOpts[keys[i2]] = exports.inspectOpts[keys[i2]];
+      }
+    }
+    module.exports = require_common3()(exports);
+    var { formatters } = module.exports;
+    formatters.o = function(v) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
+    };
+    formatters.O = function(v) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v, this.inspectOpts);
+    };
+  }
+});
+
+// node_modules/jwks-rsa/node_modules/debug/src/index.js
+var require_src7 = __commonJS({
+  "node_modules/jwks-rsa/node_modules/debug/src/index.js"(exports, module) {
+    if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
+      module.exports = require_browser3();
+    } else {
+      module.exports = require_node3();
+    }
   }
 });
 
@@ -58385,9 +58028,9 @@ var require_request2 = __commonJS({
   }
 });
 
-// node_modules/lru-memoizer/node_modules/lru-cache/dist/commonjs/node/index.min.js
+// node_modules/lru-cache/dist/commonjs/node/index.min.js
 var require_index_min = __commonJS({
-  "node_modules/lru-memoizer/node_modules/lru-cache/dist/commonjs/node/index.min.js"(exports) {
+  "node_modules/lru-cache/dist/commonjs/node/index.min.js"(exports) {
     "use strict";
     var j = (u, t2) => () => (t2 || u((t2 = { exports: {} }).exports, t2), t2.exports);
     var I = j((O) => {
@@ -59840,618 +59483,12 @@ var require_lib3 = __commonJS({
   }
 });
 
-// node_modules/jwks-rsa/node_modules/lru-cache/dist/commonjs/node/index.min.js
-var require_index_min2 = __commonJS({
-  "node_modules/jwks-rsa/node_modules/lru-cache/dist/commonjs/node/index.min.js"(exports) {
-    "use strict";
-    var j = (u, t2) => () => (t2 || u((t2 = { exports: {} }).exports, t2), t2.exports);
-    var I = j((O) => {
-      "use strict";
-      Object.defineProperty(O, "__esModule", { value: true });
-      O.tracing = O.metrics = void 0;
-      var U = __require("node:diagnostics_channel");
-      O.metrics = (0, U.channel)("lru-cache:metrics");
-      O.tracing = (0, U.tracingChannel)("lru-cache");
-    });
-    var P = j((R) => {
-      "use strict";
-      Object.defineProperty(R, "__esModule", { value: true });
-      R.defaultPerf = void 0;
-      R.defaultPerf = typeof performance == "object" && performance && typeof performance.now == "function" ? performance : Date;
-    });
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LRUCache = void 0;
-    var g = I();
-    var N = P();
-    var C = () => g.metrics.hasSubscribers || g.tracing.hasSubscribers;
-    var k = /* @__PURE__ */ new Set();
-    var G = typeof process == "object" && process ? process : {};
-    var V = (u, t2, e2, i2) => {
-      typeof G.emitWarning == "function" ? G.emitWarning(u, t2, e2, i2) : console.error(`[${e2}] ${t2}: ${u}`);
-    };
-    var q = (u) => !k.has(u);
-    var T = (u) => !!u && u === Math.floor(u) && u > 0 && isFinite(u);
-    var H = (u) => T(u) ? u <= Math.pow(2, 8) ? Uint8Array : u <= Math.pow(2, 16) ? Uint16Array : u <= Math.pow(2, 32) ? Uint32Array : u <= Number.MAX_SAFE_INTEGER ? W : null : null;
-    var W = class extends Array {
-      constructor(t2) {
-        super(t2), this.fill(0);
-      }
-    };
-    var L = class u {
-      heap;
-      length;
-      static #o = false;
-      static create(t2) {
-        let e2 = H(t2);
-        if (!e2) return [];
-        u.#o = true;
-        let i2 = new u(t2, e2);
-        return u.#o = false, i2;
-      }
-      constructor(t2, e2) {
-        if (!u.#o) throw new TypeError("instantiate Stack using Stack.create(n)");
-        this.heap = new e2(t2), this.length = 0;
-      }
-      push(t2) {
-        this.heap[this.length++] = t2;
-      }
-      pop() {
-        return this.heap[--this.length];
-      }
-    };
-    var M = class u {
-      #o;
-      #c;
-      #m;
-      #W;
-      #S;
-      #x;
-      #j;
-      #w;
-      get perf() {
-        return this.#w;
-      }
-      ttl;
-      ttlResolution;
-      ttlAutopurge;
-      updateAgeOnGet;
-      updateAgeOnHas;
-      allowStale;
-      noDisposeOnSet;
-      noUpdateTTL;
-      maxEntrySize;
-      sizeCalculation;
-      noDeleteOnFetchRejection;
-      noDeleteOnStaleGet;
-      allowStaleOnFetchAbort;
-      allowStaleOnFetchRejection;
-      ignoreFetchAbort;
-      backgroundFetchSize;
-      #n;
-      #b;
-      #s;
-      #i;
-      #t;
-      #l;
-      #u;
-      #a;
-      #h;
-      #_;
-      #r;
-      #y;
-      #F;
-      #d;
-      #g;
-      #T;
-      #U;
-      #f;
-      #R;
-      static unsafeExposeInternals(t2) {
-        return { starts: t2.#F, ttls: t2.#d, autopurgeTimers: t2.#g, sizes: t2.#y, keyMap: t2.#s, keyList: t2.#i, valList: t2.#t, next: t2.#l, prev: t2.#u, get head() {
-          return t2.#a;
-        }, get tail() {
-          return t2.#h;
-        }, free: t2.#_, isBackgroundFetch: (e2) => t2.#e(e2), backgroundFetch: (e2, i2, s2, n) => t2.#G(e2, i2, s2, n), moveToTail: (e2) => t2.#M(e2), indexes: (e2) => t2.#A(e2), rindexes: (e2) => t2.#z(e2), isStale: (e2) => t2.#p(e2) };
-      }
-      get max() {
-        return this.#o;
-      }
-      get maxSize() {
-        return this.#c;
-      }
-      get calculatedSize() {
-        return this.#b;
-      }
-      get size() {
-        return this.#n;
-      }
-      get fetchMethod() {
-        return this.#x;
-      }
-      get memoMethod() {
-        return this.#j;
-      }
-      get dispose() {
-        return this.#m;
-      }
-      get onInsert() {
-        return this.#W;
-      }
-      get disposeAfter() {
-        return this.#S;
-      }
-      constructor(t2) {
-        let { max: e2 = 0, ttl: i2, ttlResolution: s2 = 1, ttlAutopurge: n, updateAgeOnGet: o, updateAgeOnHas: l, allowStale: h2, dispose: r2, onInsert: c, disposeAfter: w, noDisposeOnSet: y, noUpdateTTL: d, maxSize: p = 0, maxEntrySize: f3 = 0, sizeCalculation: _, fetchMethod: a, memoMethod: S2, noDeleteOnFetchRejection: F2, noDeleteOnStaleGet: b, allowStaleOnFetchRejection: m2, allowStaleOnFetchAbort: A2, ignoreFetchAbort: z, backgroundFetchSize: x2 = 1, perf: v } = t2;
-        if (this.backgroundFetchSize = x2, v !== void 0 && typeof v?.now != "function") throw new TypeError("perf option must have a now() method if specified");
-        if (this.#w = v ?? N.defaultPerf, e2 !== 0 && !T(e2)) throw new TypeError("max option must be a nonnegative integer");
-        let E = e2 ? H(e2) : Array;
-        if (!E) throw new Error("invalid max value: " + e2);
-        if (this.#o = e2, this.#c = p, this.maxEntrySize = f3 || this.#c, this.sizeCalculation = _, this.sizeCalculation) {
-          if (!this.#c && !this.maxEntrySize) throw new TypeError("cannot set sizeCalculation without setting maxSize or maxEntrySize");
-          if (typeof this.sizeCalculation != "function") throw new TypeError("sizeCalculation set to non-function");
-        }
-        if (S2 !== void 0 && typeof S2 != "function") throw new TypeError("memoMethod must be a function if defined");
-        if (this.#j = S2, a !== void 0 && typeof a != "function") throw new TypeError("fetchMethod must be a function if specified");
-        if (this.#x = a, this.#U = !!a, this.#s = /* @__PURE__ */ new Map(), this.#i = Array.from({ length: e2 }).fill(void 0), this.#t = Array.from({ length: e2 }).fill(void 0), this.#l = new E(e2), this.#u = new E(e2), this.#a = 0, this.#h = 0, this.#_ = L.create(e2), this.#n = 0, this.#b = 0, typeof r2 == "function" && (this.#m = r2), typeof c == "function" && (this.#W = c), typeof w == "function" ? (this.#S = w, this.#r = []) : (this.#S = void 0, this.#r = void 0), this.#T = !!this.#m, this.#R = !!this.#W, this.#f = !!this.#S, this.noDisposeOnSet = !!y, this.noUpdateTTL = !!d, this.noDeleteOnFetchRejection = !!F2, this.allowStaleOnFetchRejection = !!m2, this.allowStaleOnFetchAbort = !!A2, this.ignoreFetchAbort = !!z, this.maxEntrySize !== 0) {
-          if (this.#c !== 0 && !T(this.#c)) throw new TypeError("maxSize must be a positive integer if specified");
-          if (!T(this.maxEntrySize)) throw new TypeError("maxEntrySize must be a positive integer if specified");
-          this.#X();
-        }
-        if (this.allowStale = !!h2, this.noDeleteOnStaleGet = !!b, this.updateAgeOnGet = !!o, this.updateAgeOnHas = !!l, this.ttlResolution = T(s2) || s2 === 0 ? s2 : 1, this.ttlAutopurge = !!n, this.ttl = i2 || 0, this.ttl) {
-          if (!T(this.ttl)) throw new TypeError("ttl must be a positive integer if specified");
-          this.#k();
-        }
-        if (this.#o === 0 && this.ttl === 0 && this.#c === 0) throw new TypeError("At least one of max, maxSize, or ttl is required");
-        if (!this.ttlAutopurge && !this.#o && !this.#c) {
-          let D = "LRU_CACHE_UNBOUNDED";
-          q(D) && (k.add(D), V("TTL caching without ttlAutopurge, max, or maxSize can result in unbounded memory consumption.", "UnboundedCacheWarning", D, u));
-        }
-      }
-      getRemainingTTL(t2) {
-        return this.#s.has(t2) ? 1 / 0 : 0;
-      }
-      #k() {
-        let t2 = new W(this.#o), e2 = new W(this.#o);
-        this.#d = t2, this.#F = e2;
-        let i2 = this.ttlAutopurge ? Array.from({ length: this.#o }) : void 0;
-        this.#g = i2, this.#H = (h2, r2, c = this.#w.now()) => {
-          e2[h2] = r2 !== 0 ? c : 0, t2[h2] = r2, s2(h2, r2);
-        }, this.#D = (h2) => {
-          e2[h2] = t2[h2] !== 0 ? this.#w.now() : 0, s2(h2, t2[h2]);
-        };
-        let s2 = this.ttlAutopurge ? (h2, r2) => {
-          if (i2?.[h2] && (clearTimeout(i2[h2]), i2[h2] = void 0), r2 && r2 !== 0 && i2) {
-            let c = setTimeout(() => {
-              this.#p(h2) ? (this.#v(this.#i[h2], "expire"), i2[h2] = void 0) : s2(h2, l(h2));
-            }, r2 + 1);
-            c.unref && c.unref(), i2[h2] = c;
-          }
-        } : () => {
-        };
-        this.#E = (h2, r2) => {
-          if (t2[r2]) {
-            let c = t2[r2], w = e2[r2];
-            if (!c || !w) return;
-            h2.ttl = c, h2.start = w, h2.now = n || o();
-            let y = h2.now - w;
-            h2.remainingTTL = c - y;
-          }
-        };
-        let n = 0, o = () => {
-          let h2 = this.#w.now();
-          if (this.ttlResolution > 0) {
-            n = h2;
-            let r2 = setTimeout(() => n = 0, this.ttlResolution);
-            r2.unref && r2.unref();
-          }
-          return h2;
-        };
-        this.getRemainingTTL = (h2) => {
-          let r2 = this.#s.get(h2);
-          return r2 === void 0 ? 0 : l(r2);
-        };
-        let l = (h2) => {
-          let r2 = t2[h2], c = e2[h2];
-          if (!r2 || !c) return 1 / 0;
-          let w = (n || o()) - c;
-          return r2 - w;
-        };
-        this.#p = (h2) => {
-          let r2 = e2[h2], c = t2[h2];
-          return !!c && !!r2 && (n || o()) - r2 > c;
-        };
-      }
-      #D = () => {
-      };
-      #E = () => {
-      };
-      #H = () => {
-      };
-      #p = () => false;
-      #X() {
-        let t2 = new W(this.#o);
-        this.#b = 0, this.#y = t2, this.#C = (e2) => {
-          this.#b -= t2[e2], t2[e2] = 0;
-        }, this.#N = (e2, i2, s2, n) => {
-          if (!T(s2)) {
-            if (this.#e(i2)) return this.backgroundFetchSize;
-            if (n) {
-              if (typeof n != "function") throw new TypeError("sizeCalculation must be a function");
-              if (s2 = n(i2, e2), !T(s2)) throw new TypeError("sizeCalculation return invalid (expect positive integer)");
-            } else throw new TypeError("invalid size value (must be positive integer). When maxSize or maxEntrySize is used, sizeCalculation or size must be set.");
-          }
-          return s2;
-        }, this.#I = (e2, i2, s2) => {
-          if (t2[e2] = i2, this.#c) {
-            let n = this.#c - t2[e2];
-            for (; this.#b > n; ) this.#P(true);
-          }
-          this.#b += t2[e2], s2 && (s2.entrySize = i2, s2.totalCalculatedSize = this.#b);
-        };
-      }
-      #C = (t2) => {
-      };
-      #I = (t2, e2, i2) => {
-      };
-      #N = (t2, e2, i2, s2) => {
-        if (i2 || s2) throw new TypeError("cannot set size without setting maxSize or maxEntrySize on cache");
-        return 0;
-      };
-      *#A({ allowStale: t2 = this.allowStale } = {}) {
-        if (this.#n) for (let e2 = this.#h; this.#V(e2) && ((t2 || !this.#p(e2)) && (yield e2), e2 !== this.#a); ) e2 = this.#u[e2];
-      }
-      *#z({ allowStale: t2 = this.allowStale } = {}) {
-        if (this.#n) for (let e2 = this.#a; this.#V(e2) && ((t2 || !this.#p(e2)) && (yield e2), e2 !== this.#h); ) e2 = this.#l[e2];
-      }
-      #V(t2) {
-        return t2 !== void 0 && this.#s.get(this.#i[t2]) === t2;
-      }
-      *entries() {
-        for (let t2 of this.#A()) this.#t[t2] !== void 0 && this.#i[t2] !== void 0 && !this.#e(this.#t[t2]) && (yield [this.#i[t2], this.#t[t2]]);
-      }
-      *rentries() {
-        for (let t2 of this.#z()) this.#t[t2] !== void 0 && this.#i[t2] !== void 0 && !this.#e(this.#t[t2]) && (yield [this.#i[t2], this.#t[t2]]);
-      }
-      *keys() {
-        for (let t2 of this.#A()) {
-          let e2 = this.#i[t2];
-          e2 !== void 0 && !this.#e(this.#t[t2]) && (yield e2);
-        }
-      }
-      *rkeys() {
-        for (let t2 of this.#z()) {
-          let e2 = this.#i[t2];
-          e2 !== void 0 && !this.#e(this.#t[t2]) && (yield e2);
-        }
-      }
-      *values() {
-        for (let t2 of this.#A()) this.#t[t2] !== void 0 && !this.#e(this.#t[t2]) && (yield this.#t[t2]);
-      }
-      *rvalues() {
-        for (let t2 of this.#z()) this.#t[t2] !== void 0 && !this.#e(this.#t[t2]) && (yield this.#t[t2]);
-      }
-      [Symbol.iterator]() {
-        return this.entries();
-      }
-      [Symbol.toStringTag] = "LRUCache";
-      find(t2, e2 = {}) {
-        for (let i2 of this.#A()) {
-          let s2 = this.#t[i2], n = this.#e(s2) ? s2.__staleWhileFetching : s2;
-          if (n !== void 0 && t2(n, this.#i[i2], this)) return this.#L(this.#i[i2], e2);
-        }
-      }
-      forEach(t2, e2 = this) {
-        for (let i2 of this.#A()) {
-          let s2 = this.#t[i2], n = this.#e(s2) ? s2.__staleWhileFetching : s2;
-          n !== void 0 && t2.call(e2, n, this.#i[i2], this);
-        }
-      }
-      rforEach(t2, e2 = this) {
-        for (let i2 of this.#z()) {
-          let s2 = this.#t[i2], n = this.#e(s2) ? s2.__staleWhileFetching : s2;
-          n !== void 0 && t2.call(e2, n, this.#i[i2], this);
-        }
-      }
-      purgeStale() {
-        let t2 = false;
-        for (let e2 of this.#z({ allowStale: true })) this.#p(e2) && (this.#v(this.#i[e2], "expire"), t2 = true);
-        return t2;
-      }
-      info(t2) {
-        let e2 = this.#s.get(t2);
-        if (e2 === void 0) return;
-        let i2 = this.#t[e2], s2 = this.#e(i2) ? i2.__staleWhileFetching : i2;
-        if (s2 === void 0) return;
-        let n = { value: s2 };
-        if (this.#d && this.#F) {
-          let o = this.#d[e2], l = this.#F[e2];
-          if (o && l) {
-            let h2 = o - (this.#w.now() - l);
-            n.ttl = h2, n.start = Date.now();
-          }
-        }
-        return this.#y && (n.size = this.#y[e2]), n;
-      }
-      dump() {
-        let t2 = [];
-        for (let e2 of this.#A({ allowStale: true })) {
-          let i2 = this.#i[e2], s2 = this.#t[e2], n = this.#e(s2) ? s2.__staleWhileFetching : s2;
-          if (n === void 0 || i2 === void 0) continue;
-          let o = { value: n };
-          if (this.#d && this.#F) {
-            o.ttl = this.#d[e2];
-            let l = this.#w.now() - this.#F[e2];
-            o.start = Math.floor(Date.now() - l);
-          }
-          this.#y && (o.size = this.#y[e2]), t2.unshift([i2, o]);
-        }
-        return t2;
-      }
-      load(t2) {
-        this.clear();
-        for (let [e2, i2] of t2) {
-          if (i2.start) {
-            let s2 = Date.now() - i2.start;
-            i2.start = this.#w.now() - s2;
-          }
-          this.#O(e2, i2.value, i2);
-        }
-      }
-      set(t2, e2, i2 = {}) {
-        let { status: s2 = g.metrics.hasSubscribers ? {} : void 0 } = i2;
-        i2.status = s2, s2 && (s2.op = "set", s2.key = t2, e2 !== void 0 && (s2.value = e2), s2.cache = this);
-        let n = this.#O(t2, e2, i2);
-        return s2 && g.metrics.hasSubscribers && g.metrics.publish(s2), n;
-      }
-      #O(t2, e2, i2, s2) {
-        let { ttl: n = this.ttl, start: o, noDisposeOnSet: l = this.noDisposeOnSet, sizeCalculation: h2 = this.sizeCalculation, status: r2 } = i2, c = this.#e(e2);
-        if (e2 === void 0) return r2 && (r2.set = "deleted"), this.delete(t2), this;
-        let { noUpdateTTL: w = this.noUpdateTTL } = i2;
-        r2 && !c && (r2.value = e2);
-        let y = this.#N(t2, e2, i2.size || 0, h2, r2);
-        if (this.maxEntrySize && y > this.maxEntrySize) return this.#v(t2, "set"), r2 && (r2.set = "miss", r2.maxEntrySizeExceeded = true), this;
-        let d = this.#n === 0 ? void 0 : this.#s.get(t2);
-        if (d === void 0) d = this.#n === 0 ? this.#h : this.#_.length !== 0 ? this.#_.pop() : this.#n === this.#o ? this.#P(false) : this.#n, this.#i[d] = t2, this.#t[d] = e2, this.#s.set(t2, d), this.#l[this.#h] = d, this.#u[d] = this.#h, this.#h = d, this.#n++, this.#I(d, y, r2), r2 && (r2.set = "add"), w = false, this.#R && !c && this.#W?.(e2, t2, "add");
-        else {
-          this.#M(d);
-          let p = this.#t[d];
-          if (e2 !== p) {
-            if (!l) if (this.#e(p)) {
-              p !== s2 && p.__abortController.abort(new Error("replaced"));
-              let { __staleWhileFetching: f3 } = p;
-              f3 !== void 0 && f3 !== e2 && (this.#T && this.#m?.(f3, t2, "set"), this.#f && this.#r?.push([f3, t2, "set"]));
-            } else this.#T && this.#m?.(p, t2, "set"), this.#f && this.#r?.push([p, t2, "set"]);
-            if (this.#C(d), this.#I(d, y, r2), this.#t[d] = e2, !c) {
-              let f3 = p && this.#e(p) ? p.__staleWhileFetching : p, _ = f3 === void 0 ? "add" : e2 !== f3 ? "replace" : "update";
-              r2 && (r2.set = _, f3 !== void 0 && (r2.oldValue = f3)), this.#R && this.onInsert?.(e2, t2, _);
-            }
-          } else c || (r2 && (r2.set = "update"), this.#R && this.onInsert?.(e2, t2, "update"));
-        }
-        if (n !== 0 && !this.#d && this.#k(), this.#d && (w || this.#H(d, n, o), r2 && this.#E(r2, d)), !l && this.#f && this.#r) {
-          let p = this.#r, f3;
-          for (; f3 = p?.shift(); ) this.#S?.(...f3);
-        }
-        return this;
-      }
-      pop() {
-        try {
-          for (; this.#n; ) {
-            let t2 = this.#t[this.#a];
-            if (this.#P(true), this.#e(t2)) {
-              if (t2.__staleWhileFetching) return t2.__staleWhileFetching;
-            } else if (t2 !== void 0) return t2;
-          }
-        } finally {
-          if (this.#f && this.#r) {
-            let t2 = this.#r, e2;
-            for (; e2 = t2?.shift(); ) this.#S?.(...e2);
-          }
-        }
-      }
-      #P(t2) {
-        let e2 = this.#a, i2 = this.#i[e2], s2 = this.#t[e2], n = this.#e(s2);
-        n && s2.__abortController.abort(new Error("evicted"));
-        let o = n ? s2.__staleWhileFetching : s2;
-        return (this.#T || this.#f) && o !== void 0 && (this.#T && this.#m?.(o, i2, "evict"), this.#f && this.#r?.push([o, i2, "evict"])), this.#C(e2), this.#g?.[e2] && (clearTimeout(this.#g[e2]), this.#g[e2] = void 0), t2 && (this.#i[e2] = void 0, this.#t[e2] = void 0, this.#_.push(e2)), this.#n === 1 ? (this.#a = this.#h = 0, this.#_.length = 0) : this.#a = this.#l[e2], this.#s.delete(i2), this.#n--, e2;
-      }
-      has(t2, e2 = {}) {
-        let { status: i2 = g.metrics.hasSubscribers ? {} : void 0 } = e2;
-        e2.status = i2, i2 && (i2.op = "has", i2.key = t2, i2.cache = this);
-        let s2 = this.#Y(t2, e2);
-        return g.metrics.hasSubscribers && g.metrics.publish(i2), s2;
-      }
-      #Y(t2, e2 = {}) {
-        let { updateAgeOnHas: i2 = this.updateAgeOnHas, status: s2 } = e2, n = this.#s.get(t2);
-        if (n !== void 0) {
-          let o = this.#t[n];
-          if (this.#e(o) && o.__staleWhileFetching === void 0) return false;
-          if (this.#p(n)) s2 && (s2.has = "stale", this.#E(s2, n));
-          else return i2 && this.#D(n), s2 && (s2.has = "hit", this.#E(s2, n)), true;
-        } else s2 && (s2.has = "miss");
-        return false;
-      }
-      peek(t2, e2 = {}) {
-        let { status: i2 = C() ? {} : void 0 } = e2;
-        i2 && (i2.op = "peek", i2.key = t2, i2.cache = this), e2.status = i2;
-        let s2 = this.#J(t2, e2);
-        return g.metrics.hasSubscribers && g.metrics.publish(i2), s2;
-      }
-      #J(t2, e2) {
-        let { status: i2, allowStale: s2 = this.allowStale } = e2, n = this.#s.get(t2);
-        if (n === void 0 || !s2 && this.#p(n)) {
-          i2 && (i2.peek = n === void 0 ? "miss" : "stale");
-          return;
-        }
-        let o = this.#t[n], l = this.#e(o) ? o.__staleWhileFetching : o;
-        return i2 && (l !== void 0 ? (i2.peek = "hit", i2.value = l) : i2.peek = "miss"), l;
-      }
-      #G(t2, e2, i2, s2) {
-        let n = e2 === void 0 ? void 0 : this.#t[e2];
-        if (this.#e(n)) return n;
-        let o = new AbortController(), { signal: l } = i2;
-        l?.addEventListener("abort", () => o.abort(l.reason), { signal: o.signal });
-        let h2 = { signal: o.signal, options: i2, context: s2 }, r2 = (f3, _ = false) => {
-          let { aborted: a } = o.signal, S2 = i2.ignoreFetchAbort && f3 !== void 0, F2 = i2.ignoreFetchAbort || !!(i2.allowStaleOnFetchAbort && f3 !== void 0);
-          if (i2.status && (a && !_ ? (i2.status.fetchAborted = true, i2.status.fetchError = o.signal.reason, S2 && (i2.status.fetchAbortIgnored = true)) : i2.status.fetchResolved = true), a && !S2 && !_) return w(o.signal.reason, F2);
-          let b = d, m2 = this.#t[e2];
-          return (m2 === d || m2 === void 0 && S2 && _) && (f3 === void 0 ? b.__staleWhileFetching !== void 0 ? this.#t[e2] = b.__staleWhileFetching : this.#v(t2, "fetch") : (i2.status && (i2.status.fetchUpdated = true), this.#O(t2, f3, h2.options, b))), f3;
-        }, c = (f3) => (i2.status && (i2.status.fetchRejected = true, i2.status.fetchError = f3), w(f3, false)), w = (f3, _) => {
-          let { aborted: a } = o.signal, S2 = a && i2.allowStaleOnFetchAbort, F2 = S2 || i2.allowStaleOnFetchRejection, b = F2 || i2.noDeleteOnFetchRejection, m2 = d;
-          if (this.#t[e2] === d && (!b || !_ && m2.__staleWhileFetching === void 0 ? this.#v(t2, "fetch") : S2 || (this.#t[e2] = m2.__staleWhileFetching)), F2) return i2.status && m2.__staleWhileFetching !== void 0 && (i2.status.returnedStale = true), m2.__staleWhileFetching;
-          if (m2.__returned === m2) throw f3;
-        }, y = (f3, _) => {
-          let a = this.#x?.(t2, n, h2);
-          o.signal.addEventListener("abort", () => {
-            (!i2.ignoreFetchAbort || i2.allowStaleOnFetchAbort) && (f3(void 0), i2.allowStaleOnFetchAbort && (f3 = (S2) => r2(S2, true)));
-          }), a && a instanceof Promise ? a.then((S2) => f3(S2 === void 0 ? void 0 : S2), _) : a !== void 0 && f3(a);
-        };
-        i2.status && (i2.status.fetchDispatched = true);
-        let d = new Promise(y).then(r2, c), p = Object.assign(d, { __abortController: o, __staleWhileFetching: n, __returned: void 0 });
-        return e2 === void 0 ? (this.#O(t2, p, { ...h2.options, status: void 0 }), e2 = this.#s.get(t2)) : this.#t[e2] = p, p;
-      }
-      #e(t2) {
-        if (!this.#U) return false;
-        let e2 = t2;
-        return !!e2 && e2 instanceof Promise && e2.hasOwnProperty("__staleWhileFetching") && e2.__abortController instanceof AbortController;
-      }
-      fetch(t2, e2 = {}) {
-        let i2 = g.tracing.hasSubscribers, { status: s2 = C() ? {} : void 0 } = e2;
-        e2.status = s2, s2 && e2.context && (s2.context = e2.context);
-        let n = this.#q(t2, e2);
-        return s2 && i2 && (s2.trace = true, g.tracing.tracePromise(() => n, s2).catch(() => {
-        })), n;
-      }
-      async #q(t2, e2 = {}) {
-        let { allowStale: i2 = this.allowStale, updateAgeOnGet: s2 = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, ttl: o = this.ttl, noDisposeOnSet: l = this.noDisposeOnSet, size: h2 = 0, sizeCalculation: r2 = this.sizeCalculation, noUpdateTTL: c = this.noUpdateTTL, noDeleteOnFetchRejection: w = this.noDeleteOnFetchRejection, allowStaleOnFetchRejection: y = this.allowStaleOnFetchRejection, ignoreFetchAbort: d = this.ignoreFetchAbort, allowStaleOnFetchAbort: p = this.allowStaleOnFetchAbort, context: f3, forceRefresh: _ = false, status: a, signal: S2 } = e2;
-        if (a && (a.op = "fetch", a.key = t2, _ && (a.forceRefresh = true), a.cache = this), !this.#U) return a && (a.fetch = "get"), this.#L(t2, { allowStale: i2, updateAgeOnGet: s2, noDeleteOnStaleGet: n, status: a });
-        let F2 = { allowStale: i2, updateAgeOnGet: s2, noDeleteOnStaleGet: n, ttl: o, noDisposeOnSet: l, size: h2, sizeCalculation: r2, noUpdateTTL: c, noDeleteOnFetchRejection: w, allowStaleOnFetchRejection: y, allowStaleOnFetchAbort: p, ignoreFetchAbort: d, status: a, signal: S2 }, b = this.#s.get(t2);
-        if (b === void 0) {
-          a && (a.fetch = "miss");
-          let m2 = this.#G(t2, b, F2, f3);
-          return m2.__returned = m2;
-        } else {
-          let m2 = this.#t[b];
-          if (this.#e(m2)) {
-            let E = i2 && m2.__staleWhileFetching !== void 0;
-            return a && (a.fetch = "inflight", E && (a.returnedStale = true)), E ? m2.__staleWhileFetching : m2.__returned = m2;
-          }
-          let A2 = this.#p(b);
-          if (!_ && !A2) return a && (a.fetch = "hit"), this.#M(b), s2 && this.#D(b), a && this.#E(a, b), m2;
-          let z = this.#G(t2, b, F2, f3), v = z.__staleWhileFetching !== void 0 && i2;
-          return a && (a.fetch = A2 ? "stale" : "refresh", v && A2 && (a.returnedStale = true)), v ? z.__staleWhileFetching : z.__returned = z;
-        }
-      }
-      forceFetch(t2, e2 = {}) {
-        let i2 = g.tracing.hasSubscribers, { status: s2 = C() ? {} : void 0 } = e2;
-        e2.status = s2, s2 && e2.context && (s2.context = e2.context);
-        let n = this.#K(t2, e2);
-        return s2 && i2 && (s2.trace = true, g.tracing.tracePromise(() => n, s2).catch(() => {
-        })), n;
-      }
-      async #K(t2, e2 = {}) {
-        let i2 = await this.#q(t2, e2);
-        if (i2 === void 0) throw new Error("fetch() returned undefined");
-        return i2;
-      }
-      memo(t2, e2 = {}) {
-        let { status: i2 = g.metrics.hasSubscribers ? {} : void 0 } = e2;
-        e2.status = i2, i2 && (i2.op = "memo", i2.key = t2, e2.context && (i2.context = e2.context), i2.cache = this);
-        let s2 = this.#Q(t2, e2);
-        return i2 && (i2.value = s2), g.metrics.hasSubscribers && g.metrics.publish(i2), s2;
-      }
-      #Q(t2, e2 = {}) {
-        let i2 = this.#j;
-        if (!i2) throw new Error("no memoMethod provided to constructor");
-        let { context: s2, status: n, forceRefresh: o, ...l } = e2;
-        n && o && (n.forceRefresh = true);
-        let h2 = this.#L(t2, l), r2 = o || h2 === void 0;
-        if (n && (n.memo = r2 ? "miss" : "hit", r2 || (n.value = h2)), !r2) return h2;
-        let c = i2(t2, h2, { options: l, context: s2 });
-        return n && (n.value = c), this.#O(t2, c, l), c;
-      }
-      get(t2, e2 = {}) {
-        let { status: i2 = g.metrics.hasSubscribers ? {} : void 0 } = e2;
-        e2.status = i2, i2 && (i2.op = "get", i2.key = t2, i2.cache = this);
-        let s2 = this.#L(t2, e2);
-        return i2 && (s2 !== void 0 && (i2.value = s2), g.metrics.hasSubscribers && g.metrics.publish(i2)), s2;
-      }
-      #L(t2, e2 = {}) {
-        let { allowStale: i2 = this.allowStale, updateAgeOnGet: s2 = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, status: o } = e2, l = this.#s.get(t2);
-        if (l === void 0) {
-          o && (o.get = "miss");
-          return;
-        }
-        let h2 = this.#t[l], r2 = this.#e(h2);
-        return o && this.#E(o, l), this.#p(l) ? r2 ? (o && (o.get = "stale-fetching"), i2 && h2.__staleWhileFetching !== void 0 ? (o && (o.returnedStale = true), h2.__staleWhileFetching) : void 0) : (n || this.#v(t2, "expire"), o && (o.get = "stale"), i2 ? (o && (o.returnedStale = true), h2) : void 0) : (o && (o.get = r2 ? "fetching" : "hit"), this.#M(l), s2 && this.#D(l), r2 ? h2.__staleWhileFetching : h2);
-      }
-      #B(t2, e2) {
-        this.#u[e2] = t2, this.#l[t2] = e2;
-      }
-      #M(t2) {
-        t2 !== this.#h && (t2 === this.#a ? this.#a = this.#l[t2] : this.#B(this.#u[t2], this.#l[t2]), this.#B(this.#h, t2), this.#h = t2);
-      }
-      delete(t2) {
-        return this.#v(t2, "delete");
-      }
-      #v(t2, e2) {
-        g.metrics.hasSubscribers && g.metrics.publish({ op: "delete", delete: e2, key: t2, cache: this });
-        let i2 = false;
-        if (this.#n !== 0) {
-          let s2 = this.#s.get(t2);
-          if (s2 !== void 0) if (this.#g?.[s2] && (clearTimeout(this.#g[s2]), this.#g[s2] = void 0), i2 = true, this.#n === 1) this.#$(e2);
-          else {
-            this.#C(s2);
-            let n = this.#t[s2];
-            if (this.#e(n) ? n.__abortController.abort(new Error("deleted")) : (this.#T || this.#f) && (this.#T && this.#m?.(n, t2, e2), this.#f && this.#r?.push([n, t2, e2])), this.#s.delete(t2), this.#i[s2] = void 0, this.#t[s2] = void 0, s2 === this.#h) this.#h = this.#u[s2];
-            else if (s2 === this.#a) this.#a = this.#l[s2];
-            else {
-              let o = this.#u[s2];
-              this.#l[o] = this.#l[s2];
-              let l = this.#l[s2];
-              this.#u[l] = this.#u[s2];
-            }
-            this.#n--, this.#_.push(s2);
-          }
-        }
-        if (this.#f && this.#r?.length) {
-          let s2 = this.#r, n;
-          for (; n = s2?.shift(); ) this.#S?.(...n);
-        }
-        return i2;
-      }
-      clear() {
-        return this.#$("delete");
-      }
-      #$(t2) {
-        for (let e2 of this.#z({ allowStale: true })) {
-          let i2 = this.#t[e2];
-          if (this.#e(i2)) i2.__abortController.abort(new Error("deleted"));
-          else {
-            let s2 = this.#i[e2];
-            this.#T && this.#m?.(i2, s2, t2), this.#f && this.#r?.push([i2, s2, t2]);
-          }
-        }
-        if (this.#s.clear(), this.#t.fill(void 0), this.#i.fill(void 0), this.#d && this.#F) {
-          this.#d.fill(0), this.#F.fill(0);
-          for (let e2 of this.#g ?? []) e2 !== void 0 && clearTimeout(e2);
-          this.#g?.fill(void 0);
-        }
-        if (this.#y && this.#y.fill(0), this.#a = 0, this.#h = 0, this.#_.length = 0, this.#b = 0, this.#n = 0, this.#f && this.#r) {
-          let e2 = this.#r, i2;
-          for (; i2 = e2?.shift(); ) this.#S?.(...i2);
-        }
-      }
-    };
-    exports.LRUCache = M;
-  }
-});
-
 // node_modules/jwks-rsa/src/wrappers/cache.js
 var require_cache = __commonJS({
   "node_modules/jwks-rsa/src/wrappers/cache.js"(exports, module) {
-    var logger = require_src5()("jwks");
+    var logger = require_src7()("jwks");
     var memoizer = require_lib3();
-    var { LRUCache } = require_index_min2();
+    var { LRUCache } = require_index_min();
     var { promisify: promisify3, callbackify } = __require("util");
     function cacheWrapper(client, { cacheMaxEntries = 5, cacheMaxAge = 6e5, cacheMaxAgeFallback, onStaleCacheFallback }) {
       logger(`Configured caching of signing keys. Max: ${cacheMaxEntries} / Age: ${cacheMaxAge}${cacheMaxAgeFallback ? ` / Fallback: ${cacheMaxAgeFallback}` : ""}`);
@@ -60767,7 +59804,7 @@ var require_JwksRateLimitError = __commonJS({
 // node_modules/jwks-rsa/src/wrappers/rateLimit.js
 var require_rateLimit = __commonJS({
   "node_modules/jwks-rsa/src/wrappers/rateLimit.js"(exports, module) {
-    var logger = require_src5()("jwks");
+    var logger = require_src7()("jwks");
     var { RateLimiter } = require_limiter();
     var JwksRateLimitError = require_JwksRateLimitError();
     function rateLimitWrapper(client, { jwksRequestsPerMinute = 10 }) {
@@ -60872,7 +59909,7 @@ var require_SigningKeyNotFoundError = __commonJS({
 // node_modules/jwks-rsa/src/JwksClient.js
 var require_JwksClient = __commonJS({
   "node_modules/jwks-rsa/src/JwksClient.js"(exports, module) {
-    var logger = require_src5()("jwks");
+    var logger = require_src7()("jwks");
     var { retrieveSigningKeys } = require_utils4();
     var { request, cacheSigningKey, rateLimitSigningKey, getKeysInterceptor, callbackSupport } = require_wrappers();
     var JwksError = require_JwksError();
@@ -61165,7 +60202,7 @@ var require_passport = __commonJS({
 });
 
 // node_modules/jwks-rsa/src/index.js
-var require_src10 = __commonJS({
+var require_src8 = __commonJS({
   "node_modules/jwks-rsa/src/index.js"(exports, module) {
     var { JwksClient } = require_JwksClient();
     var errors = require_errors();
@@ -61199,7 +60236,7 @@ var require_jwt = __commonJS({
     exports.decodeJwt = decodeJwt2;
     var validator = require_validator();
     var jwt = require_jsonwebtoken();
-    var jwks = require_src10();
+    var jwks = require_src8();
     var api_request_1 = require_api_request();
     exports.ALGORITHM_RS256 = "RS256";
     exports.ALGORITHM_ES256 = "ES256";
@@ -62897,6 +61934,9 @@ var require_tenant_manager = __commonJS({
        * @internal
        */
       constructor(app2, tenantId, emHost) {
+        if (!validator.isTenantId(tenantId)) {
+          throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID);
+        }
         const emIsSet = emHost !== void 0;
         super(app2, new auth_api_request_1.TenantAwareAuthRequestHandler(app2, tenantId, emHost), (0, base_auth_1.createFirebaseTokenGenerator)(app2, tenantId, emIsSet ? !!emHost : void 0));
         utils.addReadonlyGetter(this, "tenantId", tenantId);
@@ -62962,7 +62002,7 @@ var require_tenant_manager = __commonJS({
        * @returns The `TenantAwareAuth` instance corresponding to this tenant identifier.
        */
       authForTenant(tenantId) {
-        if (!validator.isNonEmptyString(tenantId)) {
+        if (!validator.isTenantId(tenantId)) {
           throw new error_1.FirebaseAuthError(error_1.authClientErrorCode.INVALID_TENANT_ID);
         }
         if (typeof this.tenantsMap[tenantId] === "undefined") {
@@ -68963,7 +68003,7 @@ var require_util3 = __commonJS({
 });
 
 // node_modules/gaxios/build/cjs/src/common.js
-var require_common3 = __commonJS({
+var require_common4 = __commonJS({
   "node_modules/gaxios/build/cjs/src/common.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod3) {
@@ -69333,7 +68373,7 @@ var require_gaxios2 = __commonJS({
     exports.Gaxios = void 0;
     var extend_1 = __importDefault(require_extend());
     var https_1 = __require("https");
-    var common_js_1 = require_common3();
+    var common_js_1 = require_common4();
     var retry_js_1 = require_retry4();
     var stream_1 = __require("stream");
     var interceptor_js_1 = require_interceptor3();
@@ -69796,7 +68836,7 @@ Content-Type: ${partContentType}\r
 });
 
 // node_modules/gaxios/build/cjs/src/index.js
-var require_src11 = __commonJS({
+var require_src9 = __commonJS({
   "node_modules/gaxios/build/cjs/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
@@ -69822,7 +68862,7 @@ var require_src11 = __commonJS({
     Object.defineProperty(exports, "Gaxios", { enumerable: true, get: function() {
       return gaxios_js_1.Gaxios;
     } });
-    var common_js_1 = require_common3();
+    var common_js_1 = require_common4();
     Object.defineProperty(exports, "GaxiosError", { enumerable: true, get: function() {
       return common_js_1.GaxiosError;
     } });
@@ -70240,7 +69280,7 @@ var require_logging_utils2 = __commonJS({
 });
 
 // node_modules/google-logging-utils/build/src/index.js
-var require_src12 = __commonJS({
+var require_src10 = __commonJS({
   "node_modules/google-logging-utils/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
@@ -70265,7 +69305,7 @@ var require_src12 = __commonJS({
 });
 
 // node_modules/gcp-metadata/build/src/index.js
-var require_src13 = __commonJS({
+var require_src11 = __commonJS({
   "node_modules/gcp-metadata/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
@@ -70319,10 +69359,10 @@ var require_src13 = __commonJS({
     exports.getGCPResidency = getGCPResidency;
     exports.setGCPResidency = setGCPResidency;
     exports.requestTimeout = requestTimeout;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency2();
-    var logger = __importStar(require_src12());
+    var logger = __importStar(require_src10());
     exports.BASE_PATH = "/computeMetadata/v1";
     exports.HOST_ADDRESS = "http://169.254.169.254";
     exports.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
@@ -70971,9 +70011,9 @@ var require_authclient2 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
     var events_1 = __require("events");
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var util_1 = require_util4();
-    var google_logging_utils_1 = require_src12();
+    var google_logging_utils_1 = require_src10();
     var shared_cjs_1 = require_shared4();
     exports.DEFAULT_UNIVERSE = "googleapis.com";
     exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
@@ -71257,7 +70297,7 @@ var require_oauth2client2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var querystring = __require("querystring");
     var stream = __require("stream");
     var formatEcdsa = require_ecdsa_sig_formatter();
@@ -71938,8 +70978,8 @@ var require_computeclient2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Compute = void 0;
-    var gaxios_1 = require_src11();
-    var gcpMetadata = require_src13();
+    var gaxios_1 = require_src9();
+    var gcpMetadata = require_src11();
     var oauth2client_1 = require_oauth2client2();
     var Compute = class extends oauth2client_1.OAuth2Client {
       serviceAccountEmail;
@@ -72078,7 +71118,7 @@ var require_envDetect2 = __commonJS({
     exports.GCPEnv = void 0;
     exports.clear = clear;
     exports.getEnv = getEnv2;
-    var gcpMetadata = require_src13();
+    var gcpMetadata = require_src11();
     var GCPEnv;
     (function(GCPEnv2) {
       GCPEnv2["APP_ENGINE"] = "APP_ENGINE";
@@ -72458,7 +71498,7 @@ var require_googleToken2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleToken = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var tokenHandler_1 = require_tokenHandler2();
     var revokeToken_1 = require_revokeToken2();
     var GoogleToken = class {
@@ -73135,7 +72175,7 @@ var require_impersonated2 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client2();
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var util_1 = require_util4();
     exports.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
     var Impersonated = class _Impersonated extends oauth2client_1.OAuth2Client {
@@ -73314,7 +72354,7 @@ var require_oauth2common2 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuthClientAuthHandler = void 0;
     exports.getErrorFromOAuthErrorResponse = getErrorFromOAuthErrorResponse;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var crypto_1 = require_crypto6();
     var METHODS_SUPPORTING_REQUEST_BODY = ["PUT", "POST", "PATCH"];
     var OAuthClientAuthHandler = class {
@@ -73461,7 +72501,7 @@ var require_stscredentials2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StsCredentials = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var authclient_1 = require_authclient2();
     var oauth2common_1 = require_oauth2common2();
     var util_1 = require_util4();
@@ -73549,7 +72589,7 @@ var require_baseexternalclient2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BaseExternalAccountClient = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var stream = __require("stream");
     var authclient_1 = require_authclient2();
     var sts = require_stscredentials2();
@@ -74241,7 +73281,7 @@ var require_identitypoolclient2 = __commonJS({
     var urlsubjecttokensupplier_1 = require_urlsubjecttokensupplier2();
     var certificatesubjecttokensupplier_1 = require_certificatesubjecttokensupplier2();
     var stscredentials_1 = require_stscredentials2();
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var IdentityPoolClient = class _IdentityPoolClient extends baseexternalclient_1.BaseExternalAccountClient {
       subjectTokenSupplier;
       /**
@@ -74347,7 +73387,7 @@ var require_awsrequestsigner2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsRequestSigner = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var crypto_1 = require_crypto6();
     var AWS_ALGORITHM = "AWS4-HMAC-SHA256";
     var AWS_REQUEST_TYPE = "aws4_request";
@@ -74656,7 +73696,7 @@ var require_awsclient2 = __commonJS({
     var baseexternalclient_1 = require_baseexternalclient2();
     var defaultawssecuritycredentialssupplier_1 = require_defaultawssecuritycredentialssupplier2();
     var util_1 = require_util4();
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var AwsClient = class _AwsClient extends baseexternalclient_1.BaseExternalAccountClient {
       environmentId;
       awsSecurityCredentialsSupplier;
@@ -75216,7 +74256,7 @@ var require_externalAccountAuthorizedUserClient2 = __commonJS({
     exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
     var authclient_1 = require_authclient2();
     var oauth2common_1 = require_oauth2common2();
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var stream = __require("stream");
     var baseexternalclient_1 = require_baseexternalclient2();
     exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = "external_account_authorized_user";
@@ -75686,8 +74726,8 @@ var require_googleauth2 = __commonJS({
     exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
     var fs5 = __require("fs");
-    var gaxios_1 = require_src11();
-    var gcpMetadata = require_src13();
+    var gaxios_1 = require_src9();
+    var gcpMetadata = require_src11();
     var os3 = __require("os");
     var path5 = __require("path");
     var crypto_1 = require_crypto6();
@@ -76528,7 +75568,7 @@ var require_downscopedclient2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
-    var gaxios_1 = require_src11();
+    var gaxios_1 = require_src9();
     var stream = __require("stream");
     var authclient_1 = require_authclient2();
     var sts = require_stscredentials2();
@@ -76753,7 +75793,7 @@ var require_passthrough2 = __commonJS({
 });
 
 // node_modules/google-auth-library/build/src/index.js
-var require_src14 = __commonJS({
+var require_src12 = __commonJS({
   "node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m2, k, k2) {
@@ -76778,8 +75818,8 @@ var require_src14 = __commonJS({
     Object.defineProperty(exports, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
     } });
-    exports.gcpMetadata = require_src13();
-    exports.gaxios = require_src11();
+    exports.gcpMetadata = require_src11();
+    exports.gaxios = require_src9();
     var authclient_1 = require_authclient2();
     Object.defineProperty(exports, "AuthClient", { enumerable: true, get: function() {
       return authclient_1.AuthClient;
@@ -79219,12 +78259,17 @@ var require_websocket = __commonJS({
               protocols = [protocols];
             }
           }
-          initAsClient(this, address, protocols, options);
+          options = initAsClient(this, address, protocols, options);
         } else {
-          this._autoPong = options.autoPong;
-          this._closeTimeout = options.closeTimeout;
           this._isServer = true;
         }
+        if (options.autoPong) {
+          this._autoPong = true;
+          this._autoPongComplete = () => autoPongComplete(this);
+          this._pendingAutoPongs = 0;
+          this._maxPendingAutoPongs = options.maxPendingAutoPongs | 0;
+        }
+        this._closeTimeout = options.closeTimeout;
       }
       /**
        * For historical reasons, the custom "nodebuffer" type is used by the default
@@ -79635,6 +78680,7 @@ var require_websocket = __commonJS({
         maxBufferedChunks: 256 * 1024,
         maxFragments: 16 * 1024,
         maxPayload: 100 * 1024 * 1024,
+        maxPendingAutoPongs: 60,
         skipUTF8Validation: false,
         perMessageDeflate: true,
         followRedirects: false,
@@ -79650,8 +78696,6 @@ var require_websocket = __commonJS({
         path: void 0,
         port: void 0
       };
-      websocket._autoPong = opts.autoPong;
-      websocket._closeTimeout = opts.closeTimeout;
       if (!protocolVersions.includes(opts.protocolVersion)) {
         throw new RangeError(
           `Unsupported protocol version: ${opts.protocolVersion} (supported versions: ${protocolVersions.join(", ")})`
@@ -79894,6 +78938,7 @@ var require_websocket = __commonJS({
       } else {
         req.end();
       }
+      return opts;
     }
     function emitErrorAndClose(websocket, err) {
       websocket._readyState = WebSocket2.CLOSING;
@@ -79982,8 +79027,18 @@ var require_websocket = __commonJS({
     }
     function receiverOnPing(data) {
       const websocket = this[kWebSocket];
-      if (websocket._autoPong) websocket.pong(data, !this._isServer, NOOP);
+      if (websocket._autoPong && websocket.readyState === WebSocket2.OPEN) {
+        if (websocket._maxPendingAutoPongs > 0 && websocket._pendingAutoPongs >= websocket._maxPendingAutoPongs) {
+          websocket.terminate();
+        } else {
+          websocket._pendingAutoPongs++;
+          websocket.pong(data, !this._isServer, websocket._autoPongComplete);
+        }
+      }
       websocket.emit("ping", data);
+    }
+    function autoPongComplete(websocket) {
+      websocket._pendingAutoPongs--;
     }
     function receiverOnPong(data) {
       this[kWebSocket].emit("pong", data);
@@ -80238,6 +79293,8 @@ var require_websocket_server = __commonJS({
        *     fragments
        * @param {Number} [options.maxPayload=104857600] The maximum allowed message
        *     size
+       * @param {Number} [options.maxPendingAutoPongs=60] The maximum number of
+       *     pending automatic pongs
        * @param {Boolean} [options.noServer=false] Enable no server mode
        * @param {String} [options.path] Accept only connections matching this path
        * @param {(Boolean|Object)} [options.perMessageDeflate=false] Enable/disable
@@ -80260,6 +79317,7 @@ var require_websocket_server = __commonJS({
           maxBufferedChunks: 256 * 1024,
           maxFragments: 16 * 1024,
           maxPayload: 100 * 1024 * 1024,
+          maxPendingAutoPongs: 60,
           skipUTF8Validation: false,
           perMessageDeflate: false,
           handleProtocols: null,
@@ -88389,17 +87447,35 @@ var getRequireModule = () => {
   }
 };
 var getConnectionString = () => {
-  return process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || process.env.SUPABASE_DATABASE_URL || (process.env.POSTGRES_HOST ? `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT || 5432}/${process.env.POSTGRES_DATABASE || "postgres"}` : void 0);
+  return process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL || process.env.SUPABASE_DATABASE_URL || process.env.SUPABASE_POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || (process.env.POSTGRES_HOST ? `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT || 5432}/${process.env.POSTGRES_DATABASE || "postgres"}` : void 0);
 };
-var connStr = getConnectionString();
-var isRemoteDb = Boolean(connStr);
+var sanitizeConnectionString = (rawUrl) => {
+  try {
+    const parsed = new URL(rawUrl);
+    const host = parsed.hostname.toLowerCase();
+    const isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+    parsed.searchParams.delete("sslmode");
+    parsed.searchParams.delete("pgbouncer");
+    return { url: parsed.toString(), isLocal };
+  } catch {
+    const isLocal = rawUrl.includes("localhost") || rawUrl.includes("127.0.0.1");
+    return { url: rawUrl, isLocal };
+  }
+};
+var rawConnStr = getConnectionString();
+var isRemoteDb = Boolean(rawConnStr);
+var isServerless = process.env.VERCEL === "1" || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 var createRemotePool = () => {
   if (!global._postgresPool) {
+    const { url, isLocal } = sanitizeConnectionString(getConnectionString() || "");
     const config = {
-      connectionString: getConnectionString(),
-      ssl: { rejectUnauthorized: false },
-      max: 10,
-      connectionTimeoutMillis: 15e3
+      connectionString: url,
+      ssl: isLocal ? false : { rejectUnauthorized: false },
+      // Keep pool small in Vercel serverless to stay well within Supabase Free Tier limits
+      max: isServerless ? 3 : 10,
+      idleTimeoutMillis: isServerless ? 1e4 : 3e4,
+      connectionTimeoutMillis: 1e4,
+      allowExitOnIdle: isServerless
     };
     global._postgresPool = new Pool(config);
     global._postgresPool.on("error", (err) => {
@@ -88582,13 +87658,18 @@ if (isRemoteDb) {
 } else {
   const req = getRequireModule();
   if (req) {
-    const { PGlite } = req("@electric-sql/pglite");
-    const { drizzle: drizzle2 } = req("drizzle-orm/pglite");
-    pgliteInstance = getPgLiteInstance(PGlite);
-    poolInstance = createPgLitePoolAdapter(pgliteInstance);
-    dbInstance = drizzle2(pgliteInstance, { schema: schema_exports });
+    try {
+      const { PGlite } = req("@electric-sql/pglite");
+      const { drizzle: drizzle2 } = req("drizzle-orm/pglite");
+      pgliteInstance = getPgLiteInstance(PGlite);
+      poolInstance = createPgLitePoolAdapter(pgliteInstance);
+      dbInstance = drizzle2(pgliteInstance, { schema: schema_exports });
+    } catch (pgLiteErr) {
+      console.error("[Database] DATABASE_URL is not configured and local PGlite is unavailable in this environment.", pgLiteErr);
+    }
   }
 }
+var isDatabaseConfigured = Boolean(poolInstance && dbInstance);
 var pool = poolInstance;
 var pglite = pgliteInstance;
 var db = dbInstance;
@@ -107580,8 +106661,8 @@ bookingsRouter.post("/", requireAuth, async (req, res) => {
             payment_intent_data: {
               transfer_group: transferGroup
             },
-            success_url: `${process.env.APP_URL || "http://localhost:3000"}/bookings/${newBooking[0].id}/confirmation`,
-            cancel_url: `${process.env.APP_URL || "http://localhost:3000"}/bookings/${newBooking[0].id}/confirmation`
+            success_url: `${process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : req.headers.host ? `${req.headers["x-forwarded-proto"] || "https"}://${req.headers.host}` : "http://localhost:3000")}/bookings/${newBooking[0].id}/confirmation`,
+            cancel_url: `${process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : req.headers.host ? `${req.headers["x-forwarded-proto"] || "https"}://${req.headers.host}` : "http://localhost:3000")}/bookings/${newBooking[0].id}/confirmation`
           });
           checkoutUrl = session.url;
         }
@@ -110483,7 +109564,11 @@ var SystemMetricsManager = class {
     this.totalRequests = 0;
     this.eventLoopHistogram.enable();
     this.initPreviousCpuTimes();
-    this.startPeriodicSampling();
+    if (process.env.VERCEL !== "1") {
+      this.startPeriodicSampling();
+    } else {
+      this.sampleMetrics();
+    }
   }
   recordHttpRequest() {
     this.requestsInCurrentSecond++;
@@ -111838,7 +110923,9 @@ var OfficeAgentService = class {
     this.netLiquidity = 12747e4;
     // ₱127.47M
     this.simulationSpeed = 1;
-    this.startAutonomousLoop();
+    if (process.env.VERCEL !== "1") {
+      this.startAutonomousLoop();
+    }
   }
   // Subscribe a client to Server-Sent Events (SSE)
   subscribeClient(res) {
@@ -111871,6 +110958,9 @@ var OfficeAgentService = class {
   }
   // Return complete current office state
   getState() {
+    if (process.env.VERCEL === "1") {
+      this.tickSimulation();
+    }
     return {
       agents: this.agents,
       zones: this.zones,
@@ -112752,14 +111842,14 @@ adminRouter.get("/environment", requireRole(["ADMIN"]), async (req, res) => {
         key: "APP_URL",
         name: "Application Host URL",
         category: "Platform Ingress & Hosting",
-        description: "Canonical origin URL for the running Cloud Run service. Used for OAuth callbacks, Stripe webhook validation, and deep links.",
-        required: true,
-        setupGuideUrl: "https://cloud.google.com/run",
-        isConfigured: Boolean(process.env.APP_URL && process.env.APP_URL !== "MY_APP_URL"),
-        maskedValue: process.env.APP_URL || "Auto-detected by Cloud Run container",
+        description: "Canonical origin URL for the running service. Used for OAuth callbacks, Stripe redirect URLs, and deep links.",
+        required: false,
+        setupGuideUrl: "https://vercel.com/docs/projects/environment-variables",
+        isConfigured: Boolean(process.env.APP_URL && process.env.APP_URL !== "MY_APP_URL" || process.env.VERCEL_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL),
+        maskedValue: process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "Auto-detected from request origin"),
         runtimeOverride: runtimeMap.get("APP_URL")?.configValue || null,
-        targetFile: ".env / Cloud Run Environment",
-        hint: "Injected automatically by the AI Studio Cloud Run platform at deployment time."
+        targetFile: ".env / Vercel Environment Variables",
+        hint: "Auto-detected on Vercel via VERCEL_URL, or set explicitly to your custom domain."
       },
       {
         key: "VITE_GOOGLE_ADSENSE_CLIENT_ID",
@@ -112830,14 +111920,14 @@ adminRouter.get("/environment", requireRole(["ADMIN"]), async (req, res) => {
         key: "DATABASE_URL",
         name: "PostgreSQL Database Connection String",
         category: "Database & Storage",
-        description: "Connection URI for the production Cloud SQL PostgreSQL database storing users, bookings, rate cards, and audit logs.",
+        description: "Connection URI for the production PostgreSQL database (Supabase Connection Pooler / Cloud SQL) storing users, bookings, rate cards, and audit logs.",
         required: true,
-        setupGuideUrl: "https://cloud.google.com/sql",
-        isConfigured: Boolean(process.env.DATABASE_URL),
-        maskedValue: maskValue(process.env.DATABASE_URL, 8),
+        setupGuideUrl: "https://supabase.com/docs/guides/database/connecting-to-postgres",
+        isConfigured: Boolean(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.SUPABASE_DATABASE_URL),
+        maskedValue: maskValue(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.SUPABASE_DATABASE_URL, 8),
         runtimeOverride: null,
-        targetFile: ".env / Cloud SQL Environment",
-        hint: "Managed automatically by Cloud Run and Cloud SQL database instance connection pool."
+        targetFile: ".env / Vercel Environment Variables",
+        hint: "Use the Supabase Transaction Pooler URI (port 6543, *.pooler.supabase.com) for Vercel Free Tier IPv4 compatibility."
       },
       {
         key: "FIREBASE_CONFIG",
@@ -114450,6 +113540,10 @@ adminRouter.get("/system-metrics/stream", requireRole(["ADMIN"]), async (req, re
       }
     };
     await sendData();
+    if (process.env.VERCEL === "1") {
+      res.end();
+      return;
+    }
     const intervalId = setInterval(sendData, 1e3);
     req.on("close", () => {
       clearInterval(intervalId);
@@ -116629,7 +115723,7 @@ var import_express19 = __toESM(require_express2(), 1);
 
 // node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
-var import_google_auth_library = __toESM(require_src14(), 1);
+var import_google_auth_library = __toESM(require_src12(), 1);
 import { createWriteStream } from "fs";
 import * as fs4 from "fs/promises";
 import { writeFile } from "fs/promises";
@@ -145744,19 +144838,306 @@ reviewsRouter.get("/admin/all", requireAuth, requireRole(["ADMIN"]), async (req,
   }
 });
 
+// src/db/bootstrap.ts
+async function bootstrapRemotePostgresSchema(pool3) {
+  await pool3.query(`
+    DO $$ BEGIN
+      CREATE TYPE "public"."booking_status" AS ENUM('PENDING', 'CONFIRMED', 'IN_PROGRESS', 'CANCELLED', 'COMPLETED');
+    EXCEPTION WHEN duplicate_object THEN null;
+    END $$;
+
+    DO $$ BEGIN
+      ALTER TYPE "public"."booking_status" ADD VALUE IF NOT EXISTS 'IN_PROGRESS' BEFORE 'CANCELLED';
+    EXCEPTION WHEN others THEN null;
+    END $$;
+
+    DO $$ BEGIN
+      CREATE TYPE "public"."meet_and_greet_status" AS ENUM('REQUESTED', 'SCHEDULED', 'COMPLETED', 'CANCELLED');
+    EXCEPTION WHEN duplicate_object THEN null;
+    END $$;
+
+    DO $$ BEGIN
+      CREATE TYPE "public"."payment_status" AS ENUM('PENDING', 'AUTHORIZED', 'HELD_IN_ESCROW', 'RELEASED', 'REFUNDED', 'DISPUTED');
+    EXCEPTION WHEN duplicate_object THEN null;
+    END $$;
+
+    DO $$ BEGIN
+      CREATE TYPE "public"."user_role" AS ENUM('PET_OWNER', 'PET_SITTER', 'ADMIN', 'SUPPORT_AGENT');
+    EXCEPTION WHEN duplicate_object THEN null;
+    END $$;
+
+    DO $$ BEGIN
+      CREATE TYPE "public"."service_modality" AS ENUM('BOARDING', 'HOUSE_SITTING', 'DROP_IN', 'DAY_CARE', 'DOG_WALKING');
+    EXCEPTION WHEN duplicate_object THEN null;
+    END $$;
+  `);
+  await pool3.query(`
+    CREATE TABLE IF NOT EXISTS "custom_roles" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "name" text NOT NULL UNIQUE,
+      "permissions" jsonb DEFAULT '{}'::jsonb NOT NULL,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "users" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "uid" text NOT NULL UNIQUE,
+      "name" text,
+      "first_name" text,
+      "middle_name" text,
+      "last_name" text,
+      "email" text NOT NULL UNIQUE,
+      "role" "user_role" DEFAULT 'PET_OWNER' NOT NULL,
+      "custom_role_id" integer REFERENCES "custom_roles"("id"),
+      "is_verified" boolean DEFAULT false NOT NULL,
+      "stripe_account_id" text,
+      "stripe_customer_id" text,
+      "password_hash" text,
+      "is_suspended" boolean DEFAULT false NOT NULL,
+      "suspension_reason" text,
+      "suspended_at" timestamp,
+      "phone" text,
+      "country_code" text DEFAULT '+63',
+      "profile_picture" text,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "sitter_profiles" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "user_id" integer NOT NULL UNIQUE REFERENCES "users"("id") ON DELETE CASCADE,
+      "bio" text,
+      "experience_details" text,
+      "latitude" numeric,
+      "longitude" numeric,
+      "service_radius_miles" integer DEFAULT 5 NOT NULL,
+      "rating" numeric(3, 2),
+      "photos" jsonb DEFAULT '[]'::jsonb,
+      "proof_album" jsonb DEFAULT '[]'::jsonb,
+      "environment_info" jsonb DEFAULT '{}'::jsonb,
+      "pet_preferences" jsonb DEFAULT '{}'::jsonb,
+      "daily_routine" jsonb DEFAULT '{}'::jsonb,
+      "skills_list" jsonb DEFAULT '[]'::jsonb,
+      "sitter_tier" text DEFAULT 'NOVICE',
+      "rates_locked" boolean DEFAULT false,
+      "rate_approval_status" text DEFAULT 'APPROVED',
+      "rate_rejection_reason" text,
+      "max_pets_per_booking" integer DEFAULT 2,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "sitter_availabilities" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "sitter_id" integer NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
+      "day_of_week" integer NOT NULL,
+      "start_time" time NOT NULL,
+      "end_time" time NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "sitter_blockouts" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "sitter_id" integer NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
+      "start_date" date NOT NULL,
+      "end_date" date NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "sitter_rate_cards" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "sitter_id" integer NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
+      "modality" "service_modality" NOT NULL,
+      "base_rate" integer NOT NULL CHECK ("base_rate" > 0),
+      "duration_unit_minutes" integer DEFAULT 60 NOT NULL,
+      "extra_pet_fee" integer DEFAULT 0,
+      "puppy_rate" integer DEFAULT 0,
+      "medication_surcharge" integer DEFAULT 0,
+      "holiday_multiplier" numeric(3, 2) DEFAULT '1.0',
+      "rush_hour_surcharge" integer DEFAULT 0,
+      "max_pets_per_booking" integer DEFAULT 2,
+      "is_admin_override" boolean DEFAULT false,
+      "status" text DEFAULT 'ACTIVE'
+    );
+
+    CREATE TABLE IF NOT EXISTS "platform_fee_configs" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "owner_fee_percentage" numeric(7, 4) NOT NULL,
+      "owner_fee_cap" integer,
+      "sitter_commission_percentage" numeric(7, 4) NOT NULL,
+      "fixed_transaction_fee" integer NOT NULL,
+      "effective_from" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "pets" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "owner_id" integer NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
+      "name" text NOT NULL,
+      "type" text NOT NULL,
+      "breed" text,
+      "age" integer,
+      "weight" numeric(5, 2),
+      "photo_url" text,
+      "food_type" text,
+      "food_grams_per_meal" numeric(6, 2),
+      "food_frequency" text,
+      "other_notes" text,
+      "vaccination_records_url" text,
+      "dietary_restrictions" text,
+      "medical_conditions" text,
+      "medication_requirements" text,
+      "behavioral_notes" text,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "vet_authorizations" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "pet_id" integer NOT NULL REFERENCES "pets"("id") ON DELETE CASCADE,
+      "clinic_name" text NOT NULL,
+      "clinic_phone" text NOT NULL,
+      "clinic_address" text NOT NULL,
+      "digital_signature" text NOT NULL,
+      "pre_authorized_spend_limit" integer NOT NULL,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "meet_and_greets" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "owner_id" integer NOT NULL REFERENCES "users"("id"),
+      "sitter_id" integer NOT NULL REFERENCES "users"("id"),
+      "status" "meet_and_greet_status" DEFAULT 'REQUESTED' NOT NULL,
+      "scheduled_time" timestamp,
+      "location" text,
+      "owner_confirmed" boolean DEFAULT false,
+      "sitter_confirmed" boolean DEFAULT false
+    );
+
+    CREATE TABLE IF NOT EXISTS "bookings" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "owner_id" integer NOT NULL REFERENCES "users"("id") ON DELETE RESTRICT,
+      "sitter_id" integer NOT NULL REFERENCES "users"("id") ON DELETE RESTRICT,
+      "status" "booking_status" DEFAULT 'PENDING' NOT NULL,
+      "start_time" timestamp NOT NULL,
+      "end_time" timestamp NOT NULL,
+      "total_amount" integer NOT NULL,
+      "house_location_address" text,
+      "house_location_details" jsonb DEFAULT '{}'::jsonb,
+      "intake_questionnaire" jsonb DEFAULT '{}'::jsonb,
+      "routine_approval_status" text DEFAULT 'PENDING_APPROVAL',
+      "routine_proposal_notes" text,
+      "routine_approved_at" timestamp,
+      "routine_approved_by" integer,
+      "created_at" timestamp DEFAULT now() NOT NULL,
+      CONSTRAINT "time_check" CHECK ("end_time" > "start_time")
+    );
+
+    CREATE TABLE IF NOT EXISTS "booking_financial_snapshots" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "booking_id" integer NOT NULL UNIQUE REFERENCES "bookings"("id") ON DELETE CASCADE,
+      "base_rate_applied" integer NOT NULL,
+      "duration_unit_minutes_applied" integer NOT NULL,
+      "extra_pet_fee_applied" integer DEFAULT 0,
+      "puppy_rate_applied" integer DEFAULT 0,
+      "medication_surcharge_applied" integer DEFAULT 0,
+      "holiday_multiplier_applied" numeric(3, 2) DEFAULT '1.0',
+      "rush_hour_surcharge_applied" integer DEFAULT 0,
+      "platform_owner_fee_percentage_applied" numeric(7, 4) NOT NULL,
+      "platform_sitter_commission_percentage_applied" numeric(7, 4) NOT NULL,
+      "owner_fee_cap_applied" integer,
+      "fixed_transaction_fee_applied" integer NOT NULL,
+      "calculated_base_total" integer NOT NULL,
+      "calculated_owner_fee" integer NOT NULL,
+      "calculated_sitter_commission" integer NOT NULL,
+      "calculated_sitter_payout" integer NOT NULL,
+      "calculated_total_owner_charge" integer NOT NULL,
+      "calculated_net_platform_revenue" integer NOT NULL,
+      "tip_amount" integer DEFAULT 0 NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS "payments" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "booking_id" integer NOT NULL REFERENCES "bookings"("id"),
+      "stripe_payment_intent_id" text,
+      "transfer_group" text NOT NULL UNIQUE,
+      "status" "payment_status" DEFAULT 'PENDING' NOT NULL,
+      "escrow_release_timestamp" timestamp,
+      "dispute_flag" boolean DEFAULT false
+    );
+
+    CREATE TABLE IF NOT EXISTS "visit_checkin_cards" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "booking_id" integer NOT NULL REFERENCES "bookings"("id"),
+      "check_in_time" timestamp DEFAULT now() NOT NULL,
+      "latitude" numeric,
+      "longitude" numeric,
+      "potty_log" text,
+      "food_water_tracking" text,
+      "photo_urls" jsonb DEFAULT '[]'::jsonb,
+      "notes" text
+    );
+
+    CREATE TABLE IF NOT EXISTS "audit_logs" (
+      "id" serial PRIMARY KEY NOT NULL,
+      "actor_uid" text,
+      "table_name" text NOT NULL,
+      "record_id" integer NOT NULL,
+      "action" text NOT NULL,
+      "old_data" jsonb,
+      "new_data" jsonb,
+      "ip_address" text,
+      "created_at" timestamp DEFAULT now() NOT NULL
+    );
+  `);
+}
+
 // server.ts
+var initPromise = null;
+function ensureDbInitialized() {
+  if (!initPromise) {
+    initPromise = initDbTables().catch((err) => {
+      console.warn("DB initialization note:", err);
+      initPromise = null;
+    });
+  }
+  return initPromise;
+}
 async function initDbTables() {
+  if (!isDatabaseConfigured || !pool) {
+    console.warn("[Database] Skipping initDbTables: DATABASE_URL is not configured.");
+    return;
+  }
   try {
-    try {
-      if (pglite) {
+    if (pglite) {
+      try {
         const migratorPkg = "drizzle-orm/pglite/migrator";
         const { migrate } = await import(migratorPkg);
         await pglite.waitReady;
         await migrate(db, { migrationsFolder: "./drizzle" });
         console.log("Database schema migrations verified and applied successfully.");
+      } catch (migErr) {
+        console.warn("Schema migration note:", migErr);
       }
-    } catch (migErr) {
-      console.warn("Schema migration note:", migErr);
+    } else {
+      try {
+        const checkRes = await pool.query(`
+          SELECT
+            to_regclass('public.users') AS users_tbl,
+            to_regclass('public.reviews') AS reviews_tbl,
+            to_regclass('public.seo_content_articles') AS seo_tbl,
+            to_regclass('public.google_search_console_configs') AS gsc_tbl,
+            to_regclass('public.service_rate_policies') AS policies_tbl,
+            to_regclass('public.krawl_configs') AS krawl_tbl
+        `);
+        const status = checkRes.rows[0] || {};
+        const allCoreTablesExist = Boolean(
+          status.users_tbl && status.reviews_tbl && status.seo_tbl && status.gsc_tbl && status.policies_tbl && status.krawl_tbl
+        );
+        if (allCoreTablesExist) {
+          const seededCheck = await pool.query("SELECT 1 FROM users LIMIT 1");
+          if (seededCheck.rows.length > 0) {
+            return;
+          }
+        }
+      } catch (checkErr) {
+        console.warn("Remote schema fast-path check note:", checkErr);
+      }
+      await bootstrapRemotePostgresSchema(pool);
     }
     await pool.query(`
       CREATE TABLE IF NOT EXISTS reviews (
@@ -146344,9 +145725,11 @@ async function initDbTables() {
      );`
   ];
   try {
-    try {
-      await pool.query("SET ROLE ai_studio_admin");
-    } catch {
+    if (process.env.SQL_HOST) {
+      try {
+        await pool.query("SET ROLE ai_studio_admin");
+      } catch {
+      }
     }
     for (const q of migrationQueries) {
       try {
@@ -146355,9 +145738,11 @@ async function initDbTables() {
         console.warn("Table column migration note:", colErr);
       }
     }
-    try {
-      await pool.query("RESET ROLE");
-    } catch {
+    if (process.env.SQL_HOST) {
+      try {
+        await pool.query("RESET ROLE");
+      } catch {
+      }
     }
   } catch (e2) {
   }
@@ -146463,9 +145848,10 @@ async function initDbTables() {
            '123 Ayala Avenue', 'Makati City', 'Metro Manila', 'APPROVED', NULL, $2, NOW() - INTERVAL '14 days', NOW() - INTERVAL '15 days');
         `, [sId, aId]);
       }
-      const articlesCount = await pool.query("SELECT COUNT(*) FROM seo_content_articles");
-      if (parseInt(articlesCount.rows[0].count, 10) === 0) {
-        await pool.query(`
+    }
+    const articlesCount = await pool.query("SELECT COUNT(*) FROM seo_content_articles");
+    if (parseInt(articlesCount.rows[0].count, 10) === 0) {
+      await pool.query(`
           INSERT INTO seo_content_articles (
             slug, title, meta_description, category, target_keywords, secondary_keywords,
             author_name, read_time_minutes, ai_direct_answer, key_takeaways, content_markdown,
@@ -146595,7 +145981,6 @@ This guide breaks down standard 2026 market rates across services, helping you b
             97, 98, 'VERY_HIGH', 'PUBLISHED', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day', NOW()
           );
         `);
-      }
     }
   } catch (err) {
     console.warn("Table initialization note:", err);
@@ -146603,12 +145988,20 @@ This guide breaks down standard 2026 market rates across services, helping you b
 }
 var app = (0, import_express23.default)();
 var PORT = Number(process.env.PORT) || 3e3;
-var dbInitialized = false;
 app.use(async (req, res, next) => {
-  if (!dbInitialized) {
-    dbInitialized = true;
-    initDbTables().catch((err) => console.warn("Lazy initDbTables note:", err));
+  if (req.path === "/api/health") {
+    return next();
   }
+  if (!isDatabaseConfigured) {
+    if (req.path.startsWith("/api/")) {
+      return res.status(503).json({
+        error: "Database not configured",
+        message: "Set DATABASE_URL (Supabase Connection Pooler URI) in Vercel Environment Variables."
+      });
+    }
+    return next();
+  }
+  await ensureDbInitialized();
   next();
 });
 app.use("/api/stripe/webhook", import_express23.default.raw({ type: "application/json" }));
@@ -146617,8 +146010,12 @@ app.use((req, res, next) => {
   SystemMetricsService.recordHttpRequest();
   next();
 });
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
+app.get("/api/health", async (req, res) => {
+  res.json({
+    status: "ok",
+    databaseConfigured: isDatabaseConfigured,
+    runtime: process.env.VERCEL === "1" ? "vercel-serverless" : "node-server"
+  });
 });
 app.get("/api/adsense/config", async (req, res) => {
   try {
@@ -146870,6 +146267,19 @@ app.get("/api/v1/office/stream", (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
   res.flushHeaders?.();
+  if (process.env.VERCEL === "1") {
+    res.write(`retry: 4000
+`);
+    res.write(`data: ${JSON.stringify({
+      type: "OFFICE_INIT",
+      ...officeAgentService.getState(),
+      timestamp: (/* @__PURE__ */ new Date()).toISOString()
+    })}
+
+`);
+    res.end();
+    return;
+  }
   officeAgentService.subscribeClient(res);
 });
 app.get("/api/v1/office/status", (req, res) => {
@@ -146917,8 +146327,23 @@ var server_default = app;
 
 // src/vercel-handler.ts
 function handler(req, res) {
-  if (req.url && !req.url.startsWith("/api") && req.url !== "/") {
-    req.url = "/api" + req.url;
+  if (req.url) {
+    try {
+      const parsed = new URL(req.url, "http://localhost");
+      const vpath = parsed.searchParams.get("__vpath");
+      if (vpath) {
+        parsed.searchParams.delete("__vpath");
+        const normalizedPath = vpath.startsWith("/") ? vpath : `/${vpath}`;
+        const remainingQuery = parsed.searchParams.toString();
+        req.url = remainingQuery ? `${normalizedPath}?${remainingQuery}` : normalizedPath;
+      } else if (!req.url.startsWith("/api") && req.url !== "/") {
+        req.url = "/api" + req.url;
+      }
+    } catch {
+      if (!req.url.startsWith("/api") && req.url !== "/") {
+        req.url = "/api" + req.url;
+      }
+    }
   }
   return server_default(req, res);
 }
@@ -147258,7 +146683,7 @@ firebase-admin/lib/auth/auth-api-request.js:
 firebase-admin/lib/auth/token-generator.js:
 firebase-admin/lib/auth/user-record.js:
 firebase-admin/lib/auth/auth.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * @license
    * Copyright 2017 Google LLC
@@ -147278,7 +146703,7 @@ firebase-admin/lib/auth/auth.js:
 
 firebase-admin/lib/app/error.js:
 firebase-admin/lib/auth/error.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2026 Google LLC
    *
@@ -147296,7 +146721,7 @@ firebase-admin/lib/auth/error.js:
    *)
 
 firebase-admin/lib/app/credential-internal.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * @license
    * Copyright 2020 Google LLC
@@ -147318,7 +146743,7 @@ firebase-admin/lib/app/lifecycle.js:
 firebase-admin/lib/app/credential-factory.js:
 firebase-admin/lib/app/index.js:
 firebase-admin/lib/utils/crypto-signer.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * @license
    * Copyright 2021 Google LLC
@@ -147340,7 +146765,7 @@ firebase-admin/lib/auth/user-import-builder.js:
 firebase-admin/lib/auth/action-code-settings-builder.js:
 firebase-admin/lib/auth/auth-config.js:
 firebase-admin/lib/auth/token-verifier.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2018 Google LLC
    *
@@ -147359,7 +146784,7 @@ firebase-admin/lib/auth/token-verifier.js:
 
 firebase-admin/lib/auth/tenant.js:
 firebase-admin/lib/auth/tenant-manager.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2019 Google LLC
    *
@@ -147378,7 +146803,7 @@ firebase-admin/lib/auth/tenant-manager.js:
 
 firebase-admin/lib/auth/identifier.js:
 firebase-admin/lib/auth/index.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2020 Google LLC
    *
@@ -147396,7 +146821,7 @@ firebase-admin/lib/auth/index.js:
    *)
 
 firebase-admin/lib/auth/project-config.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2022 Google LLC
    *
@@ -147415,7 +146840,7 @@ firebase-admin/lib/auth/project-config.js:
 
 firebase-admin/lib/utils/jwt.js:
 firebase-admin/lib/auth/base-auth.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
   (*!
    * Copyright 2021 Google LLC
    *
@@ -147433,7 +146858,7 @@ firebase-admin/lib/auth/base-auth.js:
    *)
 
 firebase-admin/lib/auth/project-config-manager.js:
-  (*! firebase-admin v14.5.0 *)
+  (*! firebase-admin v14.5.1 *)
 
 @google/genai/dist/node/index.mjs:
 @google/genai/dist/node/index.mjs:

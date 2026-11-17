@@ -23,21 +23,72 @@ import { aiHomepageAgentRouter } from "./src/routes/aiHomepageAgent.ts";
 import { krawlRouter, handleDecoyEnv, handleDecoyBackup } from "./src/routes/krawl.ts";
 import { reviewsRouter } from "./src/routes/reviews.ts";
 import { SystemMetricsService } from "./src/services/SystemMetricsService.ts";
-import { pool, db, pglite } from "./src/db/index.ts";
+import { pool, db, pglite, isDatabaseConfigured } from "./src/db/index.ts";
+import { bootstrapRemotePostgresSchema } from "./src/db/bootstrap.ts";
 import { officeAgentService } from "./src/services/OfficeAgentService.ts";
 
+let initPromise: Promise<void> | null = null;
+
+export function ensureDbInitialized(): Promise<void> {
+  if (!initPromise) {
+    initPromise = initDbTables().catch((err) => {
+      console.warn("DB initialization note:", err);
+      initPromise = null;
+    });
+  }
+  return initPromise;
+}
+
 async function initDbTables() {
+  if (!isDatabaseConfigured || !pool) {
+    console.warn("[Database] Skipping initDbTables: DATABASE_URL is not configured.");
+    return;
+  }
+
   try {
-    try {
-      if (pglite) {
+    if (pglite) {
+      try {
         const migratorPkg = "drizzle-orm/pglite/migrator";
         const { migrate } = await import(migratorPkg);
         await pglite.waitReady;
         await migrate(db, { migrationsFolder: "./drizzle" });
         console.log("Database schema migrations verified and applied successfully.");
+      } catch (migErr) {
+        console.warn("Schema migration note:", migErr);
       }
-    } catch (migErr) {
-      console.warn("Schema migration note:", migErr);
+    } else {
+      // Fast-path check for warm / already-initialized remote PostgreSQL (Supabase)
+      try {
+        const checkRes = await pool.query(`
+          SELECT
+            to_regclass('public.users') AS users_tbl,
+            to_regclass('public.reviews') AS reviews_tbl,
+            to_regclass('public.seo_content_articles') AS seo_tbl,
+            to_regclass('public.google_search_console_configs') AS gsc_tbl,
+            to_regclass('public.service_rate_policies') AS policies_tbl,
+            to_regclass('public.krawl_configs') AS krawl_tbl
+        `);
+        const status = checkRes.rows[0] || {};
+        const allCoreTablesExist = Boolean(
+          status.users_tbl &&
+            status.reviews_tbl &&
+            status.seo_tbl &&
+            status.gsc_tbl &&
+            status.policies_tbl &&
+            status.krawl_tbl
+        );
+        if (allCoreTablesExist) {
+          const seededCheck = await pool.query("SELECT 1 FROM users LIMIT 1");
+          if (seededCheck.rows.length > 0) {
+            return;
+          }
+        }
+      } catch (checkErr) {
+        console.warn("Remote schema fast-path check note:", checkErr);
+      }
+
+      // Brand-new or incomplete remote PostgreSQL (e.g., fresh Supabase Free Tier DB)
+      await bootstrapRemotePostgresSchema(pool);
     }
     await pool.query(`
       CREATE TABLE IF NOT EXISTS reviews (
@@ -634,10 +685,12 @@ async function initDbTables() {
   ];
 
   try {
-    // Attempt role assumption if running in cloudsql
-    try {
-      await pool.query("SET ROLE ai_studio_admin");
-    } catch { }
+    // Attempt role assumption only when running against Cloud SQL
+    if (process.env.SQL_HOST) {
+      try {
+        await pool.query("SET ROLE ai_studio_admin");
+      } catch { }
+    }
 
     for (const q of migrationQueries) {
       try {
@@ -647,9 +700,11 @@ async function initDbTables() {
       }
     }
 
-    try {
-      await pool.query("RESET ROLE");
-    } catch { }
+    if (process.env.SQL_HOST) {
+      try {
+        await pool.query("RESET ROLE");
+      } catch { }
+    }
   } catch (e) { }
 
   try {
@@ -765,10 +820,12 @@ async function initDbTables() {
         `, [sId, aId]);
       }
 
-      // Seed Flagship SEO & AI Platform Discovery Articles if empty
-      const articlesCount = await pool.query("SELECT COUNT(*) FROM seo_content_articles");
-      if (parseInt(articlesCount.rows[0].count, 10) === 0) {
-        await pool.query(`
+    }
+
+    // Seed Flagship SEO & AI Platform Discovery Articles if empty
+    const articlesCount = await pool.query("SELECT COUNT(*) FROM seo_content_articles");
+    if (parseInt(articlesCount.rows[0].count, 10) === 0) {
+      await pool.query(`
           INSERT INTO seo_content_articles (
             slug, title, meta_description, category, target_keywords, secondary_keywords,
             author_name, read_time_minutes, ai_direct_answer, key_takeaways, content_markdown,
@@ -824,7 +881,6 @@ async function initDbTables() {
             97, 98, 'VERY_HIGH', 'PUBLISHED', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day', NOW()
           );
         `);
-      }
     }
   } catch (err) {
     console.warn("Table initialization note:", err);
@@ -834,12 +890,21 @@ async function initDbTables() {
 export const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
-let dbInitialized = false;
+// Ensure DB schema is initialized before any DB-backed API route executes
 app.use(async (req, res, next) => {
-  if (!dbInitialized) {
-    dbInitialized = true;
-    initDbTables().catch((err) => console.warn("Lazy initDbTables note:", err));
+  if (req.path === "/api/health") {
+    return next();
   }
+  if (!isDatabaseConfigured) {
+    if (req.path.startsWith("/api/")) {
+      return res.status(503).json({
+        error: "Database not configured",
+        message: "Set DATABASE_URL (Supabase Connection Pooler URI) in Vercel Environment Variables."
+      });
+    }
+    return next();
+  }
+  await ensureDbInitialized();
   next();
 });
 
@@ -854,8 +919,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
+app.get("/api/health", async (req, res) => {
+  res.json({
+    status: "ok",
+    databaseConfigured: isDatabaseConfigured,
+    runtime: process.env.VERCEL === "1" ? "vercel-serverless" : "node-server",
+  });
 });
 
 // Google AdSense public configuration
@@ -1111,6 +1180,16 @@ app.get("/api/v1/office/stream", (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
   res.flushHeaders?.();
+  if (process.env.VERCEL === "1") {
+    res.write(`retry: 4000\n`);
+    res.write(`data: ${JSON.stringify({
+      type: "OFFICE_INIT",
+      ...officeAgentService.getState(),
+      timestamp: new Date().toISOString()
+    })}\n\n`);
+    res.end();
+    return;
+  }
   officeAgentService.subscribeClient(res);
 });
 app.get("/api/v1/office/status", (req, res) => {

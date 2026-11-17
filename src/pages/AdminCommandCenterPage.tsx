@@ -72,11 +72,14 @@ export function AdminCommandCenterPage() {
     loadInitialState();
   }, [user]);
 
-  // 2. Real-Time Server-Sent Events (SSE) Stream
+  // 2. Real-Time Server-Sent Events (SSE) Stream (with serverless polling fallback)
   useEffect(() => {
     let eventSource: EventSource | null = null;
+    let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+    let isCancelled = false;
 
     const connectSSE = () => {
+      if (isCancelled) return;
       eventSource = new EventSource("/api/v1/office/stream");
 
       eventSource.onopen = () => {
@@ -114,14 +117,20 @@ export function AdminCommandCenterPage() {
       eventSource.onerror = () => {
         setConnected(false);
         eventSource?.close();
-        // Reconnect after 4s
-        setTimeout(connectSSE, 4000);
+        if (!isCancelled) {
+          reconnectTimer = setTimeout(() => {
+            loadInitialState();
+            connectSSE();
+          }, 4000);
+        }
       };
     };
 
     connectSSE();
 
     return () => {
+      isCancelled = true;
+      if (reconnectTimer) clearTimeout(reconnectTimer);
       eventSource?.close();
     };
   }, [isPaused]);

@@ -499,8 +499,8 @@ bookingsRouter.post("/", requireAuth, async (req: AuthRequest, res: Response) =>
             payment_intent_data: {
               transfer_group: transferGroup,
             },
-            success_url: `${process.env.APP_URL || 'http://localhost:3000'}/bookings/${newBooking[0].id}/confirmation`,
-            cancel_url: `${process.env.APP_URL || 'http://localhost:3000'}/bookings/${newBooking[0].id}/confirmation`,
+            success_url: `${process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : (req.headers.host ? `${req.headers["x-forwarded-proto"] || "https"}://${req.headers.host}` : "http://localhost:3000"))}/bookings/${newBooking[0].id}/confirmation`,
+            cancel_url: `${process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : (req.headers.host ? `${req.headers["x-forwarded-proto"] || "https"}://${req.headers.host}` : "http://localhost:3000"))}/bookings/${newBooking[0].id}/confirmation`,
           });
           checkoutUrl = session.url;
         }

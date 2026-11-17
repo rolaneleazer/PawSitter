@@ -952,14 +952,14 @@ adminRouter.get("/environment", requireRole(["ADMIN"]), async (req: AuthRequest,
         key: "APP_URL",
         name: "Application Host URL",
         category: "Platform Ingress & Hosting",
-        description: "Canonical origin URL for the running Cloud Run service. Used for OAuth callbacks, Stripe webhook validation, and deep links.",
-        required: true,
-        setupGuideUrl: "https://cloud.google.com/run",
-        isConfigured: Boolean(process.env.APP_URL && process.env.APP_URL !== "MY_APP_URL"),
-        maskedValue: process.env.APP_URL || "Auto-detected by Cloud Run container",
+        description: "Canonical origin URL for the running service. Used for OAuth callbacks, Stripe redirect URLs, and deep links.",
+        required: false,
+        setupGuideUrl: "https://vercel.com/docs/projects/environment-variables",
+        isConfigured: Boolean((process.env.APP_URL && process.env.APP_URL !== "MY_APP_URL") || process.env.VERCEL_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL),
+        maskedValue: process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "Auto-detected from request origin"),
         runtimeOverride: runtimeMap.get("APP_URL")?.configValue || null,
-        targetFile: ".env / Cloud Run Environment",
-        hint: "Injected automatically by the AI Studio Cloud Run platform at deployment time.",
+        targetFile: ".env / Vercel Environment Variables",
+        hint: "Auto-detected on Vercel via VERCEL_URL, or set explicitly to your custom domain.",
       },
       {
         key: "VITE_GOOGLE_ADSENSE_CLIENT_ID",
@@ -1030,14 +1030,14 @@ adminRouter.get("/environment", requireRole(["ADMIN"]), async (req: AuthRequest,
         key: "DATABASE_URL",
         name: "PostgreSQL Database Connection String",
         category: "Database & Storage",
-        description: "Connection URI for the production Cloud SQL PostgreSQL database storing users, bookings, rate cards, and audit logs.",
+        description: "Connection URI for the production PostgreSQL database (Supabase Connection Pooler / Cloud SQL) storing users, bookings, rate cards, and audit logs.",
         required: true,
-        setupGuideUrl: "https://cloud.google.com/sql",
-        isConfigured: Boolean(process.env.DATABASE_URL),
-        maskedValue: maskValue(process.env.DATABASE_URL, 8),
+        setupGuideUrl: "https://supabase.com/docs/guides/database/connecting-to-postgres",
+        isConfigured: Boolean(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.SUPABASE_DATABASE_URL),
+        maskedValue: maskValue(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.SUPABASE_DATABASE_URL, 8),
         runtimeOverride: null,
-        targetFile: ".env / Cloud SQL Environment",
-        hint: "Managed automatically by Cloud Run and Cloud SQL database instance connection pool.",
+        targetFile: ".env / Vercel Environment Variables",
+        hint: "Use the Supabase Transaction Pooler URI (port 6543, *.pooler.supabase.com) for Vercel Free Tier IPv4 compatibility.",
       },
       {
         key: "FIREBASE_CONFIG",
@@ -2941,6 +2941,12 @@ adminRouter.get("/system-metrics/stream", requireRole(["ADMIN"]), async (req: Au
 
     // Send immediately
     await sendData();
+
+    // On Vercel serverless, end cleanly so the client seamlessly uses polling instead of hitting function timeout
+    if (process.env.VERCEL === "1") {
+      res.end();
+      return;
+    }
 
     // Stream every 1000ms
     const intervalId = setInterval(sendData, 1000);

@@ -322,7 +322,9 @@ class OfficeAgentService {
   private simulationSpeed: 1 | 2 = 1;
 
   constructor() {
-    this.startAutonomousLoop();
+    if (process.env.VERCEL !== "1") {
+      this.startAutonomousLoop();
+    }
   }
 
   // Subscribe a client to Server-Sent Events (SSE)
@@ -357,6 +359,9 @@ class OfficeAgentService {
 
   // Return complete current office state
   public getState() {
+    if (process.env.VERCEL === "1") {
+      this.tickSimulation();
+    }
     return {
       agents: this.agents,
       zones: this.zones,

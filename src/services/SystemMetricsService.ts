@@ -112,7 +112,11 @@ class SystemMetricsManager {
   constructor() {
     this.eventLoopHistogram.enable();
     this.initPreviousCpuTimes();
-    this.startPeriodicSampling();
+    if (process.env.VERCEL !== "1") {
+      this.startPeriodicSampling();
+    } else {
+      this.sampleMetrics();
+    }
   }
 
   public recordHttpRequest() {
